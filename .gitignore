@@ -5,10 +5,8 @@ npm-debug.log
 .DS_Store
 
 .idea
-.build/
 .vscode/
 node_modules/
-.coverage
 .env
 .coverage/
 
