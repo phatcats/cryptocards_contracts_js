@@ -1,7 +1,7 @@
 
 import { _ } from 'lodash';
 
-import { Helpers } from './helpers';
+import { CryptoCardsHelpers } from './helpers';
 
 import { ContractBase } from './contract-base';
 import { CryptoCardsControllerABI } from './crypto-cards-controller.abi';
@@ -14,13 +14,13 @@ class _ICryptoCardsController extends ContractBase {
 
     getPromoCode(codeIndex) {
         // if (!this.account.hasNetwork) { return Promise.reject('Provider not ready'); }
-        const _fn = Helpers.promisify(this.contract.getPromoCode);
+        const _fn = CryptoCardsHelpers.promisify(this.contract.getPromoCode);
         return _fn(codeIndex);
     }
 
     getPrice(generation) {
         // if (!this.account.hasNetwork) { return Promise.reject('Provider not ready'); }
-        const _fn = Helpers.promisify(this.contract.getPrice);
+        const _fn = CryptoCardsHelpers.promisify(this.contract.getPrice);
         return _fn(generation);
     }
 }

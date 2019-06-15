@@ -1,10 +1,17 @@
 
+import {
+    CONTRACT_ADDRESS
+} from './globals';
+
 
 // Helpers Object
-export const Helpers = {};
+export const CryptoCardsHelpers = {};
 
+CryptoCardsHelpers.getContractAddress = (networkVersion = '1') => {
+    return CONTRACT_ADDRESS[networkVersion];
+};
 
-Helpers.promisify = f => (...args) => new Promise((resolve, reject) => {
+CryptoCardsHelpers.promisify = f => (...args) => new Promise((resolve, reject) => {
     f(...args, (err, val) => {
         if (err) {
             reject(err);

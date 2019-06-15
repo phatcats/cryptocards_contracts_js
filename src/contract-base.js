@@ -1,7 +1,7 @@
 
 import { _ } from 'lodash';
 
-import { Helpers } from './helpers';
+import { CryptoCardsHelpers } from './helpers';
 
 import {
     CONTRACT_ADDRESS,
@@ -57,7 +57,7 @@ export class ContractBase {
 
     callContractFn(contractMethod, ...args) {
         // if (!this.account.isWeb3Ready) { return Promise.reject(`Web3 Provider not ready (calling "${contractMethod}")`); }
-        const _fn = Helpers.promisify(this.contract[contractMethod]);
+        const _fn = CryptoCardsHelpers.promisify(this.contract[contractMethod]);
         return _fn(...args);
     }
 
@@ -65,7 +65,7 @@ export class ContractBase {
         // if (!this.account.isWeb3Ready) { return Promise.reject(`Web3 Provider not ready (calling "${contractMethod}")`); }
         // log.verbose(contractMethod, tx, ...args);
 
-        const _fn = Helpers.promisify(this.contract[contractMethod]);
+        const _fn = CryptoCardsHelpers.promisify(this.contract[contractMethod]);
         let promise;
         try {
             promise = _fn(...args, tx);
@@ -77,7 +77,7 @@ export class ContractBase {
     }
 
     getReceipt(hash) {
-        const _getTransactionReceipt = Helpers.promisify(this.web3.eth.getTransactionReceipt);
+        const _getTransactionReceipt = CryptoCardsHelpers.promisify(this.web3.eth.getTransactionReceipt);
         return _getTransactionReceipt(hash);
     }
 
