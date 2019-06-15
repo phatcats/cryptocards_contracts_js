@@ -7,9 +7,9 @@
   "description": "JS Interface for Crypto-Cards Ethereum Contracts",
   "keywords": [],
   "homepage": "crypto-cards.io",
-  "main": ".build/index.js",
+  "main": "bin/index.js",
   "scripts": {
-    "build": "babel src -d .build",
+    "build": "babel src -d bin",
     "test": "jest --coverage"
   },
   "jest": {
