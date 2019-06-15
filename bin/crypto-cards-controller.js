@@ -31,18 +31,11 @@ var _ICryptoCardsController = function (_ContractBase) {
     }
 
     _createClass(_ICryptoCardsController, [{
-        key: 'getPromoCode',
-        value: function getPromoCode(codeIndex) {
+        key: 'getVersion',
+        value: function getVersion() {
             // if (!this.account.hasNetwork) { return Promise.reject('Provider not ready'); }
-            var _fn = _helpers.CryptoCardsHelpers.promisify(this.contract.getPromoCode);
-            return _fn(codeIndex);
-        }
-    }, {
-        key: 'getPrice',
-        value: function getPrice(generation) {
-            // if (!this.account.hasNetwork) { return Promise.reject('Provider not ready'); }
-            var _fn = _helpers.CryptoCardsHelpers.promisify(this.contract.getPrice);
-            return _fn(generation);
+            var _fn = _helpers.CryptoCardsHelpers.promisify(this.contract.getVersion);
+            return _fn();
         }
     }]);
 
@@ -52,7 +45,10 @@ var _ICryptoCardsController = function (_ContractBase) {
 var CryptoCardsController = exports.CryptoCardsController = function (_ICryptoCardsControll) {
     _inherits(CryptoCardsController, _ICryptoCardsControll);
 
-    function CryptoCardsController(web3, logger) {
+    function CryptoCardsController(_ref) {
+        var web3 = _ref.web3,
+            logger = _ref.logger;
+
         _classCallCheck(this, CryptoCardsController);
 
         var _this2 = _possibleConstructorReturn(this, (CryptoCardsController.__proto__ || Object.getPrototypeOf(CryptoCardsController)).call(this, web3, logger));
@@ -61,21 +57,5 @@ var CryptoCardsController = exports.CryptoCardsController = function (_ICryptoCa
         return _this2;
     }
 
-    _createClass(CryptoCardsController, null, [{
-        key: 'instance',
-        value: function instance() {
-            if (!CryptoCardsController._instance) {
-                CryptoCardsController._instance = new CryptoCardsController();
-            }
-            return CryptoCardsController._instance;
-        }
-    }]);
-
     return CryptoCardsController;
 }(_ICryptoCardsController);
-//
-// Static Member Variables
-//
-
-
-CryptoCardsController._instance = null; // Static Instance Member for Singleton Pattern
