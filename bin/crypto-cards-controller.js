@@ -34,14 +34,14 @@ var _ICryptoCardsController = function (_ContractBase) {
         key: 'getPromoCode',
         value: function getPromoCode(codeIndex) {
             // if (!this.account.hasNetwork) { return Promise.reject('Provider not ready'); }
-            var _fn = _helpers.Helpers.promisify(this.contract.getPromoCode);
+            var _fn = _helpers.CryptoCardsHelpers.promisify(this.contract.getPromoCode);
             return _fn(codeIndex);
         }
     }, {
         key: 'getPrice',
         value: function getPrice(generation) {
             // if (!this.account.hasNetwork) { return Promise.reject('Provider not ready'); }
-            var _fn = _helpers.Helpers.promisify(this.contract.getPrice);
+            var _fn = _helpers.CryptoCardsHelpers.promisify(this.contract.getPrice);
             return _fn(generation);
         }
     }]);

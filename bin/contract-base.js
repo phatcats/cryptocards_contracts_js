@@ -69,7 +69,7 @@ var ContractBase = exports.ContractBase = function () {
         key: 'callContractFn',
         value: function callContractFn(contractMethod) {
             // if (!this.account.isWeb3Ready) { return Promise.reject(`Web3 Provider not ready (calling "${contractMethod}")`); }
-            var _fn = _helpers.Helpers.promisify(this.contract[contractMethod]);
+            var _fn = _helpers.CryptoCardsHelpers.promisify(this.contract[contractMethod]);
 
             for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
                 args[_key - 1] = arguments[_key];
@@ -83,7 +83,7 @@ var ContractBase = exports.ContractBase = function () {
             // if (!this.account.isWeb3Ready) { return Promise.reject(`Web3 Provider not ready (calling "${contractMethod}")`); }
             // log.verbose(contractMethod, tx, ...args);
 
-            var _fn = _helpers.Helpers.promisify(this.contract[contractMethod]);
+            var _fn = _helpers.CryptoCardsHelpers.promisify(this.contract[contractMethod]);
             var promise = void 0;
             try {
                 for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
@@ -100,7 +100,7 @@ var ContractBase = exports.ContractBase = function () {
     }, {
         key: 'getReceipt',
         value: function getReceipt(hash) {
-            var _getTransactionReceipt = _helpers.Helpers.promisify(this.web3.eth.getTransactionReceipt);
+            var _getTransactionReceipt = _helpers.CryptoCardsHelpers.promisify(this.web3.eth.getTransactionReceipt);
             return _getTransactionReceipt(hash);
         }
     }, {

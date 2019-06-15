@@ -1,14 +1,22 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.CryptoCardsHelpers = undefined;
 
+var _globals = require('./globals');
 
 // Helpers Object
-var Helpers = exports.Helpers = {};
+var CryptoCardsHelpers = exports.CryptoCardsHelpers = {};
 
-Helpers.promisify = function (f) {
+CryptoCardsHelpers.getContractAddress = function () {
+    var networkVersion = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '1';
+
+    return _globals.CONTRACT_ADDRESS[networkVersion];
+};
+
+CryptoCardsHelpers.promisify = function (f) {
     return function () {
         for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
             args[_key] = arguments[_key];
