@@ -59,34 +59,31 @@ var CryptoCardsController = exports.CryptoCardsController = function (_ICryptoCa
         return _this2;
     }
 
-    _createClass(CryptoCardsController, [{
+    _createClass(CryptoCardsController, null, [{
+        key: 'instance',
+        value: function instance() {
+            return CryptoCardsController._instance;
+        }
+    }, {
         key: 'initialize',
         value: function () {
-            var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(networkVersion) {
+            var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(_ref2) {
+                var web3 = _ref2.web3,
+                    networkVersion = _ref2.networkVersion,
+                    logger = _ref2.logger;
                 return regeneratorRuntime.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
-                                this.log('CryptoCardsController initializing..');
-
-                                _context.t0 = networkVersion;
-
-                                if (_context.t0) {
-                                    _context.next = 6;
-                                    break;
+                                if (!CryptoCardsController._instance) {
+                                    this.log('CryptoCardsController initializing..');
+                                    CryptoCardsController._instance = new CryptoCardsController({ web3: web3, logger: logger });
                                 }
 
-                                _context.next = 5;
-                                return this.getNetworkVersion();
+                                // networkVersion = networkVersion || await this.getNetworkVersion();
+                                return _context.abrupt('return', CryptoCardsController._instance.connectToContract(networkVersion));
 
-                            case 5:
-                                _context.t0 = _context.sent;
-
-                            case 6:
-                                networkVersion = _context.t0;
-                                return _context.abrupt('return', this.connectToContract(networkVersion));
-
-                            case 8:
+                            case 2:
                             case 'end':
                                 return _context.stop();
                         }
@@ -95,7 +92,7 @@ var CryptoCardsController = exports.CryptoCardsController = function (_ICryptoCa
             }));
 
             function initialize(_x) {
-                return _ref2.apply(this, arguments);
+                return _ref3.apply(this, arguments);
             }
 
             return initialize;
@@ -104,3 +101,9 @@ var CryptoCardsController = exports.CryptoCardsController = function (_ICryptoCa
 
     return CryptoCardsController;
 }(_ICryptoCardsController);
+//
+// Static Member Variables
+//
+
+
+CryptoCardsController._instance = null; // Static Instance Member for Singleton Pattern

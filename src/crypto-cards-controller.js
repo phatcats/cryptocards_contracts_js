@@ -26,10 +26,21 @@ export class CryptoCardsController extends _ICryptoCardsController {
         this.log('CryptoCardsController created');
     }
 
-    async initialize(networkVersion) {
-        this.log('CryptoCardsController initializing..');
+    static instance() {
+        return CryptoCardsController._instance;
+    }
 
-        networkVersion = networkVersion || await this.getNetworkVersion();
-        return this.connectToContract(networkVersion);
+    static async initialize({web3, networkVersion, logger}) {
+        if (!CryptoCardsController._instance) {
+            this.log('CryptoCardsController initializing..');
+            CryptoCardsController._instance = new CryptoCardsController({web3, logger});
+        }
+
+        // networkVersion = networkVersion || await this.getNetworkVersion();
+        return CryptoCardsController._instance.connectToContract(networkVersion);
     }
 }
+//
+// Static Member Variables
+//
+CryptoCardsController._instance = null; // Static Instance Member for Singleton Pattern
