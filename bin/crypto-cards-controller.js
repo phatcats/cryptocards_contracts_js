@@ -39,6 +39,12 @@ var _ICryptoCardsController = function (_ContractBase) {
             var _fn = _helpers.CryptoCardsHelpers.promisify(this.contract.getVersion);
             return _fn();
         }
+    }, {
+        key: 'getVersion2',
+        value: function getVersion2() {
+            // if (!this.account.hasNetwork) { return Promise.reject('Provider not ready'); }
+            return this.contract.methods.getVersion().call();
+        }
     }]);
 
     return _ICryptoCardsController;

@@ -17,6 +17,11 @@ class _ICryptoCardsController extends ContractBase {
         const _fn = CryptoCardsHelpers.promisify(this.contract.getVersion);
         return _fn();
     }
+
+    getVersion2() {
+        // if (!this.account.hasNetwork) { return Promise.reject('Provider not ready'); }
+        return this.contract.methods.getVersion().call();
+    }
 }
 
 export class CryptoCardsController extends _ICryptoCardsController {

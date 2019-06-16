@@ -5,6 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.CryptoCardsHelpers = exports.CryptoCardsController = undefined;
 
+require('babel-polyfill');
+
 var _helpers = require('./helpers');
 
 var _cryptoCardsController = require('./crypto-cards-controller');
