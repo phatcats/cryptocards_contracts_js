@@ -54,11 +54,7 @@ var CryptoCardsController = exports.CryptoCardsController = function (_ICryptoCa
 
         _classCallCheck(this, CryptoCardsController);
 
-        var _this2 = _possibleConstructorReturn(this, (CryptoCardsController.__proto__ || Object.getPrototypeOf(CryptoCardsController)).call(this, web3provider, logger));
-
-        _this2.log('CryptoCardsController created');
-        _this2.log('web3provider', web3provider);
-        return _this2;
+        return _possibleConstructorReturn(this, (CryptoCardsController.__proto__ || Object.getPrototypeOf(CryptoCardsController)).call(this, web3provider, logger));
     }
 
     _createClass(CryptoCardsController, null, [{
@@ -82,7 +78,6 @@ var CryptoCardsController = exports.CryptoCardsController = function (_ICryptoCa
                                 }
                                 _lodash._.isFunction(logger) && logger('CryptoCardsController initializing..');
 
-                                // networkVersion = networkVersion || await this.getNetworkVersion();
                                 return _context.abrupt('return', CryptoCardsController._instance.connectToContract(networkVersion));
 
                             case 3:

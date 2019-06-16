@@ -21,9 +21,6 @@ class _ICryptoCardsController extends ContractBase {
 export class CryptoCardsController extends _ICryptoCardsController {
     constructor({web3provider, logger}) {
         super(web3provider, logger);
-
-        this.log('CryptoCardsController created');
-        this.log('web3provider', web3provider);
     }
 
     static instance() {
@@ -36,7 +33,6 @@ export class CryptoCardsController extends _ICryptoCardsController {
         }
         _.isFunction(logger) && logger('CryptoCardsController initializing..');
 
-        // networkVersion = networkVersion || await this.getNetworkVersion();
         return CryptoCardsController._instance.connectToContract(networkVersion);
     }
 }
