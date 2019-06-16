@@ -44,21 +44,6 @@ var ContractBase = exports.ContractBase = function () {
             return this.isProviderReady;
         }
     }, {
-        key: 'getNetworkVersion',
-        value: function getNetworkVersion() {
-            return this.web3.eth.net.getId();
-        }
-    }, {
-        key: 'getNetworkType',
-        value: function getNetworkType() {
-            return this.web3.eth.net.getNetworkType();
-        }
-    }, {
-        key: 'getNetworkPeerCount',
-        value: function getNetworkPeerCount() {
-            return this.web3.eth.net.getPeerCount();
-        }
-    }, {
         key: 'getEventsFromContract',
         value: function getEventsFromContract(eventName, eventOptions) {
             return this.contract.getPastEvents(eventName, eventOptions);

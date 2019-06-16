@@ -42,18 +42,6 @@ export class ContractBase {
         return this.isProviderReady;
     }
 
-    getNetworkVersion() {
-        return this.web3.eth.net.getId();
-    }
-
-    getNetworkType() {
-        return this.web3.eth.net.getNetworkType();
-    }
-
-    getNetworkPeerCount() {
-        return this.web3.eth.net.getPeerCount();
-    }
-
     getEventsFromContract(eventName, eventOptions) {
         return this.contract.getPastEvents(eventName, eventOptions);
     }

@@ -33,12 +33,27 @@ var _ICryptoCardsController = function (_ContractBase) {
     }
 
     _createClass(_ICryptoCardsController, [{
-        key: 'getVersion',
-        value: function getVersion() {
+        key: 'getContractVersion',
+        value: function getContractVersion() {
             if (!this.isProviderReady) {
                 return Promise.reject('Web3 Provider not ready (calling "getVersion")');
             }
             return this.contract.methods.getVersion().call();
+        }
+    }, {
+        key: 'getNetworkVersion',
+        value: function getNetworkVersion() {
+            return this.web3.eth.net.getId();
+        }
+    }, {
+        key: 'getNetworkType',
+        value: function getNetworkType() {
+            return this.web3.eth.net.getNetworkType();
+        }
+    }, {
+        key: 'getNetworkPeerCount',
+        value: function getNetworkPeerCount() {
+            return this.web3.eth.net.getPeerCount();
         }
     }]);
 
@@ -76,11 +91,9 @@ var CryptoCardsController = exports.CryptoCardsController = function (_ICryptoCa
                                 if (!CryptoCardsController._instance) {
                                     CryptoCardsController._instance = new CryptoCardsController({ web3provider: web3provider, logger: logger });
                                 }
-                                _lodash._.isFunction(logger) && logger('CryptoCardsController initializing..');
-
                                 return _context.abrupt('return', CryptoCardsController._instance.connectToContract(networkVersion));
 
-                            case 3:
+                            case 2:
                             case 'end':
                                 return _context.stop();
                         }

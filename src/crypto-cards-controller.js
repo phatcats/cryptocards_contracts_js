@@ -12,11 +12,24 @@ class _ICryptoCardsController extends ContractBase {
         super('CONTROLLER', CryptoCardsControllerABI, web3provider, logger);
     }
 
-    getVersion() {
+    getContractVersion() {
         if (!this.isProviderReady) { return Promise.reject('Web3 Provider not ready (calling "getVersion")'); }
         return this.contract.methods.getVersion().call();
     }
+
+    getNetworkVersion() {
+        return this.web3.eth.net.getId();
+    }
+
+    getNetworkType() {
+        return this.web3.eth.net.getNetworkType();
+    }
+
+    getNetworkPeerCount() {
+        return this.web3.eth.net.getPeerCount();
+    }
 }
+
 
 export class CryptoCardsController extends _ICryptoCardsController {
     constructor({web3provider, logger}) {
@@ -31,8 +44,6 @@ export class CryptoCardsController extends _ICryptoCardsController {
         if (!CryptoCardsController._instance) {
             CryptoCardsController._instance = new CryptoCardsController({web3provider, logger});
         }
-        _.isFunction(logger) && logger('CryptoCardsController initializing..');
-
         return CryptoCardsController._instance.connectToContract(networkVersion);
     }
 }
