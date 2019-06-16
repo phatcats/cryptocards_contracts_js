@@ -42,10 +42,12 @@ var ContractBase = exports.ContractBase = function () {
             var _this = this;
 
             return new Promise(function (resolve, reject) {
+                _this.log('getNetworkVersion called');
                 _this.web3.version.getNetwork(function (err, networkVersion) {
                     if (err) {
                         reject(err);
                     } else {
+                        _this.log('getNetworkVersion networkVersion = ', networkVersion);
                         resolve(networkVersion);
                     }
                 });

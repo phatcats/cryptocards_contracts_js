@@ -23,10 +23,13 @@ export class CryptoCardsController extends _ICryptoCardsController {
     constructor({web3, logger}) {
         super(web3, logger);
 
-        logger('CryptoCardsController created');
+        this.log('CryptoCardsController created');
     }
 
-    async initialize() {
-        return this.connectToContract(await this.getNetworkVersion());
+    async initialize(networkVersion) {
+        this.log('CryptoCardsController initializing..');
+
+        networkVersion = networkVersion || await this.getNetworkVersion();
+        return this.connectToContract(networkVersion);
     }
 }

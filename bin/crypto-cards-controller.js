@@ -55,27 +55,38 @@ var CryptoCardsController = exports.CryptoCardsController = function (_ICryptoCa
 
         var _this2 = _possibleConstructorReturn(this, (CryptoCardsController.__proto__ || Object.getPrototypeOf(CryptoCardsController)).call(this, web3, logger));
 
-        logger('CryptoCardsController created');
+        _this2.log('CryptoCardsController created');
         return _this2;
     }
 
     _createClass(CryptoCardsController, [{
         key: 'initialize',
         value: function () {
-            var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(networkVersion) {
                 return regeneratorRuntime.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
-                                _context.t0 = this;
-                                _context.next = 3;
+                                this.log('CryptoCardsController initializing..');
+
+                                _context.t0 = networkVersion;
+
+                                if (_context.t0) {
+                                    _context.next = 6;
+                                    break;
+                                }
+
+                                _context.next = 5;
                                 return this.getNetworkVersion();
 
-                            case 3:
-                                _context.t1 = _context.sent;
-                                return _context.abrupt('return', _context.t0.connectToContract.call(_context.t0, _context.t1));
-
                             case 5:
+                                _context.t0 = _context.sent;
+
+                            case 6:
+                                networkVersion = _context.t0;
+                                return _context.abrupt('return', this.connectToContract(networkVersion));
+
+                            case 8:
                             case 'end':
                                 return _context.stop();
                         }
@@ -83,7 +94,7 @@ var CryptoCardsController = exports.CryptoCardsController = function (_ICryptoCa
                 }, _callee, this);
             }));
 
-            function initialize() {
+            function initialize(_x) {
                 return _ref2.apply(this, arguments);
             }
 

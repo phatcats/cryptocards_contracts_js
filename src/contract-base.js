@@ -34,10 +34,12 @@ export class ContractBase {
 
     getNetworkVersion() {
         return new Promise((resolve, reject) => {
+            this.log('getNetworkVersion called');
             this.web3.version.getNetwork((err, networkVersion) => {
                 if (err) {
                     reject(err);
                 } else {
+                    this.log('getNetworkVersion networkVersion = ', networkVersion);
                     resolve(networkVersion);
                 }
             });
