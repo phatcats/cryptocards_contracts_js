@@ -24,6 +24,8 @@ export class CryptoCardsController extends _ICryptoCardsController {
         super(web3, logger);
 
         this.log('CryptoCardsController created');
+        this.log('web3', web3);
+        this.log('web3.eth', web3.eth);
     }
 
     static instance() {
@@ -32,9 +34,9 @@ export class CryptoCardsController extends _ICryptoCardsController {
 
     static async initialize({web3, networkVersion, logger}) {
         if (!CryptoCardsController._instance) {
-            _.isFunction(logger) && logger('CryptoCardsController initializing..');
             CryptoCardsController._instance = new CryptoCardsController({web3, logger});
         }
+        _.isFunction(logger) && logger('CryptoCardsController initializing..');
 
         // networkVersion = networkVersion || await this.getNetworkVersion();
         return CryptoCardsController._instance.connectToContract(networkVersion);
