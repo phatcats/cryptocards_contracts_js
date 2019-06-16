@@ -31,7 +31,12 @@ export class ContractBase {
         this.log('this.web3: ', this.web3);
         this.log('this.web3.eth: ', this.web3.eth);
         this.log('connecting to contract at: ', address);
-        this.contract = this.web3.eth.contract(this.contractAbi, address).at(address);
+
+
+        this.contract = new this.web3.eth.Contract(this.contractAbi, address);
+
+
+        // this.contract = this.web3.eth.contract(this.contractAbi, address).at(address);
         return !_.isEmpty(this.contract.address);
     }
 
