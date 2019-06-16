@@ -13,8 +13,6 @@ var _web2 = _interopRequireDefault(_web);
 
 var _lodash = require('lodash');
 
-var _helpers = require('./helpers');
-
 var _globals = require('./globals');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -34,6 +32,21 @@ var ContractBase = exports.ContractBase = function () {
     }
 
     _createClass(ContractBase, [{
+        key: 'getNetworkVersion',
+        value: function getNetworkVersion() {
+            return this.web3.eth.net.getId();
+        }
+    }, {
+        key: 'getNetworkType',
+        value: function getNetworkType() {
+            return this.web3.eth.net.getNetworkType();
+        }
+    }, {
+        key: 'getNetworkPeerCount',
+        value: function getNetworkPeerCount() {
+            return this.web3.eth.net.getPeerCount();
+        }
+    }, {
         key: 'connectToContract',
         value: function connectToContract() {
             var networkVersion = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '1';
@@ -71,7 +84,6 @@ var ContractBase = exports.ContractBase = function () {
             if (!this.isProviderReady) {
                 return Promise.reject('Web3 Provider not ready (calling "' + contractMethod + '")');
             }
-            // log.verbose(contractMethod, tx, ...args);
 
             for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
                 args[_key2 - 2] = arguments[_key2];

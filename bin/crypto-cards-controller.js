@@ -9,8 +9,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _lodash = require('lodash');
 
-var _helpers = require('./helpers');
-
 var _contractBase = require('./contract-base');
 
 var _cryptoCardsController = require('./crypto-cards-controller.abi');
@@ -39,21 +37,6 @@ var _ICryptoCardsController = function (_ContractBase) {
                 return Promise.reject('Web3 Provider not ready (calling "getVersion")');
             }
             return this.contract.methods.getVersion().call();
-        }
-    }, {
-        key: 'getNetworkVersion',
-        value: function getNetworkVersion() {
-            return this.web3.eth.net.getId();
-        }
-    }, {
-        key: 'getNetworkType',
-        value: function getNetworkType() {
-            return this.web3.eth.net.getNetworkType();
-        }
-    }, {
-        key: 'getNetworkPeerCount',
-        value: function getNetworkPeerCount() {
-            return this.web3.eth.net.getPeerCount();
         }
     }]);
 

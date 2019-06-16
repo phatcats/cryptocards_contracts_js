@@ -1,8 +1,6 @@
 
 import { _ } from 'lodash';
 
-import { CryptoCardsHelpers } from './helpers';
-
 import { ContractBase } from './contract-base';
 import { CryptoCardsControllerABI } from './crypto-cards-controller.abi';
 
@@ -15,18 +13,6 @@ class _ICryptoCardsController extends ContractBase {
     getContractVersion() {
         if (!this.isProviderReady) { return Promise.reject('Web3 Provider not ready (calling "getVersion")'); }
         return this.contract.methods.getVersion().call();
-    }
-
-    getNetworkVersion() {
-        return this.web3.eth.net.getId();
-    }
-
-    getNetworkType() {
-        return this.web3.eth.net.getNetworkType();
-    }
-
-    getNetworkPeerCount() {
-        return this.web3.eth.net.getPeerCount();
     }
 }
 
