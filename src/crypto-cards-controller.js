@@ -32,7 +32,7 @@ export class CryptoCardsController extends _ICryptoCardsController {
 
     static async initialize({web3, networkVersion, logger}) {
         if (!CryptoCardsController._instance) {
-            this.log('CryptoCardsController initializing..');
+            _.isFunction(logger) && logger('CryptoCardsController initializing..');
             CryptoCardsController._instance = new CryptoCardsController({web3, logger});
         }
 

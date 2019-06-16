@@ -76,7 +76,7 @@ var CryptoCardsController = exports.CryptoCardsController = function (_ICryptoCa
                         switch (_context.prev = _context.next) {
                             case 0:
                                 if (!CryptoCardsController._instance) {
-                                    this.log('CryptoCardsController initializing..');
+                                    _lodash._.isFunction(logger) && logger('CryptoCardsController initializing..');
                                     CryptoCardsController._instance = new CryptoCardsController({ web3: web3, logger: logger });
                                 }
 
