@@ -13,13 +13,7 @@ class _ICryptoCardsController extends ContractBase {
     }
 
     getVersion() {
-        // if (!this.account.hasNetwork) { return Promise.reject('Provider not ready'); }
-        const _fn = CryptoCardsHelpers.promisify(this.contract.getVersion);
-        return _fn();
-    }
-
-    getVersion2() {
-        // if (!this.account.hasNetwork) { return Promise.reject('Provider not ready'); }
+        if (!this.isProviderReady) { return Promise.reject('Web3 Provider not ready (calling "getVersion")'); }
         return this.contract.methods.getVersion().call();
     }
 }

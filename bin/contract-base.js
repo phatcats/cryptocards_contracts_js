@@ -30,6 +30,7 @@ var ContractBase = exports.ContractBase = function () {
         this.contractAddressName = addressName;
         this.contractAbi = abi;
         this.log = logger || console.log;
+        this.providerReady = false;
     }
 
     _createClass(ContractBase, [{
@@ -38,95 +39,74 @@ var ContractBase = exports.ContractBase = function () {
             var networkVersion = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '1';
 
             var address = _globals.CONTRACT_ADDRESS[networkVersion][this.contractAddressName];
-            this.log('this.web3: ', this.web3);
-            this.log('this.web3.eth: ', this.web3.eth);
-            this.log('connecting to contract at: ', address);
-
             this.contract = new this.web3.eth.Contract(this.contractAbi, address);
-
-            this.log('connected: ', this.contract.address);
-
-            // this.contract = this.web3.eth.contract(this.contractAbi, address).at(address);
-            return !_lodash._.isEmpty(this.contract.address);
+            this.isProviderReady = !_lodash._.isEmpty(this.contract.address);
+            return this.isProviderReady;
         }
     }, {
         key: 'getNetworkVersion',
         value: function getNetworkVersion() {
-            var _this = this;
-
-            return new Promise(function (resolve, reject) {
-                _this.log('getNetworkVersion called');
-                _this.web3.version.getNetwork(function (err, networkVersion) {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        _this.log('getNetworkVersion networkVersion = ', networkVersion);
-                        resolve(networkVersion);
-                    }
-                });
-            });
+            return this.web3.eth.net.getId();
+        }
+    }, {
+        key: 'getNetworkType',
+        value: function getNetworkType() {
+            return this.web3.eth.net.getNetworkType();
+        }
+    }, {
+        key: 'getNetworkPeerCount',
+        value: function getNetworkPeerCount() {
+            return this.web3.eth.net.getPeerCount();
         }
     }, {
         key: 'getEventsFromContract',
-        value: function getEventsFromContract(eventName, eventQuery, eventFilters) {
-            var _this2 = this;
-
-            return new Promise(function (resolve, reject) {
-                _this2.contract[eventName](eventQuery, eventFilters).get(function (err, res) {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        resolve(res);
-                    }
-                });
-            });
+        value: function getEventsFromContract(eventName, eventOptions) {
+            return this.contract.getPastEvents(eventName, eventOptions);
         }
     }, {
         key: 'callContractFn',
         value: function callContractFn(contractMethod) {
-            // if (!this.account.isWeb3Ready) { return Promise.reject(`Web3 Provider not ready (calling "${contractMethod}")`); }
-            var _fn = _helpers.CryptoCardsHelpers.promisify(this.contract[contractMethod]);
+            var _contract$methods;
+
+            if (!this.isProviderReady) {
+                return Promise.reject('Web3 Provider not ready (calling "' + contractMethod + '")');
+            }
 
             for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
                 args[_key - 1] = arguments[_key];
             }
 
-            return _fn.apply(undefined, args);
+            return (_contract$methods = this.contract.methods)[contractMethod].apply(_contract$methods, args).call();
         }
     }, {
         key: 'tryContractTx',
         value: function tryContractTx(contractMethod, tx) {
-            // if (!this.account.isWeb3Ready) { return Promise.reject(`Web3 Provider not ready (calling "${contractMethod}")`); }
+            var _contract$methods2;
+
+            if (!this.isProviderReady) {
+                return Promise.reject('Web3 Provider not ready (calling "' + contractMethod + '")');
+            }
             // log.verbose(contractMethod, tx, ...args);
 
-            var _fn = _helpers.CryptoCardsHelpers.promisify(this.contract[contractMethod]);
-            var promise = void 0;
-            try {
-                for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
-                    args[_key2 - 2] = arguments[_key2];
-                }
-
-                promise = _fn.apply(undefined, args.concat([tx]));
-            } catch (err) {
-                this.log(err);
-                promise = Promise.reject(err);
+            for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+                args[_key2 - 2] = arguments[_key2];
             }
-            return promise;
+
+            return (_contract$methods2 = this.contract.methods)[contractMethod].apply(_contract$methods2, args).send(tx);
         }
     }, {
         key: 'getReceipt',
         value: function getReceipt(hash) {
-            var _getTransactionReceipt = _helpers.CryptoCardsHelpers.promisify(this.web3.eth.getTransactionReceipt);
-            return _getTransactionReceipt(hash);
+            return this.web3.eth.getTransactionReceipt(hash);
         }
     }, {
         key: 'getTransactionReceipt',
         value: function getTransactionReceipt(hash) {
-            var _this3 = this;
+            var _this = this;
 
             return new Promise(function (resolve, reject) {
                 var _getReceipt = function _getReceipt() {
-                    _this3.getReceipt(hash).then(function (receipt) {
+                    _this.getReceipt(hash).then(function (receipt) {
                         if (receipt === null) {
                             // Try again in 1 second
                             setTimeout(function () {
@@ -140,28 +120,6 @@ var ContractBase = exports.ContractBase = function () {
                 _getReceipt();
             });
         }
-
-        // Deprecated
-
-    }, {
-        key: 'waitForReceipt',
-        value: function waitForReceipt(hash, cb) {
-            var _this4 = this;
-
-            this.getReceipt(hash).then(function (receipt) {
-                if (receipt !== null) {
-                    // Transaction went through
-                    if (cb) {
-                        cb(receipt);
-                    }
-                } else {
-                    // Try again in 1 second
-                    setTimeout(function () {
-                        _this4.waitForReceipt(hash, cb);
-                    }, _globals.WATCH_INTERVAL.RECEIPT);
-                }
-            }).catch(this.log);
-        }
     }, {
         key: 'web3',
         get: function get() {
@@ -169,6 +127,14 @@ var ContractBase = exports.ContractBase = function () {
         },
         set: function set(ethWeb3) {
             this.ethWeb3 = ethWeb3;
+        }
+    }, {
+        key: 'isProviderReady',
+        get: function get() {
+            return this.providerReady;
+        },
+        set: function set(ready) {
+            this.providerReady = ready;
         }
     }]);
 

@@ -35,14 +35,9 @@ var _ICryptoCardsController = function (_ContractBase) {
     _createClass(_ICryptoCardsController, [{
         key: 'getVersion',
         value: function getVersion() {
-            // if (!this.account.hasNetwork) { return Promise.reject('Provider not ready'); }
-            var _fn = _helpers.CryptoCardsHelpers.promisify(this.contract.getVersion);
-            return _fn();
-        }
-    }, {
-        key: 'getVersion2',
-        value: function getVersion2() {
-            // if (!this.account.hasNetwork) { return Promise.reject('Provider not ready'); }
+            if (!this.isProviderReady) {
+                return Promise.reject('Web3 Provider not ready (calling "getVersion")');
+            }
             return this.contract.methods.getVersion().call();
         }
     }]);
