@@ -1,4 +1,5 @@
 
+import Web3 from 'web3';
 import { _ } from 'lodash';
 
 import { CryptoCardsHelpers } from './helpers';
@@ -9,8 +10,8 @@ import {
 } from './globals';
 
 export class ContractBase {
-    constructor(addressName, abi, web3, logger) {
-        this.ethWeb3 = web3;
+    constructor(addressName, abi, web3provider, logger) {
+        this.ethWeb3 = new Web3(web3provider);
         this.contract = null;
         this.contractAddressName = addressName;
         this.contractAbi = abi;
@@ -27,6 +28,8 @@ export class ContractBase {
 
     connectToContract(networkVersion = '1') {
         const address = CONTRACT_ADDRESS[networkVersion][this.contractAddressName];
+        this.log('this.web3: ', this.web3);
+        this.log('this.web3.eth: ', this.web3.eth);
         this.log('connecting to contract at: ', address);
         this.contract = this.web3.eth.contract(this.contractAbi, address).at(address);
         return !_.isEmpty(this.contract.address);

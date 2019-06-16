@@ -26,10 +26,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var _ICryptoCardsController = function (_ContractBase) {
     _inherits(_ICryptoCardsController, _ContractBase);
 
-    function _ICryptoCardsController(web3, logger) {
+    function _ICryptoCardsController(web3provider, logger) {
         _classCallCheck(this, _ICryptoCardsController);
 
-        return _possibleConstructorReturn(this, (_ICryptoCardsController.__proto__ || Object.getPrototypeOf(_ICryptoCardsController)).call(this, 'CONTROLLER', _cryptoCardsController.CryptoCardsControllerABI, web3, logger));
+        return _possibleConstructorReturn(this, (_ICryptoCardsController.__proto__ || Object.getPrototypeOf(_ICryptoCardsController)).call(this, 'CONTROLLER', _cryptoCardsController.CryptoCardsControllerABI, web3provider, logger));
     }
 
     _createClass(_ICryptoCardsController, [{
@@ -48,16 +48,15 @@ var CryptoCardsController = exports.CryptoCardsController = function (_ICryptoCa
     _inherits(CryptoCardsController, _ICryptoCardsControll);
 
     function CryptoCardsController(_ref) {
-        var web3 = _ref.web3,
+        var web3provider = _ref.web3provider,
             logger = _ref.logger;
 
         _classCallCheck(this, CryptoCardsController);
 
-        var _this2 = _possibleConstructorReturn(this, (CryptoCardsController.__proto__ || Object.getPrototypeOf(CryptoCardsController)).call(this, web3, logger));
+        var _this2 = _possibleConstructorReturn(this, (CryptoCardsController.__proto__ || Object.getPrototypeOf(CryptoCardsController)).call(this, web3provider, logger));
 
         _this2.log('CryptoCardsController created');
-        _this2.log('web3', web3);
-        _this2.log('web3.eth', web3.eth);
+        _this2.log('web3provider', web3provider);
         return _this2;
     }
 
@@ -70,7 +69,7 @@ var CryptoCardsController = exports.CryptoCardsController = function (_ICryptoCa
         key: 'initialize',
         value: function () {
             var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(_ref2) {
-                var web3 = _ref2.web3,
+                var web3provider = _ref2.web3provider,
                     networkVersion = _ref2.networkVersion,
                     logger = _ref2.logger;
                 return regeneratorRuntime.wrap(function _callee$(_context) {
@@ -78,7 +77,7 @@ var CryptoCardsController = exports.CryptoCardsController = function (_ICryptoCa
                         switch (_context.prev = _context.next) {
                             case 0:
                                 if (!CryptoCardsController._instance) {
-                                    CryptoCardsController._instance = new CryptoCardsController({ web3: web3, logger: logger });
+                                    CryptoCardsController._instance = new CryptoCardsController({ web3provider: web3provider, logger: logger });
                                 }
                                 _lodash._.isFunction(logger) && logger('CryptoCardsController initializing..');
 

@@ -8,8 +8,8 @@ import { CryptoCardsControllerABI } from './crypto-cards-controller.abi';
 
 
 class _ICryptoCardsController extends ContractBase {
-    constructor(web3, logger) {
-        super('CONTROLLER', CryptoCardsControllerABI, web3, logger);
+    constructor(web3provider, logger) {
+        super('CONTROLLER', CryptoCardsControllerABI, web3provider, logger);
     }
 
     getVersion() {
@@ -20,21 +20,20 @@ class _ICryptoCardsController extends ContractBase {
 }
 
 export class CryptoCardsController extends _ICryptoCardsController {
-    constructor({web3, logger}) {
-        super(web3, logger);
+    constructor({web3provider, logger}) {
+        super(web3provider, logger);
 
         this.log('CryptoCardsController created');
-        this.log('web3', web3);
-        this.log('web3.eth', web3.eth);
+        this.log('web3provider', web3provider);
     }
 
     static instance() {
         return CryptoCardsController._instance;
     }
 
-    static async initialize({web3, networkVersion, logger}) {
+    static async initialize({web3provider, networkVersion, logger}) {
         if (!CryptoCardsController._instance) {
-            CryptoCardsController._instance = new CryptoCardsController({web3, logger});
+            CryptoCardsController._instance = new CryptoCardsController({web3provider, logger});
         }
         _.isFunction(logger) && logger('CryptoCardsController initializing..');
 
