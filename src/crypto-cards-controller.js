@@ -25,4 +25,8 @@ export class CryptoCardsController extends _ICryptoCardsController {
 
         logger('CryptoCardsController created');
     }
+
+    async initialize() {
+        return this.connectToContract(await this.getNetworkVersion());
+    }
 }

@@ -15,6 +15,8 @@ var _contractBase = require('./contract-base');
 
 var _cryptoCardsController = require('./crypto-cards-controller.abi');
 
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -56,6 +58,38 @@ var CryptoCardsController = exports.CryptoCardsController = function (_ICryptoCa
         logger('CryptoCardsController created');
         return _this2;
     }
+
+    _createClass(CryptoCardsController, [{
+        key: 'initialize',
+        value: function () {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+                return regeneratorRuntime.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                _context.t0 = this;
+                                _context.next = 3;
+                                return this.getNetworkVersion();
+
+                            case 3:
+                                _context.t1 = _context.sent;
+                                return _context.abrupt('return', _context.t0.connectToContract.call(_context.t0, _context.t1));
+
+                            case 5:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this);
+            }));
+
+            function initialize() {
+                return _ref2.apply(this, arguments);
+            }
+
+            return initialize;
+        }()
+    }]);
 
     return CryptoCardsController;
 }(_ICryptoCardsController);
