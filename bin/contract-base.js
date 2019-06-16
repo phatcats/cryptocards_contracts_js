@@ -32,6 +32,7 @@ var ContractBase = exports.ContractBase = function () {
             var networkVersion = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '1';
 
             var address = _globals.CONTRACT_ADDRESS[networkVersion][this.contractAddressName];
+            this.log('connecting to contract at: ', address);
             this.contract = this.web3.eth.contract(this.contractAbi, address).at(address);
             return !_lodash._.isEmpty(this.contract.address);
         }

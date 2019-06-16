@@ -27,6 +27,7 @@ export class ContractBase {
 
     connectToContract(networkVersion = '1') {
         const address = CONTRACT_ADDRESS[networkVersion][this.contractAddressName];
+        this.log('connecting to contract at: ', address);
         this.contract = this.web3.eth.contract(this.contractAbi, address).at(address);
         return !_.isEmpty(this.contract.address);
     }
