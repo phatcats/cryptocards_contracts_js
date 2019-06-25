@@ -12,6 +12,7 @@ var WATCH_INTERVAL = exports.WATCH_INTERVAL = {
 var CONTRACT_ADDRESS = exports.CONTRACT_ADDRESS = {
     // Main Network
     '1': {
+        LIB: '',
         GUM: '0xaAFa4Bf1696732752a4AD4D27DD1Ea6793F24Fc0',
         CARDS: '0xcb35d14759e2931022c7315f53e37cdcd38e570c',
         PACKS: '0x0683e840ea22b089dafa0bf8c59f1a9690de7c12',
@@ -22,6 +23,7 @@ var CONTRACT_ADDRESS = exports.CONTRACT_ADDRESS = {
 
     // Ropsten Test Network
     '3': {
+        LIB: '',
         GUM: '0x529e6171559eFb0c49644d7b281BC5997c286CBF',
         CARDS: '0x81D7E3648579E27679bFc3010e673532BF77c379',
         PACKS: '0xd650003aa4A1DAa3ec8d34524abE79b886e0EBBC',
@@ -32,6 +34,7 @@ var CONTRACT_ADDRESS = exports.CONTRACT_ADDRESS = {
 
     // Ganache Private Test Network
     '5777': {
+        LIB: '',
         GUM: '0xF70B61E3800dFFDA57cf167051CAa0Fb6bA1B0B3',
         CARDS: '0x89eC3f11E1600BEd981DD2d12404bAAF21c7699c',
         PACKS: '0x01b9707dD7782bB441ec57C1B62D669896859096',

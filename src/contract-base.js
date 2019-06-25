@@ -57,12 +57,12 @@ export class ContractBase {
     }
 
     callContractFn(contractMethod, ...args) {
-        if (!this.isProviderReady) { return Promise.reject(`Web3 Provider not ready (calling "${contractMethod}")`); }
+        if (!this.isProviderReady) { return Promise.reject(`Web3 Provider not ready (calling "${this.contractAddressName}->${contractMethod}")`); }
         return this.contract.methods[contractMethod](...args).call();
     }
 
     tryContractTx(contractMethod, tx, ...args) {
-        if (!this.isProviderReady) { return Promise.reject(`Web3 Provider not ready (calling "${contractMethod}")`); }
+        if (!this.isProviderReady) { return Promise.reject(`Web3 Provider not ready (calling "${this.contractAddressName}->${contractMethod}")`); }
         return this.contract.methods[contractMethod](...args).send(tx);
     }
 

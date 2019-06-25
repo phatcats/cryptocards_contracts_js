@@ -5,21 +5,9 @@ import { ContractBase } from './contract-base';
 import { CryptoCardsControllerABI } from './crypto-cards-controller.abi';
 
 
-class _ICryptoCardsController extends ContractBase {
-    constructor(web3provider, logger) {
-        super('CONTROLLER', CryptoCardsControllerABI, web3provider, logger);
-    }
-
-    getContractVersion() {
-        if (!this.isProviderReady) { return Promise.reject('Web3 Provider not ready (calling "getVersion")'); }
-        return this.contract.methods.getVersion().call();
-    }
-}
-
-
-export class CryptoCardsController extends _ICryptoCardsController {
+export class CryptoCardsController extends ContractBase {
     constructor({web3provider, logger}) {
-        super(web3provider, logger);
+        super('CONTROLLER', CryptoCardsControllerABI, web3provider, logger);
     }
 
     static instance() {

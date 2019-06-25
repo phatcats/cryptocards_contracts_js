@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.CryptoCardsController = undefined;
+exports.CryptoCardsLib = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -11,7 +11,7 @@ var _lodash = require('lodash');
 
 var _contractBase = require('./contract-base');
 
-var _cryptoCardsController = require('./crypto-cards-controller.abi');
+var _cryptoCardsLib = require('./crypto-cards-lib.abi');
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
@@ -21,22 +21,22 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var CryptoCardsController = exports.CryptoCardsController = function (_ContractBase) {
-    _inherits(CryptoCardsController, _ContractBase);
+var CryptoCardsLib = exports.CryptoCardsLib = function (_ContractBase) {
+    _inherits(CryptoCardsLib, _ContractBase);
 
-    function CryptoCardsController(_ref) {
+    function CryptoCardsLib(_ref) {
         var web3provider = _ref.web3provider,
             logger = _ref.logger;
 
-        _classCallCheck(this, CryptoCardsController);
+        _classCallCheck(this, CryptoCardsLib);
 
-        return _possibleConstructorReturn(this, (CryptoCardsController.__proto__ || Object.getPrototypeOf(CryptoCardsController)).call(this, 'CONTROLLER', _cryptoCardsController.CryptoCardsControllerABI, web3provider, logger));
+        return _possibleConstructorReturn(this, (CryptoCardsLib.__proto__ || Object.getPrototypeOf(CryptoCardsLib)).call(this, 'LIB', _cryptoCardsLib.CryptoCardsLibABI, web3provider, logger));
     }
 
-    _createClass(CryptoCardsController, null, [{
+    _createClass(CryptoCardsLib, null, [{
         key: 'instance',
         value: function instance() {
-            return CryptoCardsController._instance;
+            return CryptoCardsLib._instance;
         }
     }, {
         key: 'initialize',
@@ -49,10 +49,10 @@ var CryptoCardsController = exports.CryptoCardsController = function (_ContractB
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
-                                if (!CryptoCardsController._instance) {
-                                    CryptoCardsController._instance = new CryptoCardsController({ web3provider: web3provider, logger: logger });
+                                if (!CryptoCardsLib._instance) {
+                                    CryptoCardsLib._instance = new CryptoCardsLib({ web3provider: web3provider, logger: logger });
                                 }
-                                return _context.abrupt('return', CryptoCardsController._instance.connectToContract(networkVersion));
+                                return _context.abrupt('return', CryptoCardsLib._instance.connectToContract(networkVersion));
 
                             case 2:
                             case 'end':
@@ -70,11 +70,11 @@ var CryptoCardsController = exports.CryptoCardsController = function (_ContractB
         }()
     }]);
 
-    return CryptoCardsController;
+    return CryptoCardsLib;
 }(_contractBase.ContractBase);
 //
 // Static Member Variables
 //
 
 
-CryptoCardsController._instance = null; // Static Instance Member for Singleton Pattern
+CryptoCardsLib._instance = null; // Static Instance Member for Singleton Pattern

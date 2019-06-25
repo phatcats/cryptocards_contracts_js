@@ -67,7 +67,7 @@ var ContractBase = exports.ContractBase = function () {
             var _contract$methods;
 
             if (!this.isProviderReady) {
-                return Promise.reject('Web3 Provider not ready (calling "' + contractMethod + '")');
+                return Promise.reject('Web3 Provider not ready (calling "' + this.contractAddressName + '->' + contractMethod + '")');
             }
 
             for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -82,7 +82,7 @@ var ContractBase = exports.ContractBase = function () {
             var _contract$methods2;
 
             if (!this.isProviderReady) {
-                return Promise.reject('Web3 Provider not ready (calling "' + contractMethod + '")');
+                return Promise.reject('Web3 Provider not ready (calling "' + this.contractAddressName + '->' + contractMethod + '")');
             }
 
             for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
