@@ -1,6 +1,6 @@
 {
   "name": "cryptocards_contracts_js",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "author": "Rob Secord",
   "license": "UNLICENSED",
   "private": true,
@@ -10,6 +10,7 @@
   "main": "bin/index.js",
   "scripts": {
     "build": "babel src -d bin",
+    "push": "version update -p && git add . && git commit -m \"Updates to contracts\" && git push && git s",
     "test": "jest --coverage"
   },
   "jest": {
