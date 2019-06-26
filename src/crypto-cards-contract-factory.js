@@ -10,23 +10,25 @@ import {
 export const CryptoCardsContractFactory = {
 
     create({addressName, abi}) {
-        return Object.create(_.assignIn({}, this.objInterface, {
-            contractAddressName: addressName,
-            contractAbi: abi,
-            isProviderReady: false,
-            contract: null,
-            web3: null,
-            log: console.log,
-        }));
+        return {
+            __instance: null,
+            instance({web3provider, networkVersion, logger}) {
+                if (!this.__instance) {
+                    this.__instance = Object.create(_.assignIn({}, this.objInterface, {
+                        contractAddressName: addressName,
+                        contractAbi: abi,
+                        web3: new Web3(web3provider),
+                        log: logger || console.log,
+                        isProviderReady: false,
+                        contract: null,
+                    }));
+                }
+                return this.__instance;
+            }
+        };
     },
 
     objInterface: {
-        init({web3provider, networkVersion, logger}) {
-            this.web3 = new Web3(web3provider);
-            this.log = logger || console.log;
-            return this.connectToContract(networkVersion);
-        },
-
         getNetworkVersion() {
             return this.web3.eth.net.getId();
         },
