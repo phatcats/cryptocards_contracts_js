@@ -3,4 +3,4 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var CryptoCardsCardsABI = exports.CryptoCardsCardsABI = [];
+var CryptoCardsPacksTokenABI = exports.CryptoCardsPacksTokenABI = [];
