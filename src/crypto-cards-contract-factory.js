@@ -10,7 +10,7 @@ import {
 export const CryptoCardsContractFactory = {
 
     create({addressName, abi}) {
-        const obj = Object.create(_.assignIn({}, this.objInterface, {
+        return Object.create(_.assignIn({}, this.objInterface, {
             contractAddressName: addressName,
             contractAbi: abi,
             isProviderReady: false,
@@ -18,22 +18,13 @@ export const CryptoCardsContractFactory = {
             web3: null,
             log: console.log,
         }));
-        obj._instance = obj;
-        return obj;
     },
 
     objInterface: {
-        _init({web3provider, networkVersion, logger}) {
+        init({web3provider, networkVersion, logger}) {
             this.web3 = new Web3(web3provider);
             this.log = logger || console.log;
             return this.connectToContract(networkVersion);
-        },
-
-        instance({web3provider, networkVersion, logger}) {
-            if (!this._instance) {
-                this._instance = this._init({web3provider, networkVersion, logger});
-            }
-            return this._instance;
         },
 
         getNetworkVersion() {
