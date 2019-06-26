@@ -10,9 +10,9 @@ import {
 export const CryptoCardsContractFactory = {
 
     create({addressName, abi}) {
-        return {
+        return Object.create({
             __instance: null,
-            instance({web3provider, networkVersion, logger}) {
+            instance: function({web3provider, networkVersion, logger}) {
                 if (!this.__instance) {
                     this.__instance = Object.create(_.assignIn({}, this.objInterface, {
                         contractAddressName: addressName,
@@ -26,7 +26,7 @@ export const CryptoCardsContractFactory = {
                 }
                 return this.__instance;
             }
-        };
+        });
     },
 
     objInterface: {

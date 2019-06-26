@@ -22,7 +22,7 @@ var CryptoCardsContractFactory = exports.CryptoCardsContractFactory = {
         var addressName = _ref.addressName,
             abi = _ref.abi;
 
-        return {
+        return Object.create({
             __instance: null,
             instance: function instance(_ref2) {
                 var web3provider = _ref2.web3provider,
@@ -42,7 +42,7 @@ var CryptoCardsContractFactory = exports.CryptoCardsContractFactory = {
                 }
                 return this.__instance;
             }
-        };
+        });
     },
 
 
