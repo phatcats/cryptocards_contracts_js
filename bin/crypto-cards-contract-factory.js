@@ -38,6 +38,7 @@ var CryptoCardsContractFactory = exports.CryptoCardsContractFactory = {
                         isProviderReady: false,
                         contract: null
                     }));
+                    this.__instance.connectToContract(networkVersion);
                 }
                 return this.__instance;
             }
@@ -61,7 +62,6 @@ var CryptoCardsContractFactory = exports.CryptoCardsContractFactory = {
             var address = _globals.CONTRACT_ADDRESS[networkVersion][this.contractAddressName];
             this.contract = new this.web3.eth.Contract(this.contractAbi, address);
             this.isProviderReady = !_lodash._.isEmpty(this.contract.address);
-            return this.isProviderReady;
         },
         getEventsFromContract: function getEventsFromContract(eventName, eventOptions) {
             return this.contract.getPastEvents(eventName, eventOptions);

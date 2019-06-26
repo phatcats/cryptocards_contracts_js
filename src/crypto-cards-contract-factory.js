@@ -22,6 +22,7 @@ export const CryptoCardsContractFactory = {
                         isProviderReady: false,
                         contract: null,
                     }));
+                    this.__instance.connectToContract(networkVersion);
                 }
                 return this.__instance;
             }
@@ -45,7 +46,6 @@ export const CryptoCardsContractFactory = {
             const address = CONTRACT_ADDRESS[networkVersion][this.contractAddressName];
             this.contract = new this.web3.eth.Contract(this.contractAbi, address);
             this.isProviderReady = !_.isEmpty(this.contract.address);
-            return this.isProviderReady;
         },
 
         getEventsFromContract(eventName, eventOptions) {
