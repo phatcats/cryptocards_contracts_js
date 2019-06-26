@@ -22,7 +22,7 @@ var CryptoCardsContractFactory = exports.CryptoCardsContractFactory = {
         var addressName = _ref.addressName,
             abi = _ref.abi;
 
-        return Object.create(_lodash._.assignIn({}, this.objInterface, {
+        var obj = Object.create(_lodash._.assignIn({}, this.objInterface, {
             contractAddressName: addressName,
             contractAbi: abi,
             isProviderReady: false,
@@ -30,11 +30,13 @@ var CryptoCardsContractFactory = exports.CryptoCardsContractFactory = {
             web3: null,
             log: console.log
         }));
+        obj._instance = obj;
+        return obj;
     },
 
 
     objInterface: {
-        init: function init(_ref2) {
+        _init: function _init(_ref2) {
             var web3provider = _ref2.web3provider,
                 networkVersion = _ref2.networkVersion,
                 logger = _ref2.logger;
@@ -42,6 +44,16 @@ var CryptoCardsContractFactory = exports.CryptoCardsContractFactory = {
             this.web3 = new _web2.default(web3provider);
             this.log = logger || console.log;
             return this.connectToContract(networkVersion);
+        },
+        instance: function instance(_ref3) {
+            var web3provider = _ref3.web3provider,
+                networkVersion = _ref3.networkVersion,
+                logger = _ref3.logger;
+
+            if (!this._instance) {
+                this._instance = this._init({ web3provider: web3provider, networkVersion: networkVersion, logger: logger });
+            }
+            return this._instance;
         },
         getNetworkVersion: function getNetworkVersion() {
             return this.web3.eth.net.getId();
