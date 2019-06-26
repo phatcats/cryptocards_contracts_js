@@ -2,10 +2,7 @@
 import Web3 from 'web3';
 import { _ } from 'lodash';
 
-import {
-    CONTRACT_ADDRESS,
-    WATCH_INTERVAL
-} from './globals';
+import { CC_GLOBAL } from './globals';
 
 export const CryptoCardsContractFactory = {
 
@@ -40,7 +37,7 @@ export const CryptoCardsContractFactory = {
         },
 
         connectToContract(networkVersion = '1') {
-            const address = CONTRACT_ADDRESS[networkVersion][this.contractAddressName];
+            const address = CC_GLOBAL.CONTRACT_ADDRESS[networkVersion][this.contractAddressName];
             this.contract = new this.web3.eth.Contract(this.contractAbi, address);
             this.isProviderReady = !_.isEmpty(this.contract.address);
             return this.isProviderReady;
@@ -77,7 +74,7 @@ export const CryptoCardsContractFactory = {
                                 // Try again in 1 second
                                 setTimeout(() => {
                                     _getReceipt();
-                                }, WATCH_INTERVAL.RECEIPT);
+                                }, CC_GLOBAL.WATCH_INTERVAL.RECEIPT);
                                 return;
                             }
                             resolve(receipt);

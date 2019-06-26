@@ -3,9 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.CryptoCardsHelpers = exports.CryptoCardsLib = exports.CryptoCardsGumToken = exports.CryptoCardsGum = exports.CryptoCardsCardsToken = exports.CryptoCardsCards = exports.CryptoCardsPacksToken = exports.CryptoCardsPacks = exports.CryptoCardsOracle = exports.CryptoCardsTreasury = exports.CryptoCardsController = undefined;
+exports.CC_GLOBAL = exports.CryptoCardsHelpers = exports.CryptoCardsLib = exports.CryptoCardsGumToken = exports.CryptoCardsGum = exports.CryptoCardsCardsToken = exports.CryptoCardsCards = exports.CryptoCardsPacksToken = exports.CryptoCardsPacks = exports.CryptoCardsOracle = exports.CryptoCardsTreasury = exports.CryptoCardsController = undefined;
 
 require('babel-polyfill');
+
+var _globals = require('./globals');
 
 var _helpers = require('./helpers');
 
@@ -53,3 +55,4 @@ exports.CryptoCardsGum = CryptoCardsGum;
 exports.CryptoCardsGumToken = CryptoCardsGumToken;
 exports.CryptoCardsLib = CryptoCardsLib;
 exports.CryptoCardsHelpers = _helpers.CryptoCardsHelpers;
+exports.CC_GLOBAL = _globals.CC_GLOBAL;

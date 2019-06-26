@@ -1,11 +1,16 @@
 
-export const WATCH_INTERVAL = {
+export const CC_GLOBAL = {};
+
+CC_GLOBAL.ETHEREUM_UNIT = 1e18;
+CC_GLOBAL.ETHEREUM_PRECISION = 18;
+
+CC_GLOBAL.WATCH_INTERVAL = {
     ACCOUNT :  3000,
     RECEIPT :  3000,
     PENDING : 30000
 };
 
-export const CONTRACT_ADDRESS = {
+CC_GLOBAL.CONTRACT_ADDRESS = {
     // Main Network
     '1' : {
         LIB         : '',
@@ -49,7 +54,7 @@ export const CONTRACT_ADDRESS = {
     }
 };
 
-export const TX = {
+CC_GLOBAL.TX = {
     TYPE: {
         BUY_NEW_PACK      :  1,
         RECEIVED_NEW_PACK :  2,
@@ -94,7 +99,7 @@ export const TX = {
     }
 };
 
-export const TX_TYPE_LABELS = [
+CC_GLOBAL.TX_TYPE_LABELS = [
     '',
     'Buy New Pack',
     '',

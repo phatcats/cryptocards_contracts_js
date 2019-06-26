@@ -55,7 +55,7 @@ var CryptoCardsContractFactory = exports.CryptoCardsContractFactory = {
         connectToContract: function connectToContract() {
             var networkVersion = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '1';
 
-            var address = _globals.CONTRACT_ADDRESS[networkVersion][this.contractAddressName];
+            var address = _globals.CC_GLOBAL.CONTRACT_ADDRESS[networkVersion][this.contractAddressName];
             this.contract = new this.web3.eth.Contract(this.contractAbi, address);
             this.isProviderReady = !_lodash._.isEmpty(this.contract.address);
             return this.isProviderReady;
@@ -102,7 +102,7 @@ var CryptoCardsContractFactory = exports.CryptoCardsContractFactory = {
                             // Try again in 1 second
                             setTimeout(function () {
                                 _getReceipt();
-                            }, _globals.WATCH_INTERVAL.RECEIPT);
+                            }, _globals.CC_GLOBAL.WATCH_INTERVAL.RECEIPT);
                             return;
                         }
                         resolve(receipt);

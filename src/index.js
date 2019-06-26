@@ -1,5 +1,7 @@
 import 'babel-polyfill';
 
+import { CC_GLOBAL } from './globals';
+
 import { CryptoCardsHelpers } from './helpers';
 import { CryptoCardsContractFactory } from './crypto-cards-contract-factory';
 
@@ -36,6 +38,7 @@ export {
     CryptoCardsGum,
     CryptoCardsGumToken,
     CryptoCardsLib,
-    CryptoCardsHelpers
+    CryptoCardsHelpers,
+    CC_GLOBAL
 }
 
