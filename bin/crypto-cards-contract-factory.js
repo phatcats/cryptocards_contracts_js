@@ -17,38 +17,32 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-var ns = global || window;
-ns.CryptoCardsNamespace = {};
-
 var CryptoCardsContractFactory = exports.CryptoCardsContractFactory = {
     create: function create(_ref) {
         var addressName = _ref.addressName,
             abi = _ref.abi;
 
-        return {
-            instance: function instance(_ref2) {
-                var web3provider = _ref2.web3provider,
-                    networkVersion = _ref2.networkVersion,
-                    logger = _ref2.logger;
-
-                if (!ns.CryptoCardsNamespace[addressName]) {
-                    ns.CryptoCardsNamespace[addressName] = Object.create(_lodash._.assignIn({}, this.objInterface, {
-                        contractAddressName: addressName,
-                        contractAbi: abi,
-                        web3: new _web2.default(web3provider),
-                        log: logger || console.log,
-                        isProviderReady: false,
-                        contract: null
-                    }));
-                    ns.CryptoCardsNamespace[addressName].connectToContract(networkVersion);
-                }
-                return ns.CryptoCardsNamespace[addressName];
-            }
-        };
+        return Object.create(_lodash._.assignIn({}, this.objInterface, {
+            contractAddressName: addressName,
+            contractAbi: abi,
+            isProviderReady: false,
+            contract: null,
+            web3: null,
+            log: console.log
+        }));
     },
 
 
     objInterface: {
+        init: function init(_ref2) {
+            var web3provider = _ref2.web3provider,
+                networkVersion = _ref2.networkVersion,
+                logger = _ref2.logger;
+
+            this.web3 = new _web2.default(web3provider);
+            this.log = logger || console.log;
+            return this.connectToContract(networkVersion);
+        },
         getNetworkVersion: function getNetworkVersion() {
             return this.web3.eth.net.getId();
         },
@@ -64,6 +58,7 @@ var CryptoCardsContractFactory = exports.CryptoCardsContractFactory = {
             var address = _globals.CONTRACT_ADDRESS[networkVersion][this.contractAddressName];
             this.contract = new this.web3.eth.Contract(this.contractAbi, address);
             this.isProviderReady = !_lodash._.isEmpty(this.contract.address);
+            return this.isProviderReady;
         },
         getEventsFromContract: function getEventsFromContract(eventName, eventOptions) {
             return this.contract.getPastEvents(eventName, eventOptions);

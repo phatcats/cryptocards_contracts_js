@@ -7,31 +7,26 @@ import {
     WATCH_INTERVAL
 } from './globals';
 
-const ns = global || window;
-ns.CryptoCardsNamespace = {};
-
 export const CryptoCardsContractFactory = {
 
     create({addressName, abi}) {
-        return {
-            instance: function({web3provider, networkVersion, logger}) {
-                if (!ns.CryptoCardsNamespace[addressName]) {
-                    ns.CryptoCardsNamespace[addressName] = Object.create(_.assignIn({}, this.objInterface, {
-                        contractAddressName: addressName,
-                        contractAbi: abi,
-                        web3: new Web3(web3provider),
-                        log: logger || console.log,
-                        isProviderReady: false,
-                        contract: null,
-                    }));
-                    ns.CryptoCardsNamespace[addressName].connectToContract(networkVersion);
-                }
-                return ns.CryptoCardsNamespace[addressName];
-            }
-        };
+        return Object.create(_.assignIn({}, this.objInterface, {
+            contractAddressName: addressName,
+            contractAbi: abi,
+            isProviderReady: false,
+            contract: null,
+            web3: null,
+            log: console.log,
+        }));
     },
 
     objInterface: {
+        init({web3provider, networkVersion, logger}) {
+            this.web3 = new Web3(web3provider);
+            this.log = logger || console.log;
+            return this.connectToContract(networkVersion);
+        },
+
         getNetworkVersion() {
             return this.web3.eth.net.getId();
         },
@@ -48,6 +43,7 @@ export const CryptoCardsContractFactory = {
             const address = CONTRACT_ADDRESS[networkVersion][this.contractAddressName];
             this.contract = new this.web3.eth.Contract(this.contractAbi, address);
             this.isProviderReady = !_.isEmpty(this.contract.address);
+            return this.isProviderReady;
         },
 
         getEventsFromContract(eventName, eventOptions) {
