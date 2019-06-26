@@ -52,3 +52,50 @@ var CONTRACT_ADDRESS = exports.CONTRACT_ADDRESS = {
         CONTROLLER: '0xfbb58f952c6e86da1719c5257b89e6c07b78c23f'
     }
 };
+
+var TX = exports.TX = {
+    TYPE: {
+        BUY_NEW_PACK: 1,
+        RECEIVED_NEW_PACK: 2,
+
+        BUY_OLD_PACK: 3,
+        RECEIVED_OLD_PACK: 4,
+
+        OPEN_PACK: 5,
+        OPENED_PACK: 6,
+
+        SET_CARD_PRICE: 7,
+        CARD_PRICE_SET: 8,
+
+        BUY_CARD: 9,
+        CARD_SOLD: 10,
+
+        SET_CARD_TRADE: 11,
+        CARD_TRADE_SET: 12,
+
+        TRADE_CARD: 13,
+        CARD_TRADED: 14
+    },
+    STATUS: {
+        PENDING: 1,
+        CONFIRMED: 2,
+        REMOVED: 3,
+        FAILED: 4
+    },
+    EVENTS: {
+        BUY_NEW_PACK: 'BuyNewPack',
+        RECEIVED_NEW_PACK: 'ReceivedNewPack',
+        OPENED_PACK: 'OpenedPack',
+        PACK_ERROR: 'PackError',
+
+        PACK_PRICE_SET: 'PackPriceSet',
+        CARD_PRICE_SET: 'CardPriceSet',
+        CARD_TRADE_SET: 'CardTradeValueSet',
+
+        PACK_SOLD: 'PackSale',
+        CARD_SOLD: 'CardSale',
+        CARD_TRADED: 'CardTrade'
+    }
+};
+
+var TX_TYPE_LABELS = exports.TX_TYPE_LABELS = ['', 'Buy New Pack', '', 'Buy Existing Pack', '', 'Open Pack', 'Opened Pack', 'Set Card Price', '', 'Buy Card', 'Card Sold', 'Set Card Trade Value', '', 'Trade Card', 'Card Received from Trade'];
