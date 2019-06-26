@@ -7,14 +7,16 @@ import {
     WATCH_INTERVAL
 } from './globals';
 
+const ns = global || window;
+ns.CryptoCardsNamespace = {};
+
 export const CryptoCardsContractFactory = {
 
     create({addressName, abi}) {
-        return Object.create({
-            __instance: null,
+        return {
             instance: function({web3provider, networkVersion, logger}) {
-                if (!this.__instance) {
-                    this.__instance = Object.create(_.assignIn({}, this.objInterface, {
+                if (!ns.CryptoCardsNamespace[addressName]) {
+                    ns.CryptoCardsNamespace[addressName] = Object.create(_.assignIn({}, this.objInterface, {
                         contractAddressName: addressName,
                         contractAbi: abi,
                         web3: new Web3(web3provider),
@@ -22,11 +24,11 @@ export const CryptoCardsContractFactory = {
                         isProviderReady: false,
                         contract: null,
                     }));
-                    this.__instance.connectToContract(networkVersion);
+                    ns.CryptoCardsNamespace[addressName].connectToContract(networkVersion);
                 }
-                return this.__instance;
+                return ns.CryptoCardsNamespace[addressName];
             }
-        });
+        };
     },
 
     objInterface: {
