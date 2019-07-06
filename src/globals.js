@@ -14,43 +14,43 @@ CC_GLOBAL.CONTRACT_ADDRESS = {
     // Main Network
     '1' : {
         LIB         : '',
-        GUM         : '0xaAFa4Bf1696732752a4AD4D27DD1Ea6793F24Fc0',
+        GUM         : '',
         GUM_TOKEN   : '',
-        CARDS       : '0xcb35d14759e2931022c7315f53e37cdcd38e570c',
+        CARDS       : '',
         CARDS_TOKEN : '',
-        PACKS       : '0x0683e840ea22b089dafa0bf8c59f1a9690de7c12',
+        PACKS       : '',
         PACKS_TOKEN : '',
-        ORACLE      : '0xa5215a382e75c2e1d75781b18fca0e6e31b1a536',
-        TREASURY    : '0x0464c25c850be54033e7698c30b97a283ced6a01',
-        CONTROLLER  : '0xa9f129106f4b2ff6ac3a5082e368ea988cd639ec'
+        ORACLE      : '',
+        TREASURY    : '',
+        CONTROLLER  : ''
     },
 
     // Ropsten Test Network
     '3' : {
-        LIB         : '0xf2e0840a851323c548480d0e9d99097b53607b05',
-        GUM         : '0x529e6171559eFb0c49644d7b281BC5997c286CBF',
-        GUM_TOKEN   : '',
-        CARDS       : '0x81D7E3648579E27679bFc3010e673532BF77c379',
-        CARDS_TOKEN : '',
-        PACKS       : '0xd650003aa4A1DAa3ec8d34524abE79b886e0EBBC',
-        PACKS_TOKEN : '',
-        ORACLE      : '0xa483c5b9d95305ebc96294af60e373b029741efb',
-        TREASURY    : '0xd7cf29724856213c780b3b33d6c294ebc2d744ca',
-        CONTROLLER  : '0xfe8e20659d67eb5fa10c78b74c9f366460dac329'
+        LIB         : '0xa17e36a031f1a0c8a8c72b9fede7fb75edfd0e76',
+        GUM         : '0x8436160925b6825fe5115235f0728192b889906c',
+        GUM_TOKEN   : '0x7434024d5Df994722684f9cf712a14D0D4D284eb',
+        CARDS       : '0xa2c2d1ef7e820e8fdaadca667a48a0efe835374b',
+        CARDS_TOKEN : '0x4A43f5Ec87236bD411Ee425C8B818568a2a38012',
+        PACKS       : '0x674c8341687df2240171a9f7bfd6e0c8bc1244b2',
+        PACKS_TOKEN : '0xC31301AE9EE15482d8E8647bD8418A6125597Af6',
+        ORACLE      : '0xb1a140f34888f7df103f2f5962ea348cd06f6ac6',
+        TREASURY    : '0x72944e6480d394194e7db9f929cbce891a29da03',
+        CONTROLLER  : '0xbd6dbce43a2dccf31b52c5805a1e75c747c8d823'
     },
 
     // Ganache Private Test Network
     '5777' : {
         LIB         : '',
-        GUM         : '0xF70B61E3800dFFDA57cf167051CAa0Fb6bA1B0B3',
+        GUM         : '',
         GUM_TOKEN   : '',
-        CARDS       : '0x89eC3f11E1600BEd981DD2d12404bAAF21c7699c',
+        CARDS       : '',
         CARDS_TOKEN : '',
-        PACKS       : '0x01b9707dD7782bB441ec57C1B62D669896859096',
+        PACKS       : '',
         PACKS_TOKEN : '',
-        ORACLE      : '0x9e1d8ce16edd77a449b62e155596314e4e6d684f',
-        TREASURY    : '0x02c781e63ce3a036457d940b57d461f1754aa476',
-        CONTROLLER  : '0xfbb58f952c6e86da1719c5257b89e6c07b78c23f'
+        ORACLE      : '',
+        TREASURY    : '',
+        CONTROLLER  : ''
     }
 };
 
@@ -81,7 +81,8 @@ CC_GLOBAL.TX = {
         PENDING   : 1,
         CONFIRMED : 2,
         REMOVED   : 3,
-        FAILED    : 4
+        FAILED    : 4,
+        POSTED    : 5
     },
     EVENTS: {
         BUY_NEW_PACK      : 'BuyNewPack',

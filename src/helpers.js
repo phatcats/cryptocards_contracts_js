@@ -85,7 +85,7 @@ CryptoCardsHelpers.normalizeTxArgs = (web3, txData) => {
         }
         else if (_.isString(value) && _.startsWith(value, '0x')) {
             if (web3.isAddress(value)) {
-                return CryptoCardsHelpers.upperCaseAddress(value);
+                return value; // CryptoCardsHelpers.upperCaseAddress(value);
             }
             return web3.toAscii(value);
         }
