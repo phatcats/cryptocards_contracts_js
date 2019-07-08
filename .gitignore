@@ -8,7 +8,6 @@ npm-debug.log
 .vscode/
 node_modules/
 .env
-bin/
 .coverage/
 
 notes.txt
