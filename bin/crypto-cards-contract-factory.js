@@ -26,7 +26,7 @@ var CryptoCardsContractFactory = exports.CryptoCardsContractFactory = {
         var _utils = void 0;
 
         function _createInstance() {
-            return Object.create(_lodash._.assignIn({}, this.objInterface, {
+            return Object.create(_lodash._.assignIn({}, CryptoCardsContractFactory.objInterface, {
                 contractAddressName: addressName,
                 contractAbi: abi,
                 isProviderReady: false,

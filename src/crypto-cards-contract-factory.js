@@ -11,7 +11,7 @@ export const CryptoCardsContractFactory = {
         let _utils;
 
         function _createInstance() {
-            return Object.create(_.assignIn({}, this.objInterface, {
+            return Object.create(_.assignIn({}, CryptoCardsContractFactory.objInterface, {
                 contractAddressName: addressName,
                 contractAbi: abi,
                 isProviderReady: false,
