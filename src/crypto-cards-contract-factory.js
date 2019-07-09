@@ -14,9 +14,9 @@ export const CryptoCardsContractFactory = {
             return Object.create(_.assignIn({}, CryptoCardsContractFactory.objInterface, {
                 contractAddressName: addressName,
                 contractAbi: abi,
-                isProviderReady: false,
+                contractReady: false,
                 contract: null,
-                web3: new Web3(_utils.web3provider),
+                web3: null,
                 log: _utils.logger || console.log,
             }));
         }
@@ -31,7 +31,7 @@ export const CryptoCardsContractFactory = {
                         throw new Error('Instance has not been prepared!');
                     }
                     _instance = _createInstance();
-                    _instance.connectToContract(_utils.networkVersion);
+                    _instance.connectToContract(_utils);
                 }
                 return _instance;
             }
@@ -51,10 +51,15 @@ export const CryptoCardsContractFactory = {
             return this.web3.eth.net.getPeerCount();
         },
 
-        connectToContract(networkVersion = '1') {
+        connectToContract({web3provider, networkVersion}) {
             const address = CC_GLOBAL.CONTRACT_ADDRESS[networkVersion][this.contractAddressName];
+            this.web3 = new Web3(web3provider);
             this.contract = new this.web3.eth.Contract(this.contractAbi, address);
-            this.isProviderReady = !_.isEmpty(this.contract.address);
+            this.contractReady = !_.isEmpty(this.contract.address);
+        },
+
+        isReady() {
+            return this.contractReady;
         },
 
         getEventsFromContract(eventName, eventOptions) {
@@ -62,14 +67,14 @@ export const CryptoCardsContractFactory = {
         },
 
         callContractFn(contractMethod, ...args) {
-            if (!this.isProviderReady) {
+            if (!this.contractReady) {
                 return Promise.reject(`Web3 Provider not ready (calling "${this.contractAddressName}->${contractMethod}")`);
             }
             return this.contract.methods[contractMethod](...args).call();
         },
 
         tryContractTx(contractMethod, tx, ...args) {
-            if (!this.isProviderReady) {
+            if (!this.contractReady) {
                 return Promise.reject(`Web3 Provider not ready (calling "${this.contractAddressName}->${contractMethod}")`);
             }
             return this.contract.methods[contractMethod](...args).send(tx);

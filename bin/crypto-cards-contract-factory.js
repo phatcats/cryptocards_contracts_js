@@ -29,9 +29,9 @@ var CryptoCardsContractFactory = exports.CryptoCardsContractFactory = {
             return Object.create(_lodash._.assignIn({}, CryptoCardsContractFactory.objInterface, {
                 contractAddressName: addressName,
                 contractAbi: abi,
-                isProviderReady: false,
+                contractReady: false,
                 contract: null,
-                web3: new _web2.default(_utils.web3provider),
+                web3: null,
                 log: _utils.logger || console.log
             }));
         }
@@ -50,7 +50,7 @@ var CryptoCardsContractFactory = exports.CryptoCardsContractFactory = {
                         throw new Error('Instance has not been prepared!');
                     }
                     _instance = _createInstance();
-                    _instance.connectToContract(_utils.networkVersion);
+                    _instance.connectToContract(_utils);
                 }
                 return _instance;
             }
@@ -68,12 +68,17 @@ var CryptoCardsContractFactory = exports.CryptoCardsContractFactory = {
         getNetworkPeerCount: function getNetworkPeerCount() {
             return this.web3.eth.net.getPeerCount();
         },
-        connectToContract: function connectToContract() {
-            var networkVersion = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '1';
+        connectToContract: function connectToContract(_ref3) {
+            var web3provider = _ref3.web3provider,
+                networkVersion = _ref3.networkVersion;
 
             var address = _globals.CC_GLOBAL.CONTRACT_ADDRESS[networkVersion][this.contractAddressName];
+            this.web3 = new _web2.default(web3provider);
             this.contract = new this.web3.eth.Contract(this.contractAbi, address);
-            this.isProviderReady = !_lodash._.isEmpty(this.contract.address);
+            this.contractReady = !_lodash._.isEmpty(this.contract.address);
+        },
+        isReady: function isReady() {
+            return this.contractReady;
         },
         getEventsFromContract: function getEventsFromContract(eventName, eventOptions) {
             return this.contract.getPastEvents(eventName, eventOptions);
@@ -81,7 +86,7 @@ var CryptoCardsContractFactory = exports.CryptoCardsContractFactory = {
         callContractFn: function callContractFn(contractMethod) {
             var _contract$methods;
 
-            if (!this.isProviderReady) {
+            if (!this.contractReady) {
                 return Promise.reject('Web3 Provider not ready (calling "' + this.contractAddressName + '->' + contractMethod + '")');
             }
 
@@ -94,7 +99,7 @@ var CryptoCardsContractFactory = exports.CryptoCardsContractFactory = {
         tryContractTx: function tryContractTx(contractMethod, tx) {
             var _contract$methods2;
 
-            if (!this.isProviderReady) {
+            if (!this.contractReady) {
                 return Promise.reject('Web3 Provider not ready (calling "' + this.contractAddressName + '->' + contractMethod + '")');
             }
 
