@@ -203,11 +203,11 @@ export const CryptoCardsGumABI = [
         'constant': false,
         'inputs': [
             {
-                'name': 'controller',
+                'name': 'packs',
                 'type': 'address'
             }
         ],
-        'name': 'setContractController',
+        'name': 'setPacksAddress',
         'outputs': [],
         'payable': false,
         'stateMutability': 'nonpayable',
@@ -217,25 +217,11 @@ export const CryptoCardsGumABI = [
         'constant': false,
         'inputs': [
             {
-                'name': 'oracle',
+                'name': 'cards',
                 'type': 'address'
             }
         ],
-        'name': 'setOracleAddress',
-        'outputs': [],
-        'payable': false,
-        'stateMutability': 'nonpayable',
-        'type': 'function'
-    },
-    {
-        'constant': false,
-        'inputs': [
-            {
-                'name': 'token',
-                'type': 'address'
-            }
-        ],
-        'name': 'setCardToken',
+        'name': 'setCardsAddress',
         'outputs': [],
         'payable': false,
         'stateMutability': 'nonpayable',
@@ -301,9 +287,13 @@ export const CryptoCardsGumABI = [
             {
                 'name': 'to',
                 'type': 'address'
+            },
+            {
+                'name': 'gumAmount',
+                'type': 'uint256'
             }
         ],
-        'name': 'claimEarnedGum',
+        'name': 'transferCardGum',
         'outputs': [
             {
                 'name': '',
@@ -327,7 +317,12 @@ export const CryptoCardsGumABI = [
             }
         ],
         'name': 'transferPackGum',
-        'outputs': [],
+        'outputs': [
+            {
+                'name': '',
+                'type': 'uint256'
+            }
+        ],
         'payable': false,
         'stateMutability': 'nonpayable',
         'type': 'function'

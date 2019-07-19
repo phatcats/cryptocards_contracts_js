@@ -19,28 +19,6 @@ export const CryptoCardsPacksTokenABI = [
         'type': 'function'
     },
     {
-        'constant': false,
-        'inputs': [
-            {
-                'name': 'from',
-                'type': 'address'
-            },
-            {
-                'name': 'to',
-                'type': 'address'
-            },
-            {
-                'name': 'tokenIds',
-                'type': 'uint256[]'
-            }
-        ],
-        'name': 'safeBatchTransferFrom',
-        'outputs': [],
-        'payable': false,
-        'stateMutability': 'nonpayable',
-        'type': 'function'
-    },
-    {
         'constant': true,
         'inputs': [],
         'name': 'name',
@@ -94,6 +72,20 @@ export const CryptoCardsPacksTokenABI = [
     {
         'constant': true,
         'inputs': [],
+        'name': 'getVersion',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'string'
+            }
+        ],
+        'payable': false,
+        'stateMutability': 'pure',
+        'type': 'function'
+    },
+    {
+        'constant': true,
+        'inputs': [],
         'name': 'totalSupply',
         'outputs': [
             {
@@ -122,32 +114,6 @@ export const CryptoCardsPacksTokenABI = [
             }
         ],
         'name': 'transferFrom',
-        'outputs': [],
-        'payable': false,
-        'stateMutability': 'nonpayable',
-        'type': 'function'
-    },
-    {
-        'constant': false,
-        'inputs': [
-            {
-                'name': 'from',
-                'type': 'address'
-            },
-            {
-                'name': 'to',
-                'type': 'address'
-            },
-            {
-                'name': 'tokenIds',
-                'type': 'uint256[]'
-            },
-            {
-                'name': '_data',
-                'type': 'bytes'
-            }
-        ],
-        'name': 'safeBatchTransferFrom',
         'outputs': [],
         'payable': false,
         'stateMutability': 'nonpayable',

@@ -551,4 +551,3 @@ export const CryptoCardsTreasuryABI = [
         'type': 'function'
     }
 ];
-

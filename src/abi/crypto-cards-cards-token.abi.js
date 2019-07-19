@@ -19,28 +19,6 @@ export const CryptoCardsCardsTokenABI = [
         'type': 'function'
     },
     {
-        'constant': false,
-        'inputs': [
-            {
-                'name': 'from',
-                'type': 'address'
-            },
-            {
-                'name': 'to',
-                'type': 'address'
-            },
-            {
-                'name': 'tokenIds',
-                'type': 'uint256[]'
-            }
-        ],
-        'name': 'safeBatchTransferFrom',
-        'outputs': [],
-        'payable': false,
-        'stateMutability': 'nonpayable',
-        'type': 'function'
-    },
-    {
         'constant': true,
         'inputs': [],
         'name': 'name',
@@ -94,6 +72,20 @@ export const CryptoCardsCardsTokenABI = [
     {
         'constant': true,
         'inputs': [],
+        'name': 'getVersion',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'string'
+            }
+        ],
+        'payable': false,
+        'stateMutability': 'pure',
+        'type': 'function'
+    },
+    {
+        'constant': true,
+        'inputs': [],
         'name': 'totalSupply',
         'outputs': [
             {
@@ -122,32 +114,6 @@ export const CryptoCardsCardsTokenABI = [
             }
         ],
         'name': 'transferFrom',
-        'outputs': [],
-        'payable': false,
-        'stateMutability': 'nonpayable',
-        'type': 'function'
-    },
-    {
-        'constant': false,
-        'inputs': [
-            {
-                'name': 'from',
-                'type': 'address'
-            },
-            {
-                'name': 'to',
-                'type': 'address'
-            },
-            {
-                'name': 'tokenIds',
-                'type': 'uint256[]'
-            },
-            {
-                'name': '_data',
-                'type': 'bytes'
-            }
-        ],
-        'name': 'safeBatchTransferFrom',
         'outputs': [],
         'payable': false,
         'stateMutability': 'nonpayable',
@@ -408,20 +374,6 @@ export const CryptoCardsCardsTokenABI = [
         'type': 'function'
     },
     {
-        'constant': true,
-        'inputs': [],
-        'name': 'START_YEAR',
-        'outputs': [
-            {
-                'name': '',
-                'type': 'uint256'
-            }
-        ],
-        'payable': false,
-        'stateMutability': 'view',
-        'type': 'function'
-    },
-    {
         'constant': false,
         'inputs': [
             {
@@ -569,6 +521,16 @@ export const CryptoCardsCardsTokenABI = [
             {
                 'indexed': false,
                 'name': 'tokenId',
+                'type': 'uint256'
+            },
+            {
+                'indexed': false,
+                'name': 'wrappedEther',
+                'type': 'uint256'
+            },
+            {
+                'indexed': false,
+                'name': 'wrappedGum',
                 'type': 'uint256'
             }
         ],
@@ -755,7 +717,7 @@ export const CryptoCardsCardsTokenABI = [
         'outputs': [
             {
                 'name': '',
-                'type': 'uint256'
+                'type': 'uint64'
             }
         ],
         'payable': false,
@@ -774,7 +736,7 @@ export const CryptoCardsCardsTokenABI = [
         'outputs': [
             {
                 'name': '',
-                'type': 'uint256'
+                'type': 'uint64'
             }
         ],
         'payable': false,
@@ -793,72 +755,7 @@ export const CryptoCardsCardsTokenABI = [
         'outputs': [
             {
                 'name': '',
-                'type': 'uint256'
-            }
-        ],
-        'payable': false,
-        'stateMutability': 'pure',
-        'type': 'function'
-    },
-    {
-        'constant': true,
-        'inputs': [
-            {
-                'name': 'tokenId',
-                'type': 'uint256'
-            }
-        ],
-        'name': 'getTypeIndicators',
-        'outputs': [
-            {
-                'name': '',
-                'type': 'uint256'
-            },
-            {
-                'name': '',
-                'type': 'uint256'
-            },
-            {
-                'name': '',
-                'type': 'uint256'
-            }
-        ],
-        'payable': false,
-        'stateMutability': 'pure',
-        'type': 'function'
-    },
-    {
-        'constant': true,
-        'inputs': [
-            {
-                'name': 'tokenId',
-                'type': 'uint256'
-            }
-        ],
-        'name': 'getCombinedCount',
-        'outputs': [
-            {
-                'name': '',
-                'type': 'uint256'
-            }
-        ],
-        'payable': false,
-        'stateMutability': 'pure',
-        'type': 'function'
-    },
-    {
-        'constant': true,
-        'inputs': [
-            {
-                'name': 'tokenId',
-                'type': 'uint256'
-            }
-        ],
-        'name': 'getSpecialty',
-        'outputs': [
-            {
-                'name': '',
-                'type': 'uint256'
+                'type': 'uint64'
             }
         ],
         'payable': false,
@@ -877,7 +774,34 @@ export const CryptoCardsCardsTokenABI = [
         'outputs': [
             {
                 'name': '',
+                'type': 'uint64'
+            }
+        ],
+        'payable': false,
+        'stateMutability': 'pure',
+        'type': 'function'
+    },
+    {
+        'constant': true,
+        'inputs': [
+            {
+                'name': 'tokenId',
                 'type': 'uint256'
+            }
+        ],
+        'name': 'getTypeIndicators',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'uint64'
+            },
+            {
+                'name': '',
+                'type': 'uint64'
+            },
+            {
+                'name': '',
+                'type': 'uint64'
             }
         ],
         'payable': false,
@@ -896,7 +820,7 @@ export const CryptoCardsCardsTokenABI = [
         'outputs': [
             {
                 'name': '',
-                'type': 'uint256'
+                'type': 'uint64'
             }
         ],
         'payable': false,
@@ -930,53 +854,11 @@ export const CryptoCardsCardsTokenABI = [
                 'type': 'uint256'
             }
         ],
-        'name': 'getTraits',
-        'outputs': [
-            {
-                'name': '',
-                'type': 'uint256'
-            }
-        ],
-        'payable': false,
-        'stateMutability': 'pure',
-        'type': 'function'
-    },
-    {
-        'constant': true,
-        'inputs': [
-            {
-                'name': 'tokenId',
-                'type': 'uint256'
-            },
-            {
-                'name': 'trait',
-                'type': 'uint256'
-            }
-        ],
-        'name': 'hasTrait',
-        'outputs': [
-            {
-                'name': '',
-                'type': 'bool'
-            }
-        ],
-        'payable': false,
-        'stateMutability': 'pure',
-        'type': 'function'
-    },
-    {
-        'constant': true,
-        'inputs': [
-            {
-                'name': 'tokenId',
-                'type': 'uint256'
-            }
-        ],
         'name': 'getTotalIssued',
         'outputs': [
             {
                 'name': '',
-                'type': 'uint256'
+                'type': 'uint64'
             }
         ],
         'payable': false,
@@ -1019,76 +901,6 @@ export const CryptoCardsCardsTokenABI = [
             {
                 'name': '',
                 'type': 'bool'
-            }
-        ],
-        'payable': false,
-        'stateMutability': 'view',
-        'type': 'function'
-    },
-    {
-        'constant': false,
-        'inputs': [
-            {
-                'name': 'tokenA',
-                'type': 'uint256'
-            },
-            {
-                'name': 'tokenB',
-                'type': 'uint256'
-            }
-        ],
-        'name': 'combine',
-        'outputs': [
-            {
-                'name': '',
-                'type': 'uint256'
-            }
-        ],
-        'payable': false,
-        'stateMutability': 'nonpayable',
-        'type': 'function'
-    },
-    {
-        'constant': false,
-        'inputs': [
-            {
-                'name': 'tokenId',
-                'type': 'uint256'
-            }
-        ],
-        'name': 'melt',
-        'outputs': [],
-        'payable': false,
-        'stateMutability': 'nonpayable',
-        'type': 'function'
-    },
-    {
-        'constant': true,
-        'inputs': [
-            {
-                'name': 'owner',
-                'type': 'address'
-            }
-        ],
-        'name': 'getEarnedGum',
-        'outputs': [
-            {
-                'name': '',
-                'type': 'uint256'
-            }
-        ],
-        'payable': false,
-        'stateMutability': 'view',
-        'type': 'function'
-    },
-    {
-        'constant': true,
-        'inputs': [],
-        'name': 'getWrappedEtherSupply',
-        'outputs': [
-            {
-                'name': '',
-                'type': 'uint256'
             }
         ],
         'payable': false,
@@ -1144,7 +956,12 @@ export const CryptoCardsCardsTokenABI = [
             }
         ],
         'name': 'printFor',
-        'outputs': [],
+        'outputs': [
+            {
+                'name': '',
+                'type': 'uint256'
+            }
+        ],
         'payable': false,
         'stateMutability': 'nonpayable',
         'type': 'function'
@@ -1189,61 +1006,12 @@ export const CryptoCardsCardsTokenABI = [
             }
         ],
         'name': 'meltFor',
-        'outputs': [],
-        'payable': false,
-        'stateMutability': 'nonpayable',
-        'type': 'function'
-    },
-    {
-        'constant': false,
-        'inputs': [
+        'outputs': [
             {
-                'name': 'from',
-                'type': 'address'
-            },
-            {
-                'name': 'to',
-                'type': 'address'
-            },
-            {
-                'name': 'tokenId',
+                'name': '',
                 'type': 'uint256'
             }
         ],
-        'name': 'tokenTransfer',
-        'outputs': [],
-        'payable': false,
-        'stateMutability': 'nonpayable',
-        'type': 'function'
-    },
-    {
-        'constant': false,
-        'inputs': [
-            {
-                'name': 'owner',
-                'type': 'address'
-            },
-            {
-                'name': 'amountClaimed',
-                'type': 'uint256'
-            }
-        ],
-        'name': 'claimEarnedGum',
-        'outputs': [],
-        'payable': false,
-        'stateMutability': 'nonpayable',
-        'type': 'function'
-    },
-    {
-        'constant': false,
-        'inputs': [
-            {
-                'name': 'gumCtrl',
-                'type': 'address'
-            }
-        ],
-        'name': 'setGumController',
-        'outputs': [],
         'payable': false,
         'stateMutability': 'nonpayable',
         'type': 'function'

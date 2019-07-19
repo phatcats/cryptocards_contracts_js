@@ -337,14 +337,18 @@ export const CryptoCardsCardsABI = [
         'type': 'function'
     },
     {
-        'constant': true,
+        'constant': false,
         'inputs': [
             {
-                'name': 'owner',
-                'type': 'address'
+                'name': 'tokenA',
+                'type': 'uint256'
+            },
+            {
+                'name': 'tokenB',
+                'type': 'uint256'
             }
         ],
-        'name': 'getEarnedGum',
+        'name': 'combineCards',
         'outputs': [
             {
                 'name': '',
@@ -352,18 +356,18 @@ export const CryptoCardsCardsABI = [
             }
         ],
         'payable': false,
-        'stateMutability': 'view',
+        'stateMutability': 'nonpayable',
         'type': 'function'
     },
     {
         'constant': false,
         'inputs': [
             {
-                'name': 'controller',
-                'type': 'address'
+                'name': 'tokenId',
+                'type': 'uint256'
             }
         ],
-        'name': 'setContractController',
+        'name': 'meltCard',
         'outputs': [],
         'payable': false,
         'stateMutability': 'nonpayable',
@@ -372,38 +376,6 @@ export const CryptoCardsCardsABI = [
     {
         'constant': false,
         'inputs': [
-            {
-                'name': 'token',
-                'type': 'address'
-            }
-        ],
-        'name': 'setCryptoCardsCardToken',
-        'outputs': [],
-        'payable': false,
-        'stateMutability': 'nonpayable',
-        'type': 'function'
-    },
-    {
-        'constant': false,
-        'inputs': [
-            {
-                'name': 'lib',
-                'type': 'address'
-            }
-        ],
-        'name': 'setLibAddress',
-        'outputs': [],
-        'payable': false,
-        'stateMutability': 'nonpayable',
-        'type': 'function'
-    },
-    {
-        'constant': false,
-        'inputs': [
-            {
-                'name': 'owner',
-                'type': 'address'
-            },
             {
                 'name': 'cardId',
                 'type': 'uint256'
@@ -427,10 +399,6 @@ export const CryptoCardsCardsABI = [
         'constant': false,
         'inputs': [
             {
-                'name': 'owner',
-                'type': 'address'
-            },
-            {
                 'name': 'cardId',
                 'type': 'uint256'
             },
@@ -452,6 +420,48 @@ export const CryptoCardsCardsABI = [
             }
         ],
         'name': 'updateCardTradeValue',
+        'outputs': [],
+        'payable': false,
+        'stateMutability': 'nonpayable',
+        'type': 'function'
+    },
+    {
+        'constant': false,
+        'inputs': [
+            {
+                'name': 'controller',
+                'type': 'address'
+            }
+        ],
+        'name': 'setContractController',
+        'outputs': [],
+        'payable': false,
+        'stateMutability': 'nonpayable',
+        'type': 'function'
+    },
+    {
+        'constant': false,
+        'inputs': [
+            {
+                'name': 'gum',
+                'type': 'address'
+            }
+        ],
+        'name': 'setGumAddress',
+        'outputs': [],
+        'payable': false,
+        'stateMutability': 'nonpayable',
+        'type': 'function'
+    },
+    {
+        'constant': false,
+        'inputs': [
+            {
+                'name': 'token',
+                'type': 'address'
+            }
+        ],
+        'name': 'setCryptoCardsCardToken',
         'outputs': [],
         'payable': false,
         'stateMutability': 'nonpayable',
@@ -522,60 +532,11 @@ export const CryptoCardsCardsABI = [
         'constant': false,
         'inputs': [
             {
-                'name': 'owner',
-                'type': 'address'
-            },
-            {
-                'name': 'cardIds',
-                'type': 'uint256[]'
-            }
-        ],
-        'name': 'printCards',
-        'outputs': [],
-        'payable': false,
-        'stateMutability': 'nonpayable',
-        'type': 'function'
-    },
-    {
-        'constant': false,
-        'inputs': [
-            {
-                'name': 'owner',
-                'type': 'address'
-            },
-            {
-                'name': 'tokenA',
-                'type': 'uint256'
-            },
-            {
-                'name': 'tokenB',
+                'name': 'tokenId',
                 'type': 'uint256'
             }
         ],
-        'name': 'combineCards',
-        'outputs': [
-            {
-                'name': '',
-                'type': 'uint256'
-            }
-        ],
-        'payable': false,
-        'stateMutability': 'nonpayable',
-        'type': 'function'
-    },
-    {
-        'constant': false,
-        'inputs': [
-            {
-                'name': 'owner',
-                'type': 'address'
-            },
-            {
-                'name': 'cardIds',
-                'type': 'uint256[]'
-            }
-        ],
-        'name': 'meltCards',
+        'name': 'printCard',
         'outputs': [],
         'payable': false,
         'stateMutability': 'nonpayable',

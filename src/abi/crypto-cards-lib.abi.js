@@ -306,8 +306,8 @@ export const CryptoCardsLibABI = [
         'constant': true,
         'inputs': [
             {
-                'name': '_b',
-                'type': 'string'
+                'name': 'b',
+                'type': 'bytes'
             }
         ],
         'name': 'bytesToUint',
@@ -315,6 +315,44 @@ export const CryptoCardsLibABI = [
             {
                 'name': '',
                 'type': 'uint256'
+            }
+        ],
+        'payable': false,
+        'stateMutability': 'pure',
+        'type': 'function'
+    },
+    {
+        'constant': true,
+        'inputs': [
+            {
+                'name': 'c',
+                'type': 'uint8'
+            }
+        ],
+        'name': 'fromHexChar',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'uint8'
+            }
+        ],
+        'payable': false,
+        'stateMutability': 'pure',
+        'type': 'function'
+    },
+    {
+        'constant': true,
+        'inputs': [
+            {
+                'name': 's',
+                'type': 'string'
+            }
+        ],
+        'name': 'fromHex',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'bytes'
             }
         ],
         'payable': false,

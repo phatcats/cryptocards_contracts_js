@@ -39,6 +39,20 @@ export const CryptoCardsGumTokenABI = [
     {
         'constant': true,
         'inputs': [],
+        'name': 'getVersion',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'string'
+            }
+        ],
+        'payable': false,
+        'stateMutability': 'pure',
+        'type': 'function'
+    },
+    {
+        'constant': true,
+        'inputs': [],
         'name': 'totalSupply',
         'outputs': [
             {
