@@ -78,7 +78,7 @@ CryptoCardsHelpers.normalizeTxType = (txData, eventType) => {
 CryptoCardsHelpers.normalizeTxArgs = (web3, txData) => {
     const _parseValue = (value, key = '') => {
         console.log('_parseValue', key, value);
-        if (_.isObject(value) && (value instanceof web3.BigNumber)) {
+        if (_.isObject(value) && web3.utils.isBN(value)) { //(value instanceof web3.BigNumber)) {
             console.log(' is a BigNumber');
             if (_.startsWith(key, 'price')) {
                 console.log(' is a Price');
@@ -88,11 +88,11 @@ CryptoCardsHelpers.normalizeTxArgs = (web3, txData) => {
         }
         else if (_.isString(value) && _.startsWith(value, '0x')) {
             console.log(' is a HexValue');
-            if (web3.isAddress(value)) {
+            if (web3.utils.isAddress(value)) {
                 console.log(' is an Address');
                 return value; // CryptoCardsHelpers.upperCaseAddress(value);
             }
-            return web3.toAscii(value);
+            return web3.utils.hexToAscii(value);
         }
         return value;
     };

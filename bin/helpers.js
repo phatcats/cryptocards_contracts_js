@@ -114,7 +114,8 @@ CryptoCardsHelpers.normalizeTxArgs = function (web3, txData) {
         var key = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 
         console.log('_parseValue', key, value);
-        if (_lodash._.isObject(value) && value instanceof web3.BigNumber) {
+        if (_lodash._.isObject(value) && web3.utils.isBN(value)) {
+            //(value instanceof web3.BigNumber)) {
             console.log(' is a BigNumber');
             if (_lodash._.startsWith(key, 'price')) {
                 console.log(' is a Price');
@@ -123,11 +124,11 @@ CryptoCardsHelpers.normalizeTxArgs = function (web3, txData) {
             return CryptoCardsHelpers.intFromBigint(value);
         } else if (_lodash._.isString(value) && _lodash._.startsWith(value, '0x')) {
             console.log(' is a HexValue');
-            if (web3.isAddress(value)) {
+            if (web3.utils.isAddress(value)) {
                 console.log(' is an Address');
                 return value; // CryptoCardsHelpers.upperCaseAddress(value);
             }
-            return web3.toAscii(value);
+            return web3.utils.hexToAscii(value);
         }
         return value;
     };
