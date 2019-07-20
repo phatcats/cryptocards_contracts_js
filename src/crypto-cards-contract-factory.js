@@ -54,17 +54,10 @@ export const CryptoCardsContractFactory = {
             const address = CC_GLOBAL.CONTRACT_ADDRESS[networkVersion][this.contractAddressName];
             this.web3 = web3;
             console.log('-----------------------------');
-            console.log('CryptoCardsContractFactory');
-            console.log('   contractAddressName', this.contractAddressName);
-            console.log('   address', address);
-            console.log('   networkVersion', networkVersion);
-            console.log('   web3', web3);
-            console.log('   contractAbi', this.contractAbi);
+            console.log('CryptoCardsContractFactory', this.contractAddressName, address, networkVersion);
             this.contract = new this.web3.eth.Contract(this.contractAbi, address);
-            console.log('   contract.defaultAccount', this.contract.defaultAccount);
-            console.log('   contract._address', this.contract._address);
-            console.log('   contract.currentProvider', this.contract.currentProvider);
-            this.contractReady = !_.isEmpty(this.contract._address);
+            console.log('   is Contract?', (this.contract instanceof this.web3.eth.Contract));
+            this.contractReady = (this.contract instanceof this.web3.eth.Contract);
         },
 
         isReady() {
