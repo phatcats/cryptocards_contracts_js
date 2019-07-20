@@ -191,6 +191,37 @@ var CryptoCardsPacksABI = exports.CryptoCardsPacksABI = [{
 }, {
     'constant': false,
     'inputs': [{
+        'name': 'packId',
+        'type': 'uint256'
+    }, {
+        'name': 'packPrice',
+        'type': 'uint256'
+    }, {
+        'name': 'uuid',
+        'type': 'bytes16'
+    }],
+    'name': 'updatePackPrice',
+    'outputs': [],
+    'payable': false,
+    'stateMutability': 'nonpayable',
+    'type': 'function'
+}, {
+    'constant': false,
+    'inputs': [{
+        'name': 'packId',
+        'type': 'uint256'
+    }, {
+        'name': 'uuid',
+        'type': 'bytes16'
+    }],
+    'name': 'openPack',
+    'outputs': [],
+    'payable': false,
+    'stateMutability': 'nonpayable',
+    'type': 'function'
+}, {
+    'constant': false,
+    'inputs': [{
         'name': 'controller',
         'type': 'address'
     }],
@@ -235,10 +266,10 @@ var CryptoCardsPacksABI = exports.CryptoCardsPacksABI = [{
 }, {
     'constant': false,
     'inputs': [{
-        'name': 'lib',
+        'name': 'gum',
         'type': 'address'
     }],
-    'name': 'setLibAddress',
+    'name': 'setGumAddress',
     'outputs': [],
     'payable': false,
     'stateMutability': 'nonpayable',
@@ -246,19 +277,10 @@ var CryptoCardsPacksABI = exports.CryptoCardsPacksABI = [{
 }, {
     'constant': false,
     'inputs': [{
-        'name': 'owner',
+        'name': 'lib',
         'type': 'address'
-    }, {
-        'name': 'packId',
-        'type': 'uint256'
-    }, {
-        'name': 'packPrice',
-        'type': 'uint256'
-    }, {
-        'name': 'uuid',
-        'type': 'bytes16'
     }],
-    'name': 'updatePackPrice',
+    'name': 'setLibAddress',
     'outputs': [],
     'payable': false,
     'stateMutability': 'nonpayable',
@@ -286,23 +308,6 @@ var CryptoCardsPacksABI = exports.CryptoCardsPacksABI = [{
         'name': '',
         'type': 'uint256'
     }],
-    'payable': false,
-    'stateMutability': 'nonpayable',
-    'type': 'function'
-}, {
-    'constant': false,
-    'inputs': [{
-        'name': 'opener',
-        'type': 'address'
-    }, {
-        'name': 'packId',
-        'type': 'uint256'
-    }, {
-        'name': 'uuid',
-        'type': 'bytes16'
-    }],
-    'name': 'openPack',
-    'outputs': [],
     'payable': false,
     'stateMutability': 'nonpayable',
     'type': 'function'

@@ -180,10 +180,7 @@ var CryptoCardsControllerABI = exports.CryptoCardsControllerABI = [{
     'type': 'event'
 }, {
     'constant': false,
-    'inputs': [{
-        'name': 'owner',
-        'type': 'address'
-    }],
+    'inputs': [],
     'name': 'initialize',
     'outputs': [],
     'payable': false,
@@ -191,7 +188,10 @@ var CryptoCardsControllerABI = exports.CryptoCardsControllerABI = [{
     'type': 'function'
 }, {
     'constant': false,
-    'inputs': [],
+    'inputs': [{
+        'name': 'owner',
+        'type': 'address'
+    }],
     'name': 'initialize',
     'outputs': [],
     'payable': false,
@@ -211,101 +211,19 @@ var CryptoCardsControllerABI = exports.CryptoCardsControllerABI = [{
 }, {
     'constant': false,
     'inputs': [{
-        'name': 'packId',
+        'name': 'referredBy',
+        'type': 'address'
+    }, {
+        'name': 'promoCode',
         'type': 'uint256'
     }, {
         'name': 'uuid',
         'type': 'bytes16'
     }],
-    'name': 'clearPackPrice',
+    'name': 'buyPackOfCards',
     'outputs': [],
-    'payable': false,
-    'stateMutability': 'nonpayable',
-    'type': 'function'
-}, {
-    'constant': false,
-    'inputs': [{
-        'name': 'packId',
-        'type': 'uint256'
-    }, {
-        'name': 'packPrice',
-        'type': 'uint256'
-    }, {
-        'name': 'uuid',
-        'type': 'bytes16'
-    }],
-    'name': 'updatePackPrice',
-    'outputs': [],
-    'payable': false,
-    'stateMutability': 'nonpayable',
-    'type': 'function'
-}, {
-    'constant': false,
-    'inputs': [{
-        'name': 'cardId',
-        'type': 'uint256'
-    }, {
-        'name': 'uuid',
-        'type': 'bytes16'
-    }],
-    'name': 'clearCardPrice',
-    'outputs': [],
-    'payable': false,
-    'stateMutability': 'nonpayable',
-    'type': 'function'
-}, {
-    'constant': false,
-    'inputs': [{
-        'name': 'cardId',
-        'type': 'uint256'
-    }, {
-        'name': 'cardPrice',
-        'type': 'uint256'
-    }, {
-        'name': 'uuid',
-        'type': 'bytes16'
-    }],
-    'name': 'updateCardPrice',
-    'outputs': [],
-    'payable': false,
-    'stateMutability': 'nonpayable',
-    'type': 'function'
-}, {
-    'constant': false,
-    'inputs': [{
-        'name': 'cardId',
-        'type': 'uint256'
-    }, {
-        'name': 'uuid',
-        'type': 'bytes16'
-    }],
-    'name': 'clearCardTradeValue',
-    'outputs': [],
-    'payable': false,
-    'stateMutability': 'nonpayable',
-    'type': 'function'
-}, {
-    'constant': false,
-    'inputs': [{
-        'name': 'cardId',
-        'type': 'uint256'
-    }, {
-        'name': 'cardRank',
-        'type': 'uint16'
-    }, {
-        'name': 'cardGens',
-        'type': 'uint8[]'
-    }, {
-        'name': 'cardYears',
-        'type': 'uint8[]'
-    }, {
-        'name': 'uuid',
-        'type': 'bytes16'
-    }],
-    'name': 'updateCardTradeValue',
-    'outputs': [],
-    'payable': false,
-    'stateMutability': 'nonpayable',
+    'payable': true,
+    'stateMutability': 'payable',
     'type': 'function'
 }, {
     'constant': false,
@@ -357,76 +275,6 @@ var CryptoCardsControllerABI = exports.CryptoCardsControllerABI = [{
         'type': 'bytes16'
     }],
     'name': 'tradeCardForCard',
-    'outputs': [],
-    'payable': false,
-    'stateMutability': 'nonpayable',
-    'type': 'function'
-}, {
-    'constant': false,
-    'inputs': [{
-        'name': 'referredBy',
-        'type': 'address'
-    }, {
-        'name': 'promoCode',
-        'type': 'uint256'
-    }, {
-        'name': 'uuid',
-        'type': 'bytes16'
-    }],
-    'name': 'buyPackOfCards',
-    'outputs': [],
-    'payable': true,
-    'stateMutability': 'payable',
-    'type': 'function'
-}, {
-    'constant': false,
-    'inputs': [{
-        'name': 'packId',
-        'type': 'uint256'
-    }, {
-        'name': 'uuid',
-        'type': 'bytes16'
-    }],
-    'name': 'openPack',
-    'outputs': [],
-    'payable': false,
-    'stateMutability': 'nonpayable',
-    'type': 'function'
-}, {
-    'constant': false,
-    'inputs': [{
-        'name': 'cardA',
-        'type': 'uint256'
-    }, {
-        'name': 'cardB',
-        'type': 'uint256'
-    }],
-    'name': 'combineCards',
-    'outputs': [{
-        'name': '',
-        'type': 'uint256'
-    }],
-    'payable': false,
-    'stateMutability': 'nonpayable',
-    'type': 'function'
-}, {
-    'constant': false,
-    'inputs': [{
-        'name': 'cardIds',
-        'type': 'uint256[]'
-    }],
-    'name': 'printCards',
-    'outputs': [],
-    'payable': false,
-    'stateMutability': 'nonpayable',
-    'type': 'function'
-}, {
-    'constant': false,
-    'inputs': [{
-        'name': 'cardIds',
-        'type': 'uint256[]'
-    }],
-    'name': 'meltCards',
     'outputs': [],
     'payable': false,
     'stateMutability': 'nonpayable',

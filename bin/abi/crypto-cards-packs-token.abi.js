@@ -18,23 +18,6 @@ var CryptoCardsPacksTokenABI = exports.CryptoCardsPacksTokenABI = [{
     'stateMutability': 'view',
     'type': 'function'
 }, {
-    'constant': false,
-    'inputs': [{
-        'name': 'from',
-        'type': 'address'
-    }, {
-        'name': 'to',
-        'type': 'address'
-    }, {
-        'name': 'tokenIds',
-        'type': 'uint256[]'
-    }],
-    'name': 'safeBatchTransferFrom',
-    'outputs': [],
-    'payable': false,
-    'stateMutability': 'nonpayable',
-    'type': 'function'
-}, {
     'constant': true,
     'inputs': [],
     'name': 'name',
@@ -76,6 +59,17 @@ var CryptoCardsPacksTokenABI = exports.CryptoCardsPacksTokenABI = [{
 }, {
     'constant': true,
     'inputs': [],
+    'name': 'getVersion',
+    'outputs': [{
+        'name': '',
+        'type': 'string'
+    }],
+    'payable': false,
+    'stateMutability': 'pure',
+    'type': 'function'
+}, {
+    'constant': true,
+    'inputs': [],
     'name': 'totalSupply',
     'outputs': [{
         'name': '',
@@ -97,26 +91,6 @@ var CryptoCardsPacksTokenABI = exports.CryptoCardsPacksTokenABI = [{
         'type': 'uint256'
     }],
     'name': 'transferFrom',
-    'outputs': [],
-    'payable': false,
-    'stateMutability': 'nonpayable',
-    'type': 'function'
-}, {
-    'constant': false,
-    'inputs': [{
-        'name': 'from',
-        'type': 'address'
-    }, {
-        'name': 'to',
-        'type': 'address'
-    }, {
-        'name': 'tokenIds',
-        'type': 'uint256[]'
-    }, {
-        'name': '_data',
-        'type': 'bytes'
-    }],
-    'name': 'safeBatchTransferFrom',
     'outputs': [],
     'payable': false,
     'stateMutability': 'nonpayable',

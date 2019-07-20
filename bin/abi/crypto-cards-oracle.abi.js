@@ -74,7 +74,7 @@ var CryptoCardsOracleABI = exports.CryptoCardsOracleABI = [{
     }, {
         'indexed': false,
         'name': 'errorCode',
-        'type': 'uint256'
+        'type': 'uint8'
     }],
     'name': 'PackError',
     'type': 'event'
@@ -147,11 +147,14 @@ var CryptoCardsOracleABI = exports.CryptoCardsOracleABI = [{
 }, {
     'constant': false,
     'inputs': [{
-        'name': '_queryId',
+        'name': '_myid',
         'type': 'bytes32'
     }, {
         'name': '_result',
         'type': 'string'
+    }, {
+        'name': '_proof',
+        'type': 'bytes'
     }],
     'name': '__callback',
     'outputs': [],
@@ -161,14 +164,11 @@ var CryptoCardsOracleABI = exports.CryptoCardsOracleABI = [{
 }, {
     'constant': false,
     'inputs': [{
-        'name': '_myid',
+        'name': '_queryId',
         'type': 'bytes32'
     }, {
         'name': '_result',
         'type': 'string'
-    }, {
-        'name': '_proof',
-        'type': 'bytes'
     }],
     'name': '__callback',
     'outputs': [],
@@ -193,28 +193,6 @@ var CryptoCardsOracleABI = exports.CryptoCardsOracleABI = [{
         'type': 'address'
     }],
     'name': 'setPacksAddress',
-    'outputs': [],
-    'payable': false,
-    'stateMutability': 'nonpayable',
-    'type': 'function'
-}, {
-    'constant': false,
-    'inputs': [{
-        'name': '_gum',
-        'type': 'address'
-    }],
-    'name': 'setGumAddress',
-    'outputs': [],
-    'payable': false,
-    'stateMutability': 'nonpayable',
-    'type': 'function'
-}, {
-    'constant': false,
-    'inputs': [{
-        'name': '_lib',
-        'type': 'address'
-    }],
-    'name': 'setLibAddress',
     'outputs': [],
     'payable': false,
     'stateMutability': 'nonpayable',
