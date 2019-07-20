@@ -76,43 +76,27 @@ CryptoCardsHelpers.normalizeTxType = (txData, eventType) => {
 };
 
 CryptoCardsHelpers.normalizeTxArgs = (web3, txData) => {
-    const _parseValue = (value, key = '') => {
-        console.log('_parseValue', key, value);
-        if (_.isObject(value) && web3.utils.isBN(value)) { //(value instanceof web3.BigNumber)) {
-            console.log(' is a BigNumber');
-            if (_.startsWith(key, 'price')) {
-                console.log(' is a Price');
-                return CryptoCardsHelpers.strFromBigint(value);
-            }
-            return CryptoCardsHelpers.intFromBigint(value);
+    const _parseValue = (value, type) => {
+        switch (type) {
+            case 'hex':
+                return web3.utils.hexToAscii(value);
+            case 'eth':
+                return web3.utils.hexToAscii(value);
+            default:
+                return value;
         }
-        else if (_.isString(value) && _.startsWith(value, '0x')) {
-            console.log(' is a HexValue');
-            if (web3.utils.isAddress(value)) {
-                console.log(' is an Address');
-                return value; // CryptoCardsHelpers.upperCaseAddress(value);
-            }
-            return web3.utils.hexToAscii(value);
-        }
-        return value;
     };
 
-    const _iterateObjects = (arrayOfObjects) => {
-        if (!_.isArray(arrayOfObjects)) { arrayOfObjects = [arrayOfObjects]; }
-        _.forEach(arrayOfObjects, obj => {
-            _.forOwn(obj, (value, key) => {
-                if (_.isPlainObject(value)) {
-                    _iterateObjects(value);
-                } else if (_.isArray(value)) {
-                    obj[key] = _.map(value, v => _parseValue(v, key));
-                } else {
-                    obj[key] = _parseValue(value, key);
-                }
-            });
-        });
-    };
+    _.forEach(txData, (value, key) => {
+        if (_.isObject(value)) {
+            CryptoCardsHelpers.normalizeTxArgs(web3, value);
+            return;
+        }
 
-    _iterateObjects(txData);
+        if (key === 'uuid') {
+            txData[key] = _parseValue(value, 'hex');
+        }
+    });
 };
 
 
