@@ -53,8 +53,15 @@ export const CryptoCardsContractFactory = {
         connectToContract({web3, networkVersion}) {
             const address = CC_GLOBAL.CONTRACT_ADDRESS[networkVersion][this.contractAddressName];
             this.web3 = web3;
-            console.log('CryptoCardsContractFactory', this.contractAddressName, networkVersion, web3);
+            console.log('-----------------------------');
+            console.log('CryptoCardsContractFactory');
+            console.log('   contractAddressName', this.contractAddressName);
+            console.log('   address', address);
+            console.log('   networkVersion', networkVersion);
+            console.log('   web3', web3);
+            console.log('   contractAbi', this.contractAbi);
             this.contract = new this.web3.eth.Contract(this.contractAbi, address);
+            console.log('   contract', this.contract);
             this.contractReady = !_.isEmpty(this.contract.address);
         },
 
