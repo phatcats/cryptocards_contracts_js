@@ -113,13 +113,18 @@ CryptoCardsHelpers.normalizeTxArgs = function (web3, txData) {
     var _parseValue = function _parseValue(value) {
         var key = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 
+        console.log('_parseValue', key, value);
         if (_lodash._.isObject(value) && value instanceof web3.BigNumber) {
-            if (_lodash._.startsWith(key, '_price')) {
+            console.log(' is a BigNumber');
+            if (_lodash._.startsWith(key, 'price')) {
+                console.log(' is a Price');
                 return CryptoCardsHelpers.strFromBigint(value);
             }
             return CryptoCardsHelpers.intFromBigint(value);
         } else if (_lodash._.isString(value) && _lodash._.startsWith(value, '0x')) {
+            console.log(' is a HexValue');
             if (web3.isAddress(value)) {
+                console.log(' is an Address');
                 return value; // CryptoCardsHelpers.upperCaseAddress(value);
             }
             return web3.toAscii(value);
@@ -127,17 +132,26 @@ CryptoCardsHelpers.normalizeTxArgs = function (web3, txData) {
         return value;
     };
 
-    _lodash._.forEach(txData, function (tx) {
-        _lodash._.forOwn(tx.args, function (value, key) {
-            if (_lodash._.isArray(value)) {
-                tx.args[key] = _lodash._.map(value, function (v) {
-                    return _parseValue(v, key);
-                });
-            } else {
-                tx.args[key] = _parseValue(value, key);
-            }
+    var _iterateObjects = function _iterateObjects(arrayOfObjects) {
+        if (!_lodash._.isArray(arrayOfObjects)) {
+            arrayOfObjects = [arrayOfObjects];
+        }
+        _lodash._.forEach(arrayOfObjects, function (obj) {
+            _lodash._.forOwn(obj, function (value, key) {
+                if (_lodash._.isPlainObject(value)) {
+                    _iterateObjects(value);
+                } else if (_lodash._.isArray(value)) {
+                    obj[key] = _lodash._.map(value, function (v) {
+                        return _parseValue(v, key);
+                    });
+                } else {
+                    obj[key] = _parseValue(value, key);
+                }
+            });
         });
-    });
+    };
+
+    _iterateObjects(txData);
 };
 
 CryptoCardsHelpers.promisify = function (f) {

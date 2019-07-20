@@ -77,14 +77,19 @@ CryptoCardsHelpers.normalizeTxType = (txData, eventType) => {
 
 CryptoCardsHelpers.normalizeTxArgs = (web3, txData) => {
     const _parseValue = (value, key = '') => {
+        console.log('_parseValue', key, value);
         if (_.isObject(value) && (value instanceof web3.BigNumber)) {
-            if (_.startsWith(key, '_price')) {
+            console.log(' is a BigNumber');
+            if (_.startsWith(key, 'price')) {
+                console.log(' is a Price');
                 return CryptoCardsHelpers.strFromBigint(value);
             }
             return CryptoCardsHelpers.intFromBigint(value);
         }
         else if (_.isString(value) && _.startsWith(value, '0x')) {
+            console.log(' is a HexValue');
             if (web3.isAddress(value)) {
+                console.log(' is an Address');
                 return value; // CryptoCardsHelpers.upperCaseAddress(value);
             }
             return web3.toAscii(value);
@@ -92,15 +97,22 @@ CryptoCardsHelpers.normalizeTxArgs = (web3, txData) => {
         return value;
     };
 
-    _.forEach(txData, tx => {
-        _.forOwn(tx.args, (value, key) => {
-            if (_.isArray(value)) {
-                tx.args[key] = _.map(value, v => _parseValue(v, key));
-            } else {
-                tx.args[key] = _parseValue(value, key);
-            }
+    const _iterateObjects = (arrayOfObjects) => {
+        if (!_.isArray(arrayOfObjects)) { arrayOfObjects = [arrayOfObjects]; }
+        _.forEach(arrayOfObjects, obj => {
+            _.forOwn(obj, (value, key) => {
+                if (_.isPlainObject(value)) {
+                    _iterateObjects(value);
+                } else if (_.isArray(value)) {
+                    obj[key] = _.map(value, v => _parseValue(v, key));
+                } else {
+                    obj[key] = _parseValue(value, key);
+                }
+            });
         });
-    });
+    };
+
+    _iterateObjects(txData);
 };
 
 
