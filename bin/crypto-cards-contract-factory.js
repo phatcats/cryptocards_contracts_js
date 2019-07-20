@@ -68,6 +68,7 @@ var CryptoCardsContractFactory = exports.CryptoCardsContractFactory = {
 
             var address = _globals.CC_GLOBAL.CONTRACT_ADDRESS[networkVersion][this.contractAddressName];
             this.web3 = web3;
+            console.log('CryptoCardsContractFactory', this.contractAddressName, networkVersion, web3);
             this.contract = new this.web3.eth.Contract(this.contractAbi, address);
             this.contractReady = !_lodash._.isEmpty(this.contract.address);
         },
