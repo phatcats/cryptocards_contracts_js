@@ -76,8 +76,10 @@ var CryptoCardsContractFactory = exports.CryptoCardsContractFactory = {
             console.log('   web3', web3);
             console.log('   contractAbi', this.contractAbi);
             this.contract = new this.web3.eth.Contract(this.contractAbi, address);
-            console.log('   contract', this.contract);
-            this.contractReady = !_lodash._.isEmpty(this.contract.address);
+            console.log('   contract.defaultAccount', this.contract.defaultAccount);
+            console.log('   contract._address', this.contract._address);
+            console.log('   contract.currentProvider', this.contract.currentProvider);
+            this.contractReady = !_lodash._.isEmpty(this.contract._address);
         },
         isReady: function isReady() {
             return this.contractReady;
