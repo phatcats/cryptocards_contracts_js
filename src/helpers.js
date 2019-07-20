@@ -81,7 +81,7 @@ CryptoCardsHelpers.normalizeTxArgs = (web3, txData) => {
             case 'hex':
                 return web3.utils.hexToAscii(value);
             case 'eth':
-                return web3.utils.hexToAscii(value);
+                return web3.utils.fromWei(value);
             default:
                 return value;
         }
@@ -92,9 +92,11 @@ CryptoCardsHelpers.normalizeTxArgs = (web3, txData) => {
             CryptoCardsHelpers.normalizeTxArgs(web3, value);
             return;
         }
-
         if (key === 'uuid') {
             txData[key] = _parseValue(value, 'hex');
+        }
+        if (_.startsWith(key, 'price')) {
+            txData[key] = _parseValue(value, 'eth');
         }
     });
 };
