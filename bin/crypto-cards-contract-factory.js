@@ -5,15 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.CryptoCardsContractFactory = undefined;
 
-var _web = require('web3');
-
-var _web2 = _interopRequireDefault(_web);
-
 var _lodash = require('lodash');
 
 var _globals = require('./globals');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
@@ -38,11 +32,11 @@ var CryptoCardsContractFactory = exports.CryptoCardsContractFactory = {
 
         return {
             prepare: function prepare(_ref2) {
-                var web3provider = _ref2.web3provider,
+                var web3 = _ref2.web3,
                     networkVersion = _ref2.networkVersion,
                     logger = _ref2.logger;
 
-                _utils = { web3provider: web3provider, networkVersion: networkVersion, logger: logger };
+                _utils = { web3: web3, networkVersion: networkVersion, logger: logger };
             },
             instance: function instance() {
                 if (!_instance) {
@@ -69,11 +63,11 @@ var CryptoCardsContractFactory = exports.CryptoCardsContractFactory = {
             return this.web3.eth.net.getPeerCount();
         },
         connectToContract: function connectToContract(_ref3) {
-            var web3provider = _ref3.web3provider,
+            var web3 = _ref3.web3,
                 networkVersion = _ref3.networkVersion;
 
             var address = _globals.CC_GLOBAL.CONTRACT_ADDRESS[networkVersion][this.contractAddressName];
-            this.web3 = new _web2.default(web3provider);
+            this.web3 = web3;
             this.contract = new this.web3.eth.Contract(this.contractAbi, address);
             this.contractReady = !_lodash._.isEmpty(this.contract.address);
         },

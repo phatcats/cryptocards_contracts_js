@@ -1,5 +1,4 @@
 
-import Web3 from 'web3';
 import { _ } from 'lodash';
 
 import { CC_GLOBAL } from './globals';
@@ -22,8 +21,8 @@ export const CryptoCardsContractFactory = {
         }
 
         return {
-            prepare: ({web3provider, networkVersion, logger}) => {
-                _utils = {web3provider, networkVersion, logger};
+            prepare: ({web3, networkVersion, logger}) => {
+                _utils = {web3, networkVersion, logger};
             },
             instance: () => {
                 if (!_instance) {
@@ -51,9 +50,9 @@ export const CryptoCardsContractFactory = {
             return this.web3.eth.net.getPeerCount();
         },
 
-        connectToContract({web3provider, networkVersion}) {
+        connectToContract({web3, networkVersion}) {
             const address = CC_GLOBAL.CONTRACT_ADDRESS[networkVersion][this.contractAddressName];
-            this.web3 = new Web3(web3provider);
+            this.web3 = web3;
             this.contract = new this.web3.eth.Contract(this.contractAbi, address);
             this.contractReady = !_.isEmpty(this.contract.address);
         },
