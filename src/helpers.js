@@ -87,17 +87,20 @@ CryptoCardsHelpers.normalizeTxArgs = (web3, txData) => {
         }
     };
 
-    _.forEach(txData, (value, key) => {
-        if (_.isObject(value)) {
-            CryptoCardsHelpers.normalizeTxArgs(web3, value);
-            return;
-        }
-        if (key === 'uuid') {
-            txData[key] = _parseValue(value, 'hex');
-        }
-        if (_.startsWith(key, 'price')) {
-            txData[key] = _parseValue(value, 'eth');
-        }
+    if (!_.isArray(txData)) { txData = [txData]; }
+    _.forEach(txData, tx => {
+        _.forOwn(tx, (value, key) => {
+            if (_.isObject(value)) {
+                CryptoCardsHelpers.normalizeTxArgs(web3, value);
+                return;
+            }
+            if (/uuid/i.test(key)) {
+                tx[key] = _parseValue(value, 'hex');
+            }
+            if (_.startsWith(key, 'price')) {
+                tx[key] = _parseValue(value, 'eth');
+            }
+        });
     });
 };
 

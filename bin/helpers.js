@@ -121,17 +121,22 @@ CryptoCardsHelpers.normalizeTxArgs = function (web3, txData) {
         }
     };
 
-    _lodash._.forEach(txData, function (value, key) {
-        if (_lodash._.isObject(value)) {
-            CryptoCardsHelpers.normalizeTxArgs(web3, value);
-            return;
-        }
-        if (key === 'uuid') {
-            txData[key] = _parseValue(value, 'hex');
-        }
-        if (_lodash._.startsWith(key, 'price')) {
-            txData[key] = _parseValue(value, 'eth');
-        }
+    if (!_lodash._.isArray(txData)) {
+        txData = [txData];
+    }
+    _lodash._.forEach(txData, function (tx) {
+        _lodash._.forOwn(tx, function (value, key) {
+            if (_lodash._.isObject(value)) {
+                CryptoCardsHelpers.normalizeTxArgs(web3, value);
+                return;
+            }
+            if (/uuid/i.test(key)) {
+                tx[key] = _parseValue(value, 'hex');
+            }
+            if (_lodash._.startsWith(key, 'price')) {
+                tx[key] = _parseValue(value, 'eth');
+            }
+        });
     });
 };
 
