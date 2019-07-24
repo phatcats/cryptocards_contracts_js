@@ -23,6 +23,10 @@ CryptoCardsHelpers.getContractAddress = (networkVersion = '1') => {
 CryptoCardsHelpers.date = () => (new Date());
 CryptoCardsHelpers.now = () => (new Date()).getTime();
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Packs & Cards
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ETHEREUM

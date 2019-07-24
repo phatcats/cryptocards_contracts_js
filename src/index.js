@@ -3,6 +3,7 @@ import 'babel-polyfill';
 import { CC_GLOBAL } from './globals';
 
 import { CryptoCardsHelpers } from './helpers';
+import { CryptoCardsParser } from './parser';
 import { CryptoCardsContractFactory } from './crypto-cards-contract-factory';
 
 import { CryptoCardsControllerABI } from './abi/crypto-cards-controller.abi';
@@ -39,6 +40,7 @@ export {
     CryptoCardsGumToken,
     CryptoCardsLib,
     CryptoCardsHelpers,
+    CryptoCardsParser,
     CC_GLOBAL
 }
 

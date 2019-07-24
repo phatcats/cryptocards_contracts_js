@@ -1,6 +1,30 @@
 
 export const CC_GLOBAL = {};
 
+CC_GLOBAL.ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
+CC_GLOBAL.STARTING_BLOCK = {
+    '1'    : 7310000, // Mainnet
+    '3'    : 4400000, // Ropsten
+    '5777' : 0        // Local
+};
+CC_GLOBAL.MAX_LATEST_BLOCKS = 50;
+
+CC_GLOBAL.MAX_CARD         = 255;
+CC_GLOBAL.MAX_CARD_TYPE    = 5;
+CC_GLOBAL.CARDS_IN_PACK    = 8;
+CC_GLOBAL.MAX_CARD_BITS    = 32;
+CC_GLOBAL.NUM_BASE         = 10;
+CC_GLOBAL.HEX_BASE         = 16;
+CC_GLOBAL.SPECIAL_CARD_MOD = 100; // every 100th card of that issue  (issue % 100 === 0)
+
+CC_GLOBAL.CARD_TYPE = {
+    LEGENDARY : 1,
+    EPIC      : 2,
+    RARE      : 3,
+    SCARCE    : 4,
+    COMMON    : 5
+};
+
 CC_GLOBAL.ETHEREUM_UNIT = 1e18;
 CC_GLOBAL.ETHEREUM_PRECISION = 18;
 

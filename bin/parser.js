@@ -1,0 +1,109 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.CryptoCardsParser = undefined;
+
+var _bigInteger = require('big-integer');
+
+var _bigInteger2 = _interopRequireDefault(_bigInteger);
+
+var _globals = require('./globals');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/*
+BIT-MAP:
+      E       G    I   R   G  Y
+      22      10   12  10  6  4
+[____________|___|____|___|__|_]
+
+
+22 bits for (max 4,194,304)
+	- wrapped ether (divided by 1,000,000)
+         4194304 / 1000000 = 4.194304
+		   10000 / 1000000 = 0.01
+		       1 / 1000000 = 0.000001
+
+10 bits for  (max 1,024)
+	- wrapped gum
+
+12 bits for  (max 4,096)
+	- card issue
+
+10 bits for  (max 1,024)
+	- card rank
+
+6 bits for  (max 64)
+	- current generation
+
+4 bits for (max 16)
+	- year of issue (0 = 2019)
+ */
+var CryptoCardsParser = exports.CryptoCardsParser = {};
+
+CryptoCardsParser.readBits = function (num, from, len) {
+    var mask = (0, _bigInteger2.default)(1).shiftLeft(len).minus(1).shiftLeft(from);
+    return num.and(mask).shiftRight(from);
+};
+
+CryptoCardsParser.parseCard = function (cardHash) {
+    var cardInt = (0, _bigInteger2.default)(cardHash, _globals.CC_GLOBAL.HEX_BASE);
+    var year = CryptoCardsParser.readBits(cardInt, 0, 4).toJSNumber();
+    var gen = CryptoCardsParser.readBits(cardInt, 4, 6).toJSNumber();
+    var rank = CryptoCardsParser.readBits(cardInt, 10, 10).toJSNumber();
+    var issue = CryptoCardsParser.readBits(cardInt, 20, 12).toJSNumber();
+    var gum = CryptoCardsParser.readBits(cardInt, 32, 10).toJSNumber();
+    var eth = CryptoCardsParser.readBits(cardInt, 42, 22).toJSNumber();
+    return { year: year, gen: gen, rank: rank, issue: issue, gum: gum, eth: eth };
+};
+
+CryptoCardsParser.parsePack = function (packHash) {
+    var packedCards = packHash.split('.');
+    var pack = [];
+    for (var i = 0; i < _globals.CC_GLOBAL.CARDS_IN_PACK; i++) {
+        pack.push(CryptoCardsParser.parseCard(packedCards[i]));
+    }
+    return pack;
+};
+
+CryptoCardsParser.serializeCard = function (cardData) {
+    return CryptoCardsParser._getCardAsIntStr(cardData);
+};
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+CryptoCardsParser._getCardAsIntStr = function (_ref) {
+    var _ref$year = _ref.year,
+        year = _ref$year === undefined ? 0 : _ref$year,
+        _ref$gen = _ref.gen,
+        gen = _ref$gen === undefined ? 1 : _ref$gen,
+        rank = _ref.rank,
+        issue = _ref.issue,
+        _ref$gum = _ref.gum,
+        gum = _ref$gum === undefined ? 0 : _ref$gum,
+        _ref$eth = _ref.eth,
+        eth = _ref$eth === undefined ? 0 : _ref$eth;
+
+    //
+    // From Solidity Contract:
+    //      (bits[0] | (bits[1] << 4) | (bits[2] << 10) | (bits[3] << 20) | (bits[4] << 32) | (bits[5] << 42);
+    //
+    var cardInt = (0, _bigInteger2.default)(year);
+    cardInt = cardInt.or((0, _bigInteger2.default)(gen).shiftLeft(4));
+    cardInt = cardInt.or((0, _bigInteger2.default)(rank).shiftLeft(10));
+    cardInt = cardInt.or((0, _bigInteger2.default)(issue).shiftLeft(20));
+    cardInt = cardInt.or((0, _bigInteger2.default)(gum).shiftLeft(32));
+    cardInt = cardInt.or((0, _bigInteger2.default)(eth).shiftLeft(42));
+    return cardInt.toString(_globals.CC_GLOBAL.HEX_BASE);
+};
+
+CryptoCardsParser._getPackStr = function (packData) {
+    var pack = [];
+    for (var i = 0; i < _globals.CC_GLOBAL.CARDS_IN_PACK; i++) {
+        pack.push(CryptoCardsParser._getCardAsIntStr(packData[i]));
+    }
+    return pack.join('.');
+};
