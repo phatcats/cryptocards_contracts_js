@@ -27,6 +27,7 @@ BIT-MAP:
 	- year of issue (0 = 2019)
  */
 import bigint from 'big-integer';
+import { _ } from 'lodash';
 
 import { CC_GLOBAL } from './globals';
 
@@ -37,8 +38,8 @@ CryptoCardsParser.readBits = (num, from, len) => {
     return num.and(mask).shiftRight(from);
 };
 
-CryptoCardsParser.parseCard = (cardHash) => {
-    const cardInt   = bigint(cardHash, CC_GLOBAL.HEX_BASE);
+CryptoCardsParser.parseCard = (cardHash, base = CC_GLOBAL.HEX_BASE) => {
+    const cardInt   = bigint(cardHash, base);
     const year      = CryptoCardsParser.readBits(cardInt,  0,  4).toJSNumber();
     const gen       = CryptoCardsParser.readBits(cardInt,  4,  6).toJSNumber();
     const rank      = CryptoCardsParser.readBits(cardInt, 10, 10).toJSNumber();
@@ -48,23 +49,23 @@ CryptoCardsParser.parseCard = (cardHash) => {
     return {year, gen, rank, issue, gum, eth};
 };
 
-CryptoCardsParser.parsePack = (packHash) => {
+CryptoCardsParser.parsePack = (packHash, base = CC_GLOBAL.HEX_BASE) => {
     const packedCards = packHash.split('.');
     const pack = [];
     for (let i = 0; i < CC_GLOBAL.CARDS_IN_PACK; i++) {
-        pack.push(CryptoCardsParser.parseCard(packedCards[i]));
+        pack.push(CryptoCardsParser.parseCard(packedCards[i], base));
     }
     return pack;
 };
 
-CryptoCardsParser.serializeCard = (cardData) => {
-    return CryptoCardsParser._getCardAsIntStr(cardData);
+CryptoCardsParser.serializeCard = (cardData, base = CC_GLOBAL.HEX_BASE) => {
+    return CryptoCardsParser._getCardAsIntStr(_.assignIn({base}, cardData));
 };
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-CryptoCardsParser._getCardAsIntStr = ({year = 0, gen = 1, rank, issue, gum = 0, eth = 0}) => {
+CryptoCardsParser._getCardAsIntStr = ({year = 0, gen = 1, rank, issue, gum = 0, eth = 0, base = CC_GLOBAL.HEX_BASE}) => {
     //
     // From Solidity Contract:
     //      (bits[0] | (bits[1] << 4) | (bits[2] << 10) | (bits[3] << 20) | (bits[4] << 32) | (bits[5] << 42);
@@ -75,13 +76,13 @@ CryptoCardsParser._getCardAsIntStr = ({year = 0, gen = 1, rank, issue, gum = 0, 
     cardInt = cardInt.or(bigint(issue).shiftLeft(20));
     cardInt = cardInt.or(bigint(gum).shiftLeft(32));
     cardInt = cardInt.or(bigint(eth).shiftLeft(42));
-    return cardInt.toString(CC_GLOBAL.HEX_BASE);
+    return cardInt.toString(base);
 };
 
-CryptoCardsParser._getPackStr = (packData) => {
+CryptoCardsParser._getPackStr = (packData, base = CC_GLOBAL.HEX_BASE) => {
     const pack = [];
     for (let i = 0; i < CC_GLOBAL.CARDS_IN_PACK; i++) {
-        pack.push(CryptoCardsParser._getCardAsIntStr(packData[i]));
+        pack.push(CryptoCardsParser._getCardAsIntStr(_.assignIn({base}, packData[i])));
     }
     return pack.join('.');
 };
