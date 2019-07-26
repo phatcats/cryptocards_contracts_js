@@ -66,15 +66,11 @@ CryptoCardsParser.parseCard = function (cardHash) {
 CryptoCardsParser.parsePack = function (packHash) {
     var base = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _globals.CC_GLOBAL.HEX_BASE;
 
-    console.log('packHash', packHash);
-    console.log('base', base);
     var packedCards = packHash.replace(/^0\./, '').split('.');
-    console.log('packedCards', packedCards);
     var pack = [];
     for (var i = 0; i < _globals.CC_GLOBAL.CARDS_IN_PACK; i++) {
         pack.push(CryptoCardsParser.parseCard(packedCards[i], base));
     }
-    console.log('pack', pack);
     return pack;
 };
 

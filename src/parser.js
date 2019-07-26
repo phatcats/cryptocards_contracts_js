@@ -50,15 +50,11 @@ CryptoCardsParser.parseCard = (cardHash, base = CC_GLOBAL.HEX_BASE) => {
 };
 
 CryptoCardsParser.parsePack = (packHash, base = CC_GLOBAL.HEX_BASE) => {
-    console.log('packHash', packHash);
-    console.log('base', base);
     const packedCards = packHash.replace(/^0\./, '').split('.');
-    console.log('packedCards', packedCards);
     const pack = [];
     for (let i = 0; i < CC_GLOBAL.CARDS_IN_PACK; i++) {
         pack.push(CryptoCardsParser.parseCard(packedCards[i], base));
     }
-    console.log('pack', pack);
     return pack;
 };
 
