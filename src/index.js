@@ -1,5 +1,3 @@
-import 'babel-polyfill';
-
 import { CC_GLOBAL } from './globals';
 
 import { CryptoCardsHelpers } from './helpers';
