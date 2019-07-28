@@ -70,16 +70,48 @@ export const CryptoCardsPacksABI = [
             },
             {
                 'indexed': false,
-                'name': 'packData',
-                'type': 'string'
+                'name': 'cards',
+                'type': 'uint256[]'
             }
         ],
-        'name': 'ReceivedNewPack',
+        'name': 'OpenedPack',
         'type': 'event'
     },
     {
         'anonymous': false,
         'inputs': [
+            {
+                'indexed': true,
+                'name': 'owner',
+                'type': 'address'
+            },
+            {
+                'indexed': false,
+                'name': 'uuid',
+                'type': 'bytes16'
+            },
+            {
+                'indexed': false,
+                'name': 'packId',
+                'type': 'uint256'
+            },
+            {
+                'indexed': false,
+                'name': 'price',
+                'type': 'uint256'
+            }
+        ],
+        'name': 'PackPriceSet',
+        'type': 'event'
+    },
+    {
+        'anonymous': false,
+        'inputs': [
+            {
+                'indexed': true,
+                'name': 'owner',
+                'type': 'address'
+            },
             {
                 'indexed': true,
                 'name': 'receiver',
@@ -92,11 +124,16 @@ export const CryptoCardsPacksABI = [
             },
             {
                 'indexed': false,
-                'name': 'errorCode',
-                'type': 'uint8'
+                'name': 'packId',
+                'type': 'uint256'
+            },
+            {
+                'indexed': false,
+                'name': 'price',
+                'type': 'uint256'
             }
         ],
-        'name': 'PackError',
+        'name': 'PackSale',
         'type': 'event'
     },
     {
@@ -120,7 +157,7 @@ export const CryptoCardsPacksABI = [
         'constant': false,
         'inputs': [
             {
-                'name': '_owner',
+                'name': 'owner',
                 'type': 'address'
             }
         ],
@@ -132,17 +169,69 @@ export const CryptoCardsPacksABI = [
     },
     {
         'constant': true,
-        'inputs': [
-            {
-                'name': '_uuid',
-                'type': 'bytes16'
-            }
-        ],
-        'name': 'isValidUuid',
+        'inputs': [],
+        'name': 'totalMintedPacks',
         'outputs': [
             {
                 'name': '',
-                'type': 'bool'
+                'type': 'uint256'
+            }
+        ],
+        'payable': false,
+        'stateMutability': 'view',
+        'type': 'function'
+    },
+    {
+        'constant': true,
+        'inputs': [
+            {
+                'name': 'owner',
+                'type': 'address'
+            }
+        ],
+        'name': 'balanceOf',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'uint256'
+            }
+        ],
+        'payable': false,
+        'stateMutability': 'view',
+        'type': 'function'
+    },
+    {
+        'constant': true,
+        'inputs': [
+            {
+                'name': 'tokenId',
+                'type': 'uint256'
+            }
+        ],
+        'name': 'ownerOf',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'address'
+            }
+        ],
+        'payable': false,
+        'stateMutability': 'view',
+        'type': 'function'
+    },
+    {
+        'constant': true,
+        'inputs': [
+            {
+                'name': 'tokenId',
+                'type': 'uint256'
+            }
+        ],
+        'name': 'packDataById',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'string'
             }
         ],
         'payable': false,
@@ -151,27 +240,13 @@ export const CryptoCardsPacksABI = [
     },
     {
         'constant': false,
-        'inputs': [],
-        'name': 'getGasReserve',
-        'outputs': [
-            {
-                'name': '',
-                'type': 'uint256'
-            }
-        ],
-        'payable': false,
-        'stateMutability': 'nonpayable',
-        'type': 'function'
-    },
-    {
-        'constant': false,
         'inputs': [
             {
-                'name': 'receiver',
-                'type': 'address'
+                'name': 'packId',
+                'type': 'uint256'
             },
             {
-                'name': 'gasReserve',
+                'name': 'packPrice',
                 'type': 'uint256'
             },
             {
@@ -179,29 +254,7 @@ export const CryptoCardsPacksABI = [
                 'type': 'bytes16'
             }
         ],
-        'name': 'getNewPack',
-        'outputs': [],
-        'payable': true,
-        'stateMutability': 'payable',
-        'type': 'function'
-    },
-    {
-        'constant': false,
-        'inputs': [
-            {
-                'name': '_myid',
-                'type': 'bytes32'
-            },
-            {
-                'name': '_result',
-                'type': 'string'
-            },
-            {
-                'name': '_proof',
-                'type': 'bytes'
-            }
-        ],
-        'name': '__callback',
+        'name': 'updatePackPrice',
         'outputs': [],
         'payable': false,
         'stateMutability': 'nonpayable',
@@ -211,15 +264,15 @@ export const CryptoCardsPacksABI = [
         'constant': false,
         'inputs': [
             {
-                'name': '_queryId',
-                'type': 'bytes32'
+                'name': 'packId',
+                'type': 'uint256'
             },
             {
-                'name': '_result',
-                'type': 'string'
+                'name': 'uuid',
+                'type': 'bytes16'
             }
         ],
-        'name': '__callback',
+        'name': 'openPack',
         'outputs': [],
         'payable': false,
         'stateMutability': 'nonpayable',
@@ -229,7 +282,7 @@ export const CryptoCardsPacksABI = [
         'constant': false,
         'inputs': [
             {
-                'name': '_controller',
+                'name': 'controller',
                 'type': 'address'
             }
         ],
@@ -243,11 +296,11 @@ export const CryptoCardsPacksABI = [
         'constant': false,
         'inputs': [
             {
-                'name': '_packs',
+                'name': 'oracle',
                 'type': 'address'
             }
         ],
-        'name': 'setPacksAddress',
+        'name': 'setOracleAddress',
         'outputs': [],
         'payable': false,
         'stateMutability': 'nonpayable',
@@ -257,40 +310,112 @@ export const CryptoCardsPacksABI = [
         'constant': false,
         'inputs': [
             {
-                'name': '_endpoint',
+                'name': 'token',
+                'type': 'address'
+            }
+        ],
+        'name': 'setCryptoCardsPackToken',
+        'outputs': [],
+        'payable': false,
+        'stateMutability': 'nonpayable',
+        'type': 'function'
+    },
+    {
+        'constant': false,
+        'inputs': [
+            {
+                'name': 'token',
+                'type': 'address'
+            }
+        ],
+        'name': 'setCryptoCardsCardToken',
+        'outputs': [],
+        'payable': false,
+        'stateMutability': 'nonpayable',
+        'type': 'function'
+    },
+    {
+        'constant': false,
+        'inputs': [
+            {
+                'name': 'gum',
+                'type': 'address'
+            }
+        ],
+        'name': 'setGumAddress',
+        'outputs': [],
+        'payable': false,
+        'stateMutability': 'nonpayable',
+        'type': 'function'
+    },
+    {
+        'constant': false,
+        'inputs': [
+            {
+                'name': 'lib',
+                'type': 'address'
+            }
+        ],
+        'name': 'setLibAddress',
+        'outputs': [],
+        'payable': false,
+        'stateMutability': 'nonpayable',
+        'type': 'function'
+    },
+    {
+        'constant': false,
+        'inputs': [
+            {
+                'name': 'receiver',
+                'type': 'address'
+            },
+            {
+                'name': 'owner',
+                'type': 'address'
+            },
+            {
+                'name': 'packId',
+                'type': 'uint256'
+            },
+            {
+                'name': 'pricePaid',
+                'type': 'uint256'
+            },
+            {
+                'name': 'uuid',
+                'type': 'bytes16'
+            }
+        ],
+        'name': 'transferPackForBuyer',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'uint256'
+            }
+        ],
+        'payable': false,
+        'stateMutability': 'nonpayable',
+        'type': 'function'
+    },
+    {
+        'constant': false,
+        'inputs': [
+            {
+                'name': 'to',
+                'type': 'address'
+            },
+            {
+                'name': 'packData',
                 'type': 'string'
             }
         ],
-        'name': 'updateApiEndpoint',
-        'outputs': [],
-        'payable': false,
-        'stateMutability': 'nonpayable',
-        'type': 'function'
-    },
-    {
-        'constant': false,
-        'inputs': [
+        'name': 'mintPack',
+        'outputs': [
             {
-                'name': '_wei',
+                'name': '',
                 'type': 'uint256'
             }
         ],
-        'name': 'updateOracleGasPrice',
-        'outputs': [],
-        'payable': true,
-        'stateMutability': 'payable',
-        'type': 'function'
-    },
-    {
-        'constant': false,
-        'inputs': [
-            {
-                'name': '_wei',
-                'type': 'uint256'
-            }
-        ],
-        'name': 'updateOracleGasLimit',
-        'outputs': [],
         'payable': false,
         'stateMutability': 'nonpayable',
         'type': 'function'

@@ -933,11 +933,11 @@ export const CryptoCardsCardsTokenABI = [
                 'type': 'address'
             },
             {
-                'name': 'tokenId',
-                'type': 'uint256'
+                'name': 'tokenIds',
+                'type': 'uint256[]'
             }
         ],
-        'name': 'mintCard',
+        'name': 'migrateCards',
         'outputs': [],
         'payable': false,
         'stateMutability': 'nonpayable',

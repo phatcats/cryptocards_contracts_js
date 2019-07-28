@@ -714,10 +714,10 @@ var CryptoCardsCardsTokenABI = exports.CryptoCardsCardsTokenABI = [{
         'name': 'to',
         'type': 'address'
     }, {
-        'name': 'tokenId',
-        'type': 'uint256'
+        'name': 'tokenIds',
+        'type': 'uint256[]'
     }],
-    'name': 'mintCard',
+    'name': 'migrateCards',
     'outputs': [],
     'payable': false,
     'stateMutability': 'nonpayable',
