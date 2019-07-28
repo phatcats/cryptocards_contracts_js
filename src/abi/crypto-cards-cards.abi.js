@@ -543,4 +543,3 @@ export const CryptoCardsCardsABI = [
         'type': 'function'
     }
 ];
-

@@ -60,39 +60,14 @@ var CryptoCardsPacksABI = exports.CryptoCardsPacksABI = [{
         'type': 'uint256'
     }, {
         'indexed': false,
-        'name': 'cards',
-        'type': 'uint256[]'
+        'name': 'packData',
+        'type': 'string'
     }],
-    'name': 'OpenedPack',
+    'name': 'ReceivedNewPack',
     'type': 'event'
 }, {
     'anonymous': false,
     'inputs': [{
-        'indexed': true,
-        'name': 'owner',
-        'type': 'address'
-    }, {
-        'indexed': false,
-        'name': 'uuid',
-        'type': 'bytes16'
-    }, {
-        'indexed': false,
-        'name': 'packId',
-        'type': 'uint256'
-    }, {
-        'indexed': false,
-        'name': 'price',
-        'type': 'uint256'
-    }],
-    'name': 'PackPriceSet',
-    'type': 'event'
-}, {
-    'anonymous': false,
-    'inputs': [{
-        'indexed': true,
-        'name': 'owner',
-        'type': 'address'
-    }, {
         'indexed': true,
         'name': 'receiver',
         'type': 'address'
@@ -102,14 +77,10 @@ var CryptoCardsPacksABI = exports.CryptoCardsPacksABI = [{
         'type': 'bytes16'
     }, {
         'indexed': false,
-        'name': 'packId',
-        'type': 'uint256'
-    }, {
-        'indexed': false,
-        'name': 'price',
-        'type': 'uint256'
+        'name': 'errorCode',
+        'type': 'uint8'
     }],
-    'name': 'PackSale',
+    'name': 'PackError',
     'type': 'event'
 }, {
     'anonymous': false,
@@ -127,7 +98,7 @@ var CryptoCardsPacksABI = exports.CryptoCardsPacksABI = [{
 }, {
     'constant': false,
     'inputs': [{
-        'name': 'owner',
+        'name': '_owner',
         'type': 'address'
     }],
     'name': 'initialize',
@@ -137,70 +108,73 @@ var CryptoCardsPacksABI = exports.CryptoCardsPacksABI = [{
     'type': 'function'
 }, {
     'constant': true,
+    'inputs': [{
+        'name': '_uuid',
+        'type': 'bytes16'
+    }],
+    'name': 'isValidUuid',
+    'outputs': [{
+        'name': '',
+        'type': 'bool'
+    }],
+    'payable': false,
+    'stateMutability': 'view',
+    'type': 'function'
+}, {
+    'constant': false,
     'inputs': [],
-    'name': 'totalMintedPacks',
+    'name': 'getGasReserve',
     'outputs': [{
         'name': '',
         'type': 'uint256'
     }],
     'payable': false,
-    'stateMutability': 'view',
+    'stateMutability': 'nonpayable',
     'type': 'function'
 }, {
-    'constant': true,
+    'constant': false,
     'inputs': [{
-        'name': 'owner',
+        'name': 'receiver',
         'type': 'address'
-    }],
-    'name': 'balanceOf',
-    'outputs': [{
-        'name': '',
+    }, {
+        'name': 'gasReserve',
         'type': 'uint256'
+    }, {
+        'name': 'uuid',
+        'type': 'bytes16'
     }],
-    'payable': false,
-    'stateMutability': 'view',
+    'name': 'getNewPack',
+    'outputs': [],
+    'payable': true,
+    'stateMutability': 'payable',
     'type': 'function'
 }, {
-    'constant': true,
+    'constant': false,
     'inputs': [{
-        'name': 'tokenId',
-        'type': 'uint256'
+        'name': '_myid',
+        'type': 'bytes32'
+    }, {
+        'name': '_result',
+        'type': 'string'
+    }, {
+        'name': '_proof',
+        'type': 'bytes'
     }],
-    'name': 'ownerOf',
-    'outputs': [{
-        'name': '',
-        'type': 'address'
-    }],
+    'name': '__callback',
+    'outputs': [],
     'payable': false,
-    'stateMutability': 'view',
+    'stateMutability': 'nonpayable',
     'type': 'function'
 }, {
-    'constant': true,
+    'constant': false,
     'inputs': [{
-        'name': 'tokenId',
-        'type': 'uint256'
-    }],
-    'name': 'packDataById',
-    'outputs': [{
-        'name': '',
+        'name': '_queryId',
+        'type': 'bytes32'
+    }, {
+        'name': '_result',
         'type': 'string'
     }],
-    'payable': false,
-    'stateMutability': 'view',
-    'type': 'function'
-}, {
-    'constant': false,
-    'inputs': [{
-        'name': 'packId',
-        'type': 'uint256'
-    }, {
-        'name': 'packPrice',
-        'type': 'uint256'
-    }, {
-        'name': 'uuid',
-        'type': 'bytes16'
-    }],
-    'name': 'updatePackPrice',
+    'name': '__callback',
     'outputs': [],
     'payable': false,
     'stateMutability': 'nonpayable',
@@ -208,21 +182,7 @@ var CryptoCardsPacksABI = exports.CryptoCardsPacksABI = [{
 }, {
     'constant': false,
     'inputs': [{
-        'name': 'packId',
-        'type': 'uint256'
-    }, {
-        'name': 'uuid',
-        'type': 'bytes16'
-    }],
-    'name': 'openPack',
-    'outputs': [],
-    'payable': false,
-    'stateMutability': 'nonpayable',
-    'type': 'function'
-}, {
-    'constant': false,
-    'inputs': [{
-        'name': 'controller',
+        'name': '_controller',
         'type': 'address'
     }],
     'name': 'setContractController',
@@ -233,10 +193,10 @@ var CryptoCardsPacksABI = exports.CryptoCardsPacksABI = [{
 }, {
     'constant': false,
     'inputs': [{
-        'name': 'oracle',
+        'name': '_packs',
         'type': 'address'
     }],
-    'name': 'setOracleAddress',
+    'name': 'setPacksAddress',
     'outputs': [],
     'payable': false,
     'stateMutability': 'nonpayable',
@@ -244,87 +204,33 @@ var CryptoCardsPacksABI = exports.CryptoCardsPacksABI = [{
 }, {
     'constant': false,
     'inputs': [{
-        'name': 'token',
-        'type': 'address'
-    }],
-    'name': 'setCryptoCardsPackToken',
-    'outputs': [],
-    'payable': false,
-    'stateMutability': 'nonpayable',
-    'type': 'function'
-}, {
-    'constant': false,
-    'inputs': [{
-        'name': 'token',
-        'type': 'address'
-    }],
-    'name': 'setCryptoCardsCardToken',
-    'outputs': [],
-    'payable': false,
-    'stateMutability': 'nonpayable',
-    'type': 'function'
-}, {
-    'constant': false,
-    'inputs': [{
-        'name': 'gum',
-        'type': 'address'
-    }],
-    'name': 'setGumAddress',
-    'outputs': [],
-    'payable': false,
-    'stateMutability': 'nonpayable',
-    'type': 'function'
-}, {
-    'constant': false,
-    'inputs': [{
-        'name': 'lib',
-        'type': 'address'
-    }],
-    'name': 'setLibAddress',
-    'outputs': [],
-    'payable': false,
-    'stateMutability': 'nonpayable',
-    'type': 'function'
-}, {
-    'constant': false,
-    'inputs': [{
-        'name': 'receiver',
-        'type': 'address'
-    }, {
-        'name': 'owner',
-        'type': 'address'
-    }, {
-        'name': 'packId',
-        'type': 'uint256'
-    }, {
-        'name': 'pricePaid',
-        'type': 'uint256'
-    }, {
-        'name': 'uuid',
-        'type': 'bytes16'
-    }],
-    'name': 'transferPackForBuyer',
-    'outputs': [{
-        'name': '',
-        'type': 'uint256'
-    }],
-    'payable': false,
-    'stateMutability': 'nonpayable',
-    'type': 'function'
-}, {
-    'constant': false,
-    'inputs': [{
-        'name': 'to',
-        'type': 'address'
-    }, {
-        'name': 'packData',
+        'name': '_endpoint',
         'type': 'string'
     }],
-    'name': 'mintPack',
-    'outputs': [{
-        'name': '',
+    'name': 'updateApiEndpoint',
+    'outputs': [],
+    'payable': false,
+    'stateMutability': 'nonpayable',
+    'type': 'function'
+}, {
+    'constant': false,
+    'inputs': [{
+        'name': '_wei',
         'type': 'uint256'
     }],
+    'name': 'updateOracleGasPrice',
+    'outputs': [],
+    'payable': true,
+    'stateMutability': 'payable',
+    'type': 'function'
+}, {
+    'constant': false,
+    'inputs': [{
+        'name': '_wei',
+        'type': 'uint256'
+    }],
+    'name': 'updateOracleGasLimit',
+    'outputs': [],
     'payable': false,
     'stateMutability': 'nonpayable',
     'type': 'function'
