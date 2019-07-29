@@ -66,6 +66,21 @@ CryptoCardsHelpers.upperCaseAddress = (address) => {
     return address.toUpperCase().replace(/^0X/i, '0x');
 };
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ACCOUNT
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CryptoCardsHelpers.fixAddress = (address) => {
+    if (!_.isString(address)) { return address; }
+    return _.toLower(address);
+};
+
+CryptoCardsHelpers.shortAddress = (address) => {
+    if (_.isEmpty(address)) { return ''; }
+    return _.slice(CryptoCardsHelpers.fixAddress(address), address.length-6).join('');
+};
+
+CryptoCardsHelpers.isAddressZero = (address) => (CryptoCardsHelpers.shortAddress(address) === '000000');
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // TRANSACTIONS
@@ -86,6 +101,8 @@ CryptoCardsHelpers.normalizeTxArgs = (web3, txData) => {
                 return web3.utils.hexToAscii(value);
             case 'eth':
                 return web3.utils.fromWei(value);
+            case 'address':
+                return CryptoCardsHelpers.fixAddress(value);
             default:
                 return value;
         }
@@ -100,6 +117,9 @@ CryptoCardsHelpers.normalizeTxArgs = (web3, txData) => {
             }
             if (/uuid/i.test(key)) {
                 tx[key] = _parseValue(value, 'hex');
+            }
+            if (/owner|receiver|from/i.test(key)) {
+                tx[key] = _parseValue(value, 'address');
             }
             if (_.startsWith(key, 'price')) {
                 tx[key] = _parseValue(value, 'eth');

@@ -99,6 +99,29 @@ CryptoCardsHelpers.upperCaseAddress = function (address) {
 
   return address.toUpperCase().replace(/^0X/i, '0x');
 }; // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ACCOUNT
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+CryptoCardsHelpers.fixAddress = function (address) {
+  if (!_lodash._.isString(address)) {
+    return address;
+  }
+
+  return _lodash._.toLower(address);
+};
+
+CryptoCardsHelpers.shortAddress = function (address) {
+  if (_lodash._.isEmpty(address)) {
+    return '';
+  }
+
+  return _lodash._.slice(CryptoCardsHelpers.fixAddress(address), address.length - 6).join('');
+};
+
+CryptoCardsHelpers.isAddressZero = function (address) {
+  return CryptoCardsHelpers.shortAddress(address) === '000000';
+}; // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // TRANSACTIONS
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -120,6 +143,9 @@ CryptoCardsHelpers.normalizeTxArgs = function (web3, txData) {
       case 'eth':
         return web3.utils.fromWei(value);
 
+      case 'address':
+        return CryptoCardsHelpers.fixAddress(value);
+
       default:
         return value;
     }
@@ -138,6 +164,10 @@ CryptoCardsHelpers.normalizeTxArgs = function (web3, txData) {
 
       if (/uuid/i.test(key)) {
         tx[key] = _parseValue(value, 'hex');
+      }
+
+      if (/owner|receiver|from/i.test(key)) {
+        tx[key] = _parseValue(value, 'address');
       }
 
       if (_lodash._.startsWith(key, 'price')) {
