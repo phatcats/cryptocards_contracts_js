@@ -632,6 +632,20 @@ export const CryptoCardsPacksTokenABI = [
         'type': 'function'
     },
     {
+        'constant': true,
+        'inputs': [],
+        'name': 'totalMintedPacks',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'uint256'
+            }
+        ],
+        'payable': false,
+        'stateMutability': 'view',
+        'type': 'function'
+    },
+    {
         'constant': false,
         'inputs': [
             {
