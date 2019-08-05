@@ -36,10 +36,5 @@ CryptoCardsTraits.GLITCH_CARD          = bigint(1).shiftLeft(1);
 CryptoCardsTraits.REVERSED_THEME       = bigint(1).shiftLeft(14);
 CryptoCardsTraits.FOR_TESTING          = bigint(1).shiftLeft(75);
 
-// Badges
-CryptoCardsTraits.WRAPPED_ETHER        = bigint(1).shiftLeft(20);
-CryptoCardsTraits.COMBINED_CARD        = bigint(1).shiftLeft(21);
-
-
 
 export { CryptoCardsTraits };

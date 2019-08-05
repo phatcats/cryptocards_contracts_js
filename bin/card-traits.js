@@ -68,7 +68,4 @@ exports.CryptoCardsTraits = CryptoCardsTraits;
 CryptoCardsTraits.FOUNDERS_TOKEN = (0, _bigInteger["default"])(1).shiftLeft(0);
 CryptoCardsTraits.GLITCH_CARD = (0, _bigInteger["default"])(1).shiftLeft(1);
 CryptoCardsTraits.REVERSED_THEME = (0, _bigInteger["default"])(1).shiftLeft(14);
-CryptoCardsTraits.FOR_TESTING = (0, _bigInteger["default"])(1).shiftLeft(75); // Badges
-
-CryptoCardsTraits.WRAPPED_ETHER = (0, _bigInteger["default"])(1).shiftLeft(20);
-CryptoCardsTraits.COMBINED_CARD = (0, _bigInteger["default"])(1).shiftLeft(21);
+CryptoCardsTraits.FOR_TESTING = (0, _bigInteger["default"])(1).shiftLeft(75);
