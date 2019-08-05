@@ -25,6 +25,7 @@ CC_GLOBAL.NUM_BASE = 10;
 CC_GLOBAL.HEX_BASE = 16;
 CC_GLOBAL.SPECIAL_CARD_MOD = 100; // every 100th card of that issue  (issue % 100 === 0)
 
+CC_GLOBAL.SPECIAL_CARD_RANK = (1 << 16) - 1;
 CC_GLOBAL.CARD_TYPE = {
   LEGENDARY: 1,
   EPIC: 2,
@@ -32,8 +33,10 @@ CC_GLOBAL.CARD_TYPE = {
   SCARCE: 4,
   COMMON: 5
 };
+CC_GLOBAL.CARD_TYPE_RANGES = [[0, 9], [10, 47], [48, 95], [96, 159], [160, 255]];
 CC_GLOBAL.ETHEREUM_UNIT = 1e18;
 CC_GLOBAL.ETHEREUM_PRECISION = 18;
+CC_GLOBAL.WRAPPED_ETH_MULT = 1000000;
 CC_GLOBAL.WATCH_INTERVAL = {
   ACCOUNT: 3000,
   RECEIPT: 3000,
@@ -115,6 +118,25 @@ CC_GLOBAL.TX = {
     PACK_SOLD: 'PackSale',
     CARD_SOLD: 'CardSale',
     CARD_TRADED: 'CardTrade'
+  },
+  ERROR_CODES: {
+    UNKNOWN: {
+      CODE: 1,
+      MSG: 'Unhandled Error Occurred'
+    },
+    PACK_ERROR: {
+      CODE: 2,
+      MSG: 'Failed to generate new pack'
+    },
+    //...
+    RANDOM_ERROR: {
+      CODE: 8,
+      MSG: 'Fetching from Random.org failed'
+    },
+    DB_ERROR: {
+      CODE: 9,
+      MSG: 'DB Operation failed'
+    }
   }
 };
 CC_GLOBAL.TX_TYPE_LABELS = ['', 'Buy New Pack', '', 'Buy Existing Pack', '', 'Open Pack', 'Opened Pack', 'Set Card Price', '', 'Buy Card', 'Card Sold', 'Set Card Trade Value', '', 'Trade Card', 'Card Received from Trade'];
