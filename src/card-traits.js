@@ -10,7 +10,14 @@ class CryptoCardsTraits {
     }
 
     static hasTrait(traits, trait) {
+        if (_.isString(traits) || _.isNumber(traits)) {
+            traits = CryptoCardsTraits.toTraits(traits);
+        }
         return traits.and(trait).eq(trait);
+    }
+
+    static toTraits(traits, base = CC_GLOBAL.NUM_BASE) {
+        return bigint(traits, base);
     }
 
     static toString(traits) {

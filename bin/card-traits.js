@@ -38,7 +38,17 @@ function () {
   }, {
     key: "hasTrait",
     value: function hasTrait(traits, trait) {
+      if (_.isString(traits) || _.isNumber(traits)) {
+        traits = CryptoCardsTraits.toTraits(traits);
+      }
+
       return traits.and(trait).eq(trait);
+    }
+  }, {
+    key: "toTraits",
+    value: function toTraits(traits) {
+      var base = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _globals.CC_GLOBAL.NUM_BASE;
+      return (0, _bigInteger["default"])(traits, base);
     }
   }, {
     key: "toString",
