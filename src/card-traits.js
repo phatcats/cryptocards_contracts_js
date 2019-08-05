@@ -2,7 +2,7 @@
 import bigint from 'big-integer';
 import * as _ from 'lodash';
 
-import { CC_GLOBAL } from './global';
+import { CC_GLOBAL } from './globals';
 
 class CryptoCardsTraits {
     static combineTraits(traits) {
