@@ -1,6 +1,7 @@
 import { CC_GLOBAL } from './globals';
 
 import { CryptoCardsHelpers } from './helpers';
+import { CryptoCardsTraits } from './card-traits';
 import { CryptoCardsParser } from './parser';
 import { CryptoCardsContractFactory } from './crypto-cards-contract-factory';
 
@@ -38,6 +39,7 @@ export {
     CryptoCardsGumToken,
     CryptoCardsLib,
     CryptoCardsHelpers,
+    CryptoCardsTraits,
     CryptoCardsParser,
     CC_GLOBAL
 }

@@ -15,6 +15,12 @@ Object.defineProperty(exports, "CryptoCardsHelpers", {
     return _helpers.CryptoCardsHelpers;
   }
 });
+Object.defineProperty(exports, "CryptoCardsTraits", {
+  enumerable: true,
+  get: function get() {
+    return _cardTraits.CryptoCardsTraits;
+  }
+});
 Object.defineProperty(exports, "CryptoCardsParser", {
   enumerable: true,
   get: function get() {
@@ -26,6 +32,8 @@ exports.CryptoCardsLib = exports.CryptoCardsGumToken = exports.CryptoCardsGum = 
 var _globals = require("./globals");
 
 var _helpers = require("./helpers");
+
+var _cardTraits = require("./card-traits");
 
 var _parser = require("./parser");
 
