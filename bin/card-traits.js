@@ -33,12 +33,17 @@ function () {
     value: function combineTraits(traits) {
       return _.reduce(traits, function (sum, n) {
         return sum.or(n);
-      }, (0, _bigInteger["default"])(0)).toString(_global.CC_GLOBAL.NUM_BASE);
+      }, (0, _bigInteger["default"])(0));
     }
   }, {
     key: "hasTrait",
     value: function hasTrait(traits, trait) {
       return traits.and(trait).eq(trait);
+    }
+  }, {
+    key: "toString",
+    value: function toString(traits) {
+      return (0, _bigInteger["default"])(traits).toString(_global.CC_GLOBAL.NUM_BASE);
     }
   }]);
 

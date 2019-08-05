@@ -6,11 +6,15 @@ import { CC_GLOBAL } from './global';
 
 class CryptoCardsTraits {
     static combineTraits(traits) {
-        return _.reduce(traits, (sum, n) => sum.or(n), bigint(0)).toString(CC_GLOBAL.NUM_BASE);
+        return _.reduce(traits, (sum, n) => sum.or(n), bigint(0));
     }
 
     static hasTrait(traits, trait) {
         return traits.and(trait).eq(trait);
+    }
+
+    static toString(traits) {
+        return bigint(traits).toString(CC_GLOBAL.NUM_BASE);
     }
 }
 
