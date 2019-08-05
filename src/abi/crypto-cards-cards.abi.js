@@ -111,18 +111,18 @@ export const CryptoCardsCardsABI = [
             },
             {
                 'indexed': false,
-                'name': 'cardRank',
-                'type': 'uint16'
+                'name': 'cardRanks',
+                'type': 'uint256[]'
             },
             {
                 'indexed': false,
                 'name': 'cardGens',
-                'type': 'uint8[]'
+                'type': 'uint256[]'
             },
             {
                 'indexed': false,
                 'name': 'cardYears',
-                'type': 'uint8[]'
+                'type': 'uint256[]'
             }
         ],
         'name': 'CardTradeValueSet',
@@ -403,16 +403,16 @@ export const CryptoCardsCardsABI = [
                 'type': 'uint256'
             },
             {
-                'name': 'cardRank',
-                'type': 'uint16'
+                'name': 'cardRanks',
+                'type': 'uint256[]'
             },
             {
                 'name': 'cardGens',
-                'type': 'uint8[]'
+                'type': 'uint256[]'
             },
             {
                 'name': 'cardYears',
-                'type': 'uint8[]'
+                'type': 'uint256[]'
             },
             {
                 'name': 'uuid',

@@ -93,16 +93,16 @@ var CryptoCardsCardsABI = [{
     'type': 'uint256'
   }, {
     'indexed': false,
-    'name': 'cardRank',
-    'type': 'uint16'
+    'name': 'cardRanks',
+    'type': 'uint256[]'
   }, {
     'indexed': false,
     'name': 'cardGens',
-    'type': 'uint8[]'
+    'type': 'uint256[]'
   }, {
     'indexed': false,
     'name': 'cardYears',
-    'type': 'uint8[]'
+    'type': 'uint256[]'
   }],
   'name': 'CardTradeValueSet',
   'type': 'event'
@@ -315,14 +315,14 @@ var CryptoCardsCardsABI = [{
     'name': 'cardId',
     'type': 'uint256'
   }, {
-    'name': 'cardRank',
-    'type': 'uint16'
+    'name': 'cardRanks',
+    'type': 'uint256[]'
   }, {
     'name': 'cardGens',
-    'type': 'uint8[]'
+    'type': 'uint256[]'
   }, {
     'name': 'cardYears',
-    'type': 'uint8[]'
+    'type': 'uint256[]'
   }, {
     'name': 'uuid',
     'type': 'bytes16'
