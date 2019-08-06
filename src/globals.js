@@ -149,12 +149,12 @@ CC_GLOBAL.TX_TYPE_LABELS = [
     '',
     'Open Pack',
     'Opened Pack',
-    'Set Card Price',
     '',
+    'Set Card Price',
     'Buy Card',
     'Card Sold',
-    'Set Card Trade Value',
     '',
+    'Set Card Trade Value',
     'Trade Card',
     'Card Received from Trade'
 ];

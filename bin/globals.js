@@ -139,4 +139,4 @@ CC_GLOBAL.TX = {
     }
   }
 };
-CC_GLOBAL.TX_TYPE_LABELS = ['', 'Buy New Pack', '', 'Buy Existing Pack', '', 'Open Pack', 'Opened Pack', 'Set Card Price', '', 'Buy Card', 'Card Sold', 'Set Card Trade Value', '', 'Trade Card', 'Card Received from Trade'];
+CC_GLOBAL.TX_TYPE_LABELS = ['', 'Buy New Pack', '', 'Buy Existing Pack', '', 'Open Pack', 'Opened Pack', '', 'Set Card Price', 'Buy Card', 'Card Sold', '', 'Set Card Trade Value', 'Trade Card', 'Card Received from Trade'];
