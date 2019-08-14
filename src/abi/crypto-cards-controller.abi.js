@@ -306,7 +306,7 @@ export const CryptoCardsControllerABI = [
         'constant': false,
         'inputs': [
             {
-                'name': 'owner',
+                'name': 'cardOwner',
                 'type': 'address'
             },
             {
