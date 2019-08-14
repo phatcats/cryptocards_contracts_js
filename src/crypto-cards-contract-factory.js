@@ -27,7 +27,7 @@ export const CryptoCardsContractFactory = {
             instance: () => {
                 if (!_instance) {
                     if (!_utils) {
-                        throw new Error('Instance has not been prepared!');
+                        throw new Error(`CryptoCards Contract Instance for "${addressName}" has not been prepared!`);
                     }
                     _instance = _createInstance();
                     _instance.connectToContract(_utils);

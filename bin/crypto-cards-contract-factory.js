@@ -43,7 +43,7 @@ var CryptoCardsContractFactory = {
       instance: function instance() {
         if (!_instance) {
           if (!_utils) {
-            throw new Error('Instance has not been prepared!');
+            throw new Error("CryptoCards Contract Instance for \"".concat(addressName, "\" has not been prepared!"));
           }
 
           _instance = _createInstance();
