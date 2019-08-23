@@ -177,6 +177,28 @@ CryptoCardsHelpers.normalizeTxArgs = function (web3, txData) {
   });
 };
 
+CryptoCardsHelpers.findInDeep = function (obj, keyToFind) {
+  if (_lodash._.has(obj, keyToFind)) {
+    return obj[keyToFind];
+  }
+
+  var found;
+
+  var keys = _lodash._.keys(obj);
+
+  for (var i = 0; i < keys.length; i++) {
+    if (_lodash._.isObject(obj[keys[i]])) {
+      found = CryptoCardsHelpers.findInDeep(obj[keys[i]], keyToFind);
+
+      if (!_lodash._.isUndefined(found)) {
+        break;
+      }
+    }
+  }
+
+  return found;
+};
+
 CryptoCardsHelpers.promisify = function (f) {
   return function () {
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {

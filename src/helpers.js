@@ -128,6 +128,21 @@ CryptoCardsHelpers.normalizeTxArgs = (web3, txData) => {
     });
 };
 
+CryptoCardsHelpers.findInDeep = (obj, keyToFind) => {
+    if (_.has(obj, keyToFind)) {
+        return obj[keyToFind];
+    }
+
+    let found;
+    const keys = _.keys(obj);
+    for (let i = 0; i < keys.length; i++) {
+        if (_.isObject(obj[keys[i]])) {
+            found = CryptoCardsHelpers.findInDeep(obj[keys[i]], keyToFind);
+            if (!_.isUndefined(found)) { break; }
+        }
+    }
+    return found;
+};
 
 CryptoCardsHelpers.promisify = f => (...args) => new Promise((resolve, reject) => {
     f(...args, (err, val) => {
