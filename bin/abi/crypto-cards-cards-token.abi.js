@@ -410,10 +410,6 @@ var CryptoCardsCardsTokenABI = [{
     'indexed': false,
     'name': 'wrappedEther',
     'type': 'uint256'
-  }, {
-    'indexed': false,
-    'name': 'wrappedGum',
-    'type': 'uint256'
   }],
   'name': 'CardPrinted',
   'type': 'event'
@@ -733,10 +729,7 @@ var CryptoCardsCardsTokenABI = [{
     'type': 'uint256'
   }],
   'name': 'printFor',
-  'outputs': [{
-    'name': '',
-    'type': 'uint256'
-  }],
+  'outputs': [],
   'payable': false,
   'stateMutability': 'nonpayable',
   'type': 'function'
@@ -774,6 +767,23 @@ var CryptoCardsCardsTokenABI = [{
     'name': '',
     'type': 'uint256'
   }],
+  'payable': false,
+  'stateMutability': 'nonpayable',
+  'type': 'function'
+}, {
+  'constant': false,
+  'inputs': [{
+    'name': 'from',
+    'type': 'address'
+  }, {
+    'name': 'to',
+    'type': 'address'
+  }, {
+    'name': 'tokenId',
+    'type': 'uint256'
+  }],
+  'name': 'tokenTransfer',
+  'outputs': [],
   'payable': false,
   'stateMutability': 'nonpayable',
   'type': 'function'
