@@ -2,6 +2,7 @@
 export const CC_GLOBAL = {};
 
 CC_GLOBAL.ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
+CC_GLOBAL.PUBLIC_ADDRESS_LENGTH = 42;
 CC_GLOBAL.STARTING_BLOCK = {
     '1'    : 7310000, // Mainnet
     '3'    : 4400000, // Ropsten
@@ -33,6 +34,8 @@ CC_GLOBAL.CARD_TYPE_RANGES = [
     [96, 159],
     [160, 255]
 ];
+
+CC_GLOBAL.PACK_PRICE_DISCOUNT =  [5, 10, 15, 0]; // % off base price
 
 CC_GLOBAL.ETHEREUM_UNIT = 1e18;
 CC_GLOBAL.ETHEREUM_PRECISION = 18;
@@ -90,26 +93,15 @@ CC_GLOBAL.CONTRACT_ADDRESS = {
 
 CC_GLOBAL.TX = {
     TYPE: {
-        BUY_NEW_PACK      :  1,
-        RECEIVED_NEW_PACK :  2,
-
-        BUY_OLD_PACK      :  3,
-        RECEIVED_OLD_PACK :  4,
-
-        OPEN_PACK         :  5,
-        OPENED_PACK       :  6,
-
-        SET_CARD_PRICE    :  7,
-        CARD_PRICE_SET    :  8,
-
-        BUY_CARD          :  9,
-        CARD_SOLD         : 10,
-
-        SET_CARD_TRADE    : 11,
-        CARD_TRADE_SET    : 12,
-
-        TRADE_CARD        : 13,
-        CARD_TRADED       : 14
+        BUY_NEW_PACK      : 1,
+        RECEIVED_NEW_PACK : 2,
+        BUY_OLD_PACK      : 3,
+        RECEIVED_OLD_PACK : 4,
+        OPENED_PACK       : 5,
+        CARD_PRICE_SET    : 6,
+        CARD_SOLD         : 7,
+        CARD_TRADE_SET    : 8,
+        CARD_TRADED       : 9
     },
     STATUS: {
         PENDING   : 1,
@@ -144,17 +136,12 @@ CC_GLOBAL.TX = {
 CC_GLOBAL.TX_TYPE_LABELS = [
     '',
     'Buy New Pack',
-    '',
+    'Received New Pack',
     'Buy Existing Pack',
-    '',
-    'Open Pack',
+    'Received Existing Pack',
     'Opened Pack',
-    '',
     'Set Card Price',
-    'Buy Card',
-    'Card Sold',
-    '',
+    'Bought Card',
     'Set Card Trade Value',
-    'Trade Card',
-    'Card Received from Trade'
+    'Traded Card',
 ];
