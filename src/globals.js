@@ -150,4 +150,7 @@ CC_GLOBAL.TX_TYPE_LABELS = [
     'Bought Card',
     'Set Card Trade Value',
     'Traded Card',
+    'Combined Cards',
+    'Melted Card',
+    'Printed Card',
 ];
