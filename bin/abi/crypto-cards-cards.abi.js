@@ -286,6 +286,9 @@ var CryptoCardsCardsABI = [{
   }, {
     'name': 'tokenB',
     'type': 'uint256'
+  }, {
+    'name': 'uuid',
+    'type': 'bytes16'
   }],
   'name': 'combineCards',
   'outputs': [{
@@ -300,6 +303,9 @@ var CryptoCardsCardsABI = [{
   'inputs': [{
     'name': 'tokenId',
     'type': 'uint256'
+  }, {
+    'name': 'uuid',
+    'type': 'bytes16'
   }],
   'name': 'meltCard',
   'outputs': [],
@@ -430,6 +436,9 @@ var CryptoCardsCardsABI = [{
   'inputs': [{
     'name': 'tokenId',
     'type': 'uint256'
+  }, {
+    'name': 'uuid',
+    'type': 'bytes16'
   }],
   'name': 'printCard',
   'outputs': [],

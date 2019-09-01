@@ -393,6 +393,10 @@ var CryptoCardsCardsTokenABI = [{
     'indexed': false,
     'name': 'newTokenId',
     'type': 'uint256'
+  }, {
+    'indexed': false,
+    'name': 'uuid',
+    'type': 'bytes16'
   }],
   'name': 'CardsCombined',
   'type': 'event'
@@ -410,6 +414,10 @@ var CryptoCardsCardsTokenABI = [{
     'indexed': false,
     'name': 'wrappedEther',
     'type': 'uint256'
+  }, {
+    'indexed': false,
+    'name': 'uuid',
+    'type': 'bytes16'
   }],
   'name': 'CardPrinted',
   'type': 'event'
@@ -431,6 +439,10 @@ var CryptoCardsCardsTokenABI = [{
     'indexed': false,
     'name': 'wrappedGum',
     'type': 'uint256'
+  }, {
+    'indexed': false,
+    'name': 'uuid',
+    'type': 'bytes16'
   }],
   'name': 'CardMelted',
   'type': 'event'
@@ -727,6 +739,9 @@ var CryptoCardsCardsTokenABI = [{
   }, {
     'name': 'tokenId',
     'type': 'uint256'
+  }, {
+    'name': 'uuid',
+    'type': 'bytes16'
   }],
   'name': 'printFor',
   'outputs': [],
@@ -744,6 +759,9 @@ var CryptoCardsCardsTokenABI = [{
   }, {
     'name': 'tokenB',
     'type': 'uint256'
+  }, {
+    'name': 'uuid',
+    'type': 'bytes16'
   }],
   'name': 'combineFor',
   'outputs': [{
@@ -761,6 +779,9 @@ var CryptoCardsCardsTokenABI = [{
   }, {
     'name': 'tokenId',
     'type': 'uint256'
+  }, {
+    'name': 'uuid',
+    'type': 'bytes16'
   }],
   'name': 'meltFor',
   'outputs': [{

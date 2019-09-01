@@ -505,6 +505,11 @@ export const CryptoCardsCardsTokenABI = [
                 'indexed': false,
                 'name': 'newTokenId',
                 'type': 'uint256'
+            },
+            {
+                'indexed': false,
+                'name': 'uuid',
+                'type': 'bytes16'
             }
         ],
         'name': 'CardsCombined',
@@ -527,6 +532,11 @@ export const CryptoCardsCardsTokenABI = [
                 'indexed': false,
                 'name': 'wrappedEther',
                 'type': 'uint256'
+            },
+            {
+                'indexed': false,
+                'name': 'uuid',
+                'type': 'bytes16'
             }
         ],
         'name': 'CardPrinted',
@@ -554,6 +564,11 @@ export const CryptoCardsCardsTokenABI = [
                 'indexed': false,
                 'name': 'wrappedGum',
                 'type': 'uint256'
+            },
+            {
+                'indexed': false,
+                'name': 'uuid',
+                'type': 'bytes16'
             }
         ],
         'name': 'CardMelted',
@@ -948,6 +963,10 @@ export const CryptoCardsCardsTokenABI = [
             {
                 'name': 'tokenId',
                 'type': 'uint256'
+            },
+            {
+                'name': 'uuid',
+                'type': 'bytes16'
             }
         ],
         'name': 'printFor',
@@ -970,6 +989,10 @@ export const CryptoCardsCardsTokenABI = [
             {
                 'name': 'tokenB',
                 'type': 'uint256'
+            },
+            {
+                'name': 'uuid',
+                'type': 'bytes16'
             }
         ],
         'name': 'combineFor',
@@ -993,6 +1016,10 @@ export const CryptoCardsCardsTokenABI = [
             {
                 'name': 'tokenId',
                 'type': 'uint256'
+            },
+            {
+                'name': 'uuid',
+                'type': 'bytes16'
             }
         ],
         'name': 'meltFor',

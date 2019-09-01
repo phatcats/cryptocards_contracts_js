@@ -365,6 +365,10 @@ export const CryptoCardsCardsABI = [
             {
                 'name': 'tokenB',
                 'type': 'uint256'
+            },
+            {
+                'name': 'uuid',
+                'type': 'bytes16'
             }
         ],
         'name': 'combineCards',
@@ -384,6 +388,10 @@ export const CryptoCardsCardsABI = [
             {
                 'name': 'tokenId',
                 'type': 'uint256'
+            },
+            {
+                'name': 'uuid',
+                'type': 'bytes16'
             }
         ],
         'name': 'meltCard',
@@ -553,6 +561,10 @@ export const CryptoCardsCardsABI = [
             {
                 'name': 'tokenId',
                 'type': 'uint256'
+            },
+            {
+                'name': 'uuid',
+                'type': 'bytes16'
             }
         ],
         'name': 'printCard',
