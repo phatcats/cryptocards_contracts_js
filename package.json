@@ -1,6 +1,6 @@
 {
   "name": "cryptocards_contracts_js",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "author": "Rob Secord",
   "license": "UNLICENSED",
   "private": true,
@@ -19,7 +19,7 @@
   "dependencies": {
     "big-integer": "^1.6.40",
     "lodash": "^4.17.11",
-    "mathjs": "^6.0.2",
+    "mathjs": "^6.2.1",
     "promise": "^8.0.2"
   },
   "devDependencies": {
@@ -27,10 +27,10 @@
     "@babel/core": "^7.5.5",
     "@babel/node": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
-    "babel-eslint": "^10.0.2",
+    "babel-eslint": "^10.0.3",
     "dotenv": "^6.1.0",
     "eslint": "^4.19.1",
     "eslint-plugin-import": "^2.14.0",
-    "jest": "^24.7.1"
+    "jest": "^24.9.0"
   }
 }
