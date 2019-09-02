@@ -664,20 +664,6 @@ var CryptoCardsCardsTokenABI = [{
     'name': 'tokenId',
     'type': 'uint256'
   }],
-  'name': 'getTotalIssued',
-  'outputs': [{
-    'name': '',
-    'type': 'uint64'
-  }],
-  'payable': false,
-  'stateMutability': 'view',
-  'type': 'function'
-}, {
-  'constant': true,
-  'inputs': [{
-    'name': 'tokenId',
-    'type': 'uint256'
-  }],
   'name': 'isTokenPrinted',
   'outputs': [{
     'name': '',
@@ -758,6 +744,9 @@ var CryptoCardsCardsTokenABI = [{
     'type': 'uint256'
   }, {
     'name': 'tokenB',
+    'type': 'uint256'
+  }, {
+    'name': 'newIssue',
     'type': 'uint256'
   }, {
     'name': 'uuid',

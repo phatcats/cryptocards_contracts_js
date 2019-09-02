@@ -287,6 +287,9 @@ var CryptoCardsCardsABI = [{
     'name': 'tokenB',
     'type': 'uint256'
   }, {
+    'name': 'newIssue',
+    'type': 'uint256'
+  }, {
     'name': 'uuid',
     'type': 'bytes16'
   }],

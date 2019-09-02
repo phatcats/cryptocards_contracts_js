@@ -367,6 +367,10 @@ export const CryptoCardsCardsABI = [
                 'type': 'uint256'
             },
             {
+                'name': 'newIssue',
+                'type': 'uint256'
+            },
+            {
                 'name': 'uuid',
                 'type': 'bytes16'
             }
