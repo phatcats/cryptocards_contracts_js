@@ -21,9 +21,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 // import * as math from 'mathjs';
 var mathConfig = {
-  number: 'BigNumber',
-  precision: _globals.CC_GLOBAL.ETHEREUM_PRECISION
-};
+  number: 'BigNumber'
+}; // , precision: CC_GLOBAL.ETHEREUM_PRECISION };
+
 var bigmath = (0, _mathjs.create)(_mathjs.all, mathConfig); // Helpers Object
 
 var CryptoCardsHelpers = {}; // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

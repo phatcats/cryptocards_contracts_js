@@ -8,7 +8,7 @@ import { CC_GLOBAL } from './globals';
 
 // import * as math from 'mathjs';
 import { create, all } from 'mathjs'
-const mathConfig = { number: 'BigNumber', precision: CC_GLOBAL.ETHEREUM_PRECISION };
+const mathConfig = { number: 'BigNumber' }; // , precision: CC_GLOBAL.ETHEREUM_PRECISION };
 const bigmath = create(all, mathConfig);
 
 // Helpers Object
