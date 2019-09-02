@@ -26,7 +26,7 @@ CryptoCardsHelpers.getContractAddress = (networkVersion = '1') => {
 CryptoCardsHelpers.date = () => (new Date());
 CryptoCardsHelpers.now = () => (new Date()).getTime();
 
-CryptoCardsHelpers.delay = async (time) => {
+CryptoCardsHelpers.delay = (time) => {
     return new Promise((resolve) => {
         setTimeout(resolve, time);
     });

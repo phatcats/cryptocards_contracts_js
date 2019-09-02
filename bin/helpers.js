@@ -21,10 +21,6 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 // Helpers Object
 var CryptoCardsHelpers = {}; // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // GLOBALS
@@ -48,53 +44,32 @@ CryptoCardsHelpers.now = function () {
   return new Date().getTime();
 };
 
-CryptoCardsHelpers.delay =
-/*#__PURE__*/
-function () {
-  var _ref = _asyncToGenerator(
-  /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee(time) {
-    return regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            return _context.abrupt("return", new Promise(function (resolve) {
-              setTimeout(resolve, time);
-            }));
-
-          case 1:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-
-  return function (_x) {
-    return _ref.apply(this, arguments);
-  };
-}(); // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+CryptoCardsHelpers.delay = function (time) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, time);
+  });
+}; // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Packs & Cards
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-CryptoCardsHelpers.getCardDataByRank = function (_ref2) {
-  var _ref2$year = _ref2.year,
-      year = _ref2$year === void 0 ? 0 : _ref2$year,
-      _ref2$gen = _ref2.gen,
-      gen = _ref2$gen === void 0 ? 1 : _ref2$gen,
-      rank = _ref2.rank,
-      _ref2$combined = _ref2.combined,
-      combined = _ref2$combined === void 0 ? 0 : _ref2$combined,
-      _ref2$special = _ref2.special,
-      special = _ref2$special === void 0 ? 0 : _ref2$special,
-      issue = _ref2.issue,
-      _ref2$gum = _ref2.gum,
-      gum = _ref2$gum === void 0 ? 0 : _ref2$gum,
-      _ref2$eth = _ref2.eth,
-      eth = _ref2$eth === void 0 ? 0 : _ref2$eth,
-      _ref2$traits = _ref2.traits,
-      traits = _ref2$traits === void 0 ? 0 : _ref2$traits;
+CryptoCardsHelpers.getCardDataByRank = function (_ref) {
+  var _ref$year = _ref.year,
+      year = _ref$year === void 0 ? 0 : _ref$year,
+      _ref$gen = _ref.gen,
+      gen = _ref$gen === void 0 ? 1 : _ref$gen,
+      rank = _ref.rank,
+      _ref$combined = _ref.combined,
+      combined = _ref$combined === void 0 ? 0 : _ref$combined,
+      _ref$special = _ref.special,
+      special = _ref$special === void 0 ? 0 : _ref$special,
+      issue = _ref.issue,
+      _ref$gum = _ref.gum,
+      gum = _ref$gum === void 0 ? 0 : _ref$gum,
+      _ref$eth = _ref.eth,
+      eth = _ref$eth === void 0 ? 0 : _ref$eth,
+      _ref$traits = _ref.traits,
+      traits = _ref$traits === void 0 ? 0 : _ref$traits;
   issue = !_lodash._.isNumber(issue) || issue < 1 ? _lodash._.random(10, 2000) : issue;
   return _parser.CryptoCardsParser.serializeCard({
     year: year,
@@ -144,11 +119,11 @@ CryptoCardsHelpers.getCardTypeLabel = function (cardType) {
   return _lodash._.capitalize(_lodash._.keys(_globals.CC_GLOBAL.CARD_TYPE)[cardType - 1]);
 };
 
-CryptoCardsHelpers.findCombinableCards = function (_ref3) {
-  var ownerCards = _ref3.ownerCards,
-      sourceCard = _ref3.sourceCard,
-      _ref3$includePacked = _ref3.includePacked,
-      includePacked = _ref3$includePacked === void 0 ? false : _ref3$includePacked;
+CryptoCardsHelpers.findCombinableCards = function (_ref2) {
+  var ownerCards = _ref2.ownerCards,
+      sourceCard = _ref2.sourceCard,
+      _ref2$includePacked = _ref2.includePacked,
+      includePacked = _ref2$includePacked === void 0 ? false : _ref2$includePacked;
   var combinableCards = [];
 
   _lodash._.forEach(ownerCards, function (ownerCard) {
@@ -176,10 +151,10 @@ CryptoCardsHelpers.findCombinableCards = function (_ref3) {
   };
 };
 
-CryptoCardsHelpers.generateCombinedCard = function (_ref4) {
-  var sourceCard = _ref4.sourceCard,
-      combineCard = _ref4.combineCard,
-      cardIssue = _ref4.cardIssue;
+CryptoCardsHelpers.generateCombinedCard = function (_ref3) {
+  var sourceCard = _ref3.sourceCard,
+      combineCard = _ref3.combineCard,
+      cardIssue = _ref3.cardIssue;
   var fields = ['cardType', 'year', 'gen', 'rank', 'issue', 'combined', 'gum', 'eth', 'traits', 'specialty'];
 
   var resultCard = _lodash._.assignIn({}, _lodash._.pick(sourceCard, fields)); // Reduce Generation
