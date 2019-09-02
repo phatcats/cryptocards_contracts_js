@@ -7,8 +7,6 @@ exports.CryptoCardsHelpers = void 0;
 
 var _bigInteger = _interopRequireDefault(require("big-integer"));
 
-var math = _interopRequireWildcard(require("mathjs"));
-
 var _lodash = require("lodash");
 
 var _cardTraits = require("./card-traits");
@@ -17,11 +15,17 @@ var _parser = require("./parser");
 
 var _globals = require("./globals");
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+var _mathjs = require("mathjs");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-// Helpers Object
+// import * as math from 'mathjs';
+var mathConfig = {
+  number: 'BigNumber',
+  precision: _globals.CC_GLOBAL.ETHEREUM_PRECISION
+};
+var bigmath = (0, _mathjs.create)(_mathjs.all, mathConfig); // Helpers Object
+
 var CryptoCardsHelpers = {}; // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // GLOBALS
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -178,18 +182,12 @@ CryptoCardsHelpers.generateCombinedCard = function (_ref3) {
 
 
 CryptoCardsHelpers.toBigNumber = function (value) {
-  var bigmath = math.create({
-    number: 'BigNumber',
-    precision: _globals.CC_GLOBAL.ETHEREUM_PRECISION
-  });
+  // const bigmath = math.create({number: 'BigNumber', precision: CC_GLOBAL.ETHEREUM_PRECISION});
   return bigmath.bignumber(value);
 };
 
 CryptoCardsHelpers.fromBigNumber = function (value) {
-  var bigmath = math.create({
-    number: 'BigNumber',
-    precision: _globals.CC_GLOBAL.ETHEREUM_PRECISION
-  });
+  // const bigmath = math.create({number: 'BigNumber', precision: CC_GLOBAL.ETHEREUM_PRECISION});
   return bigmath.divide(value, _globals.CC_GLOBAL.ETHEREUM_UNIT);
 };
 

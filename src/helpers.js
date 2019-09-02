@@ -1,11 +1,15 @@
 
 import bigint from 'big-integer';
-import * as math from 'mathjs';
 import { _ } from 'lodash';
 
 import { CryptoCardsTraits } from './card-traits';
 import { CryptoCardsParser } from './parser';
 import { CC_GLOBAL } from './globals';
+
+// import * as math from 'mathjs';
+import { create, all } from 'mathjs'
+const mathConfig = { number: 'BigNumber', precision: CC_GLOBAL.ETHEREUM_PRECISION };
+const bigmath = create(all, mathConfig);
 
 // Helpers Object
 export const CryptoCardsHelpers = {};
@@ -125,11 +129,11 @@ CryptoCardsHelpers.generateCombinedCard = ({sourceCard, combineCard, cardIssue})
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 CryptoCardsHelpers.toBigNumber = (value) => {
-    const bigmath = math.create({number: 'BigNumber', precision: CC_GLOBAL.ETHEREUM_PRECISION});
+    // const bigmath = math.create({number: 'BigNumber', precision: CC_GLOBAL.ETHEREUM_PRECISION});
     return bigmath.bignumber(value);
 };
 CryptoCardsHelpers.fromBigNumber = (value) => {
-    const bigmath = math.create({number: 'BigNumber', precision: CC_GLOBAL.ETHEREUM_PRECISION});
+    // const bigmath = math.create({number: 'BigNumber', precision: CC_GLOBAL.ETHEREUM_PRECISION});
     return bigmath.divide(value, CC_GLOBAL.ETHEREUM_UNIT);
 };
 
