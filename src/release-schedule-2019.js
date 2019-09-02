@@ -91,6 +91,20 @@ export const CryptoCardsReleaseSchedule = {
         }));
     },
 
+    getLastReleaseData: ({generationTime}) => {
+        let current = _.findIndex(CryptoCardsReleaseSchedule.availableCardRanks, available => (generationTime >= available.releaseDate));
+        if (current === -1) { current = 1; }
+        return CryptoCardsReleaseSchedule.availableCardRanks[current - 1];
+    },
+
+    getNextReleaseData: ({generationTime}) => {
+        const current = _.findIndex(CryptoCardsReleaseSchedule.availableCardRanks, available => (generationTime >= available.releaseDate));
+        if (current === -1 || current === _.size(CryptoCardsReleaseSchedule.availableCardRanks) - 1) {
+            return false;
+        }
+        return CryptoCardsReleaseSchedule.availableCardRanks[current + 1];
+    },
+
     getAvailableCardRanksByType: (generationTime) => {
         const availableCardRanks = CryptoCardsReleaseSchedule.getAvailableCardRanks({generationTime});
         return CryptoCardsReleaseSchedule.orderByType(availableCardRanks);

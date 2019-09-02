@@ -103,22 +103,48 @@ var CryptoCardsReleaseSchedule = {
       return generationTime >= available.releaseDate ? available.cardsReleased : [];
     }));
   },
+  getLastReleaseData: function getLastReleaseData(_ref2) {
+    var generationTime = _ref2.generationTime;
+
+    var current = _.findIndex(CryptoCardsReleaseSchedule.availableCardRanks, function (available) {
+      return generationTime >= available.releaseDate;
+    });
+
+    if (current === -1) {
+      current = 1;
+    }
+
+    return CryptoCardsReleaseSchedule.availableCardRanks[current - 1];
+  },
+  getNextReleaseData: function getNextReleaseData(_ref3) {
+    var generationTime = _ref3.generationTime;
+
+    var current = _.findIndex(CryptoCardsReleaseSchedule.availableCardRanks, function (available) {
+      return generationTime >= available.releaseDate;
+    });
+
+    if (current === -1 || current === _.size(CryptoCardsReleaseSchedule.availableCardRanks) - 1) {
+      return false;
+    }
+
+    return CryptoCardsReleaseSchedule.availableCardRanks[current + 1];
+  },
   getAvailableCardRanksByType: function getAvailableCardRanksByType(generationTime) {
     var availableCardRanks = CryptoCardsReleaseSchedule.getAvailableCardRanks({
       generationTime: generationTime
     });
     return CryptoCardsReleaseSchedule.orderByType(availableCardRanks);
   },
-  getAvailableWrappedEther: function getAvailableWrappedEther(_ref2) {
-    var cardType = _ref2.cardType;
+  getAvailableWrappedEther: function getAvailableWrappedEther(_ref4) {
+    var cardType = _ref4.cardType;
     var available = CryptoCardsReleaseSchedule.availableWrappedEther[CryptoCardsReleaseSchedule.currentRewardEra];
     return available.rewardAmounts[cardType];
   },
   getWrappedEtherForStorage: function getWrappedEtherForStorage(wrappedEth) {
     return wrappedEth * _globals.CC_GLOBAL.WRAPPED_ETH_MULT;
   },
-  getCardGeneration: function getCardGeneration(_ref3) {
-    var issued = _ref3.issued;
+  getCardGeneration: function getCardGeneration(_ref5) {
+    var issued = _ref5.issued;
 
     for (var i = 0; i < CryptoCardsReleaseSchedule.cardsPerGeneration.length; i++) {
       if (issued <= CryptoCardsReleaseSchedule.cardsPerGeneration[i]) {
@@ -131,10 +157,10 @@ var CryptoCardsReleaseSchedule = {
   getGumRangeForGeneration: function getGumRangeForGeneration(generation) {
     return CryptoCardsReleaseSchedule.gumPerGeneration[generation];
   },
-  cardIssueByGeneration: function cardIssueByGeneration(_ref4) {
-    var issued = _ref4.issued,
-        _ref4$gen = _ref4.gen,
-        gen = _ref4$gen === void 0 ? 0 : _ref4$gen;
+  cardIssueByGeneration: function cardIssueByGeneration(_ref6) {
+    var issued = _ref6.issued,
+        _ref6$gen = _ref6.gen,
+        gen = _ref6$gen === void 0 ? 0 : _ref6$gen;
 
     if (gen === 0) {
       gen = CryptoCardsReleaseSchedule.getCardGeneration({
@@ -144,8 +170,8 @@ var CryptoCardsReleaseSchedule = {
 
     return issued - CryptoCardsReleaseSchedule.cardsPerGeneration[gen - 1];
   },
-  getFoundersTokenOdds: function getFoundersTokenOdds(_ref5) {
-    var cardType = _ref5.cardType;
+  getFoundersTokenOdds: function getFoundersTokenOdds(_ref7) {
+    var cardType = _ref7.cardType;
     return CryptoCardsReleaseSchedule.foundersTokenOdds[cardType];
   }
 }; // Rank is 1-based
