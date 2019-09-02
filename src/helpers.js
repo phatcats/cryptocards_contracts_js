@@ -1,8 +1,11 @@
 
-import { CC_GLOBAL } from './globals';
 import bigint from 'big-integer';
 import * as math from 'mathjs';
 import { _ } from 'lodash';
+
+import { CryptoCardsTraits } from './card-traits';
+import { CryptoCardsParser } from './parser';
+import { CC_GLOBAL } from './globals';
 
 // Helpers Object
 export const CryptoCardsHelpers = {};
@@ -23,10 +26,99 @@ CryptoCardsHelpers.getContractAddress = (networkVersion = '1') => {
 CryptoCardsHelpers.date = () => (new Date());
 CryptoCardsHelpers.now = () => (new Date()).getTime();
 
+CryptoCardsHelpers.delay = async (time) => {
+    return new Promise((resolve) => {
+        setTimeout(resolve, time);
+    });
+};
+
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Packs & Cards
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+
+CryptoCardsHelpers.getCardDataByRank = ({year = 0, gen = 1, rank, combined = 0, special = 0, issue, gum = 0, eth = 0, traits = 0}) => {
+    issue = (!_.isNumber(issue) || issue < 1) ? _.random(10, 2000) : issue;
+    return CryptoCardsParser.serializeCard({year, gen, rank, combined, special, issue, gum, eth, traits});
+};
+
+CryptoCardsHelpers.getCardTypeByRank = (rank) => {
+    let type = 0;
+    for (; type < CC_GLOBAL.CARD_TYPE_RANGES.length; type++) {
+        if (rank < CC_GLOBAL.CARD_TYPE_RANGES[type]) {
+            break;
+        }
+    }
+    // 1 = Legendary
+    // 2 = Epic
+    // 3 = Rare
+    // 4 = Scarce
+    // 5 = Common
+    return type + 1;
+};
+
+CryptoCardsHelpers.isCardSpecialIssue = (issue) => {
+    return (issue === 1 || (issue % CC_GLOBAL.SPECIAL_CARD_MOD) === 0);
+};
+
+CryptoCardsHelpers.getCardTypeMax = (cardType) => {
+    const typeIdx = _.parseInt(cardType, CC_GLOBAL.NUM_BASE) - 1;
+    if (typeIdx === 0) { return CC_GLOBAL.CARD_TYPE_RANGES[typeIdx]; }
+    return CC_GLOBAL.CARD_TYPE_RANGES[typeIdx] - CC_GLOBAL.CARD_TYPE_RANGES[typeIdx - 1];
+};
+
+CryptoCardsHelpers.getCardTypeLabel = (cardType) => {
+    return _.capitalize(_.keys(CC_GLOBAL.CARD_TYPE)[cardType - 1]);
+};
+
+CryptoCardsHelpers.findCombinableCards = ({ownerCards, sourceCard, includePacked = false}) => {
+    const combinableCards = [];
+
+    _.forEach(ownerCards, ownerCard => {
+        if (ownerCard.cardId === sourceCard.cardId) { return; }
+        if (ownerCard.gen < 1) { return; }
+        if (!includePacked && !!ownerCard.packed) { return; }
+
+        const conditions = [
+            ownerCard.year === sourceCard.year,
+            ownerCard.gen === sourceCard.gen,
+            ownerCard.rank === sourceCard.rank,
+        ];
+
+        if (_.every(conditions, Boolean)) {
+            combinableCards.push(ownerCard);
+        }
+    });
+
+    return {combinableCards};
+};
+
+CryptoCardsHelpers.generateCombinedCard = ({sourceCard, combineCard, cardIssue}) => {
+    const fields = ['cardType','year','gen','rank','issue','combined','gum','eth','traits','specialty'];
+    const resultCard = _.assignIn({}, _.pick(sourceCard, fields));
+
+    // Reduce Generation
+    resultCard.gen -= 1;
+
+    // Get Issue of New Card
+    resultCard.issue = cardIssue + 1;
+
+    // Combine Gum/Eth
+    resultCard.gum += combineCard.gum;
+    resultCard.eth += combineCard.eth;
+
+    // Track Combined Count
+    resultCard.combined += (combineCard.combined + 1);
+
+    // Combine Traits
+    const traits = [
+        CryptoCardsTraits.toTraits(sourceCard.traits),
+        CryptoCardsTraits.toTraits(combineCard.traits)
+    ];
+    resultCard.traits = CryptoCardsTraits.combineTraits(traits).toString(CC_GLOBAL.NUM_BASE);
+
+    return resultCard;
+};
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ETHEREUM
@@ -41,14 +133,22 @@ CryptoCardsHelpers.fromBigNumber = (value) => {
     return bigmath.divide(value, CC_GLOBAL.ETHEREUM_UNIT);
 };
 
-CryptoCardsHelpers.strFromBigint = (value, base = 10) => {
+CryptoCardsHelpers.strFromBigint = (value, base = CC_GLOBAL.NUM_BASE) => {
     return bigint(value, base).toString(base);
 };
-CryptoCardsHelpers.intFromBigint = (value, base = 10) => {
+CryptoCardsHelpers.intFromBigint = (value, base = CC_GLOBAL.NUM_BASE) => {
     return _.parseInt(CryptoCardsHelpers.strFromBigint(value, base), base);
 };
-CryptoCardsHelpers.floatFromBigint = (value, base = 10) => {
+CryptoCardsHelpers.floatFromBigint = (value, base = CC_GLOBAL.NUM_BASE) => {
     return parseFloat(CryptoCardsHelpers.strFromBigint(value, base));
+};
+
+CryptoCardsHelpers.hexToBigIntStr = (value) => {
+    return bigint(value, CC_GLOBAL.HEX_BASE).toString(CC_GLOBAL.NUM_BASE);
+};
+
+CryptoCardsHelpers.bigIntToHexStr = (value) => {
+    return bigint(value, CC_GLOBAL.NUM_BASE).toString(CC_GLOBAL.HEX_BASE);
 };
 
 CryptoCardsHelpers.fromEtherToString = (value, base = 10) => {
@@ -143,6 +243,10 @@ CryptoCardsHelpers.findInDeep = (obj, keyToFind) => {
     }
     return found;
 };
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Miscellaneous
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 CryptoCardsHelpers.promisify = f => (...args) => new Promise((resolve, reject) => {
     f(...args, (err, val) => {
