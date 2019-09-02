@@ -27,6 +27,12 @@ Object.defineProperty(exports, "CryptoCardsParser", {
     return _parser.CryptoCardsParser;
   }
 });
+Object.defineProperty(exports, "CryptoCardsReleaseSchedule", {
+  enumerable: true,
+  get: function get() {
+    return _releaseSchedule.CryptoCardsReleaseSchedule;
+  }
+});
 exports.CryptoCardsLib = exports.CryptoCardsGumToken = exports.CryptoCardsGum = exports.CryptoCardsCardsToken = exports.CryptoCardsCards = exports.CryptoCardsPacksToken = exports.CryptoCardsPacks = exports.CryptoCardsOracle = exports.CryptoCardsTreasury = exports.CryptoCardsController = void 0;
 
 var _globals = require("./globals");
@@ -36,6 +42,8 @@ var _helpers = require("./helpers");
 var _cardTraits = require("./card-traits");
 
 var _parser = require("./parser");
+
+var _releaseSchedule = require("./release-schedule-2019");
 
 var _cryptoCardsContractFactory = require("./crypto-cards-contract-factory");
 

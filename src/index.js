@@ -3,6 +3,7 @@ import { CC_GLOBAL } from './globals';
 import { CryptoCardsHelpers } from './helpers';
 import { CryptoCardsTraits } from './card-traits';
 import { CryptoCardsParser } from './parser';
+import { CryptoCardsReleaseSchedule } from './release-schedule-2019';
 import { CryptoCardsContractFactory } from './crypto-cards-contract-factory';
 
 import { CryptoCardsControllerABI } from './abi/crypto-cards-controller.abi';
@@ -41,6 +42,7 @@ export {
     CryptoCardsHelpers,
     CryptoCardsTraits,
     CryptoCardsParser,
+    CryptoCardsReleaseSchedule,
     CC_GLOBAL
 }
 
