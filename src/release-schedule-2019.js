@@ -94,16 +94,13 @@ export const CryptoCardsReleaseSchedule = {
     getLastReleaseData: ({generationTime}) => {
         let current = _.findIndex(CryptoCardsReleaseSchedule.availableCardRanks, available => (generationTime >= available.releaseDate));
         if (current === -1) { current = 1; }
-        return CryptoCardsReleaseSchedule.availableCardRanks[current - 1];
+        return CryptoCardsReleaseSchedule.availableCardRanks[current];
     },
 
     getNextReleaseData: ({generationTime}) => {
-        const current = _.findIndex(CryptoCardsReleaseSchedule.availableCardRanks, available => (generationTime >= available.releaseDate));
-        console.log('current', current);
-        if (current === -1 || current === _.size(CryptoCardsReleaseSchedule.availableCardRanks) - 1) {
-            return false;
-        }
-        return CryptoCardsReleaseSchedule.availableCardRanks[current + 1];
+        const next = _.findIndex(CryptoCardsReleaseSchedule.availableCardRanks, available => (generationTime < available.releaseDate));
+        if (next === -1) { return false; }
+        return CryptoCardsReleaseSchedule.availableCardRanks[next];
     },
 
     getAvailableCardRanksByType: (generationTime) => {

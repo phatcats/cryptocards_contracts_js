@@ -114,22 +114,20 @@ var CryptoCardsReleaseSchedule = {
       current = 1;
     }
 
-    return CryptoCardsReleaseSchedule.availableCardRanks[current - 1];
+    return CryptoCardsReleaseSchedule.availableCardRanks[current];
   },
   getNextReleaseData: function getNextReleaseData(_ref3) {
     var generationTime = _ref3.generationTime;
 
-    var current = _.findIndex(CryptoCardsReleaseSchedule.availableCardRanks, function (available) {
-      return generationTime >= available.releaseDate;
+    var next = _.findIndex(CryptoCardsReleaseSchedule.availableCardRanks, function (available) {
+      return generationTime < available.releaseDate;
     });
 
-    console.log('current', current);
-
-    if (current === -1 || current === _.size(CryptoCardsReleaseSchedule.availableCardRanks) - 1) {
+    if (next === -1) {
       return false;
     }
 
-    return CryptoCardsReleaseSchedule.availableCardRanks[current + 1];
+    return CryptoCardsReleaseSchedule.availableCardRanks[next];
   },
   getAvailableCardRanksByType: function getAvailableCardRanksByType(generationTime) {
     var availableCardRanks = CryptoCardsReleaseSchedule.getAvailableCardRanks({
