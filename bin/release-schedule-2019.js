@@ -123,6 +123,8 @@ var CryptoCardsReleaseSchedule = {
       return generationTime >= available.releaseDate;
     });
 
+    console.log('current', current);
+
     if (current === -1 || current === _.size(CryptoCardsReleaseSchedule.availableCardRanks) - 1) {
       return false;
     }

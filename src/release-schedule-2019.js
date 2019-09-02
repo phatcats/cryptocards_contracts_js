@@ -99,6 +99,7 @@ export const CryptoCardsReleaseSchedule = {
 
     getNextReleaseData: ({generationTime}) => {
         const current = _.findIndex(CryptoCardsReleaseSchedule.availableCardRanks, available => (generationTime >= available.releaseDate));
+        console.log('current', current);
         if (current === -1 || current === _.size(CryptoCardsReleaseSchedule.availableCardRanks) - 1) {
             return false;
         }
