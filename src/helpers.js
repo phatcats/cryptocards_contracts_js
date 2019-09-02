@@ -7,7 +7,7 @@ import { CryptoCardsParser } from './parser';
 import { CC_GLOBAL } from './globals';
 
 // import * as math from 'mathjs';
-import { create, all } from 'mathjs'
+import { create, all } from 'mathjs';
 const mathConfig = { number: 'BigNumber' }; // , precision: CC_GLOBAL.ETHEREUM_PRECISION };
 const bigmath = create(all, mathConfig);
 
@@ -48,8 +48,8 @@ CryptoCardsHelpers.getCardDataByRank = ({year = 0, gen = 1, rank, combined = 0, 
 
 CryptoCardsHelpers.getCardTypeByRank = (rank) => {
     let type = 0;
-    for (; type < CC_GLOBAL.CARD_TYPE_RANGES.length; type++) {
-        if (rank < CC_GLOBAL.CARD_TYPE_RANGES[type]) {
+    for (; type < CC_GLOBAL.CARD_TYPE_RANGE.length; type++) {
+        if (rank < CC_GLOBAL.CARD_TYPE_RANGE[type]) {
             break;
         }
     }
@@ -67,8 +67,8 @@ CryptoCardsHelpers.isCardSpecialIssue = (issue) => {
 
 CryptoCardsHelpers.getCardTypeMax = (cardType) => {
     const typeIdx = _.parseInt(cardType, CC_GLOBAL.NUM_BASE) - 1;
-    if (typeIdx === 0) { return CC_GLOBAL.CARD_TYPE_RANGES[typeIdx]; }
-    return CC_GLOBAL.CARD_TYPE_RANGES[typeIdx] - CC_GLOBAL.CARD_TYPE_RANGES[typeIdx - 1];
+    if (typeIdx === 0) { return CC_GLOBAL.CARD_TYPE_RANGE[typeIdx]; }
+    return CC_GLOBAL.CARD_TYPE_RANGE[typeIdx] - CC_GLOBAL.CARD_TYPE_RANGE[typeIdx - 1];
 };
 
 CryptoCardsHelpers.getCardTypeLabel = (cardType) => {

@@ -91,8 +91,8 @@ CryptoCardsHelpers.getCardDataByRank = function (_ref) {
 CryptoCardsHelpers.getCardTypeByRank = function (rank) {
   var type = 0;
 
-  for (; type < _globals.CC_GLOBAL.CARD_TYPE_RANGES.length; type++) {
-    if (rank < _globals.CC_GLOBAL.CARD_TYPE_RANGES[type]) {
+  for (; type < _globals.CC_GLOBAL.CARD_TYPE_RANGE.length; type++) {
+    if (rank < _globals.CC_GLOBAL.CARD_TYPE_RANGE[type]) {
       break;
     }
   } // 1 = Legendary
@@ -113,10 +113,10 @@ CryptoCardsHelpers.getCardTypeMax = function (cardType) {
   var typeIdx = _lodash._.parseInt(cardType, _globals.CC_GLOBAL.NUM_BASE) - 1;
 
   if (typeIdx === 0) {
-    return _globals.CC_GLOBAL.CARD_TYPE_RANGES[typeIdx];
+    return _globals.CC_GLOBAL.CARD_TYPE_RANGE[typeIdx];
   }
 
-  return _globals.CC_GLOBAL.CARD_TYPE_RANGES[typeIdx] - _globals.CC_GLOBAL.CARD_TYPE_RANGES[typeIdx - 1];
+  return _globals.CC_GLOBAL.CARD_TYPE_RANGE[typeIdx] - _globals.CC_GLOBAL.CARD_TYPE_RANGE[typeIdx - 1];
 };
 
 CryptoCardsHelpers.getCardTypeLabel = function (cardType) {

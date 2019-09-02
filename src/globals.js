@@ -27,6 +27,7 @@ CC_GLOBAL.CARD_TYPE = {
     SCARCE    : 4,
     COMMON    : 5
 };
+CC_GLOBAL.CARD_TYPE_RANGE = [10, 48, 96, 160, 256];
 CC_GLOBAL.CARD_TYPE_RANGES = [
     [0, 9],
     [10, 47],
