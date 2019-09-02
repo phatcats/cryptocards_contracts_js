@@ -101,20 +101,12 @@ CryptoCardsHelpers.generateCombinedCard = ({sourceCard, combineCard, cardIssue})
     const fields = ['cardType','year','gen','rank','issue','combined','gum','eth','traits','specialty'];
     const resultCard = _.assignIn({}, _.pick(sourceCard, fields));
 
-    // Reduce Generation
     resultCard.gen -= 1;
-
-    // Get Issue of New Card
-    resultCard.issue = cardIssue + 1;
-
-    // Combine Gum/Eth
+    resultCard.issue = cardIssue;
     resultCard.gum += combineCard.gum;
     resultCard.eth += combineCard.eth;
-
-    // Track Combined Count
     resultCard.combined += (combineCard.combined + 1);
 
-    // Combine Traits
     const traits = [
         CryptoCardsTraits.toTraits(sourceCard.traits),
         CryptoCardsTraits.toTraits(combineCard.traits)
