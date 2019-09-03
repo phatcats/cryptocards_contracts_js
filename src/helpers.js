@@ -72,7 +72,7 @@ CryptoCardsHelpers.getCardTypeMax = (cardType) => {
 };
 
 CryptoCardsHelpers.getCardTypeLabel = (cardType) => {
-    return _.capitalize(_.keys(CC_GLOBAL.CARD_TYPE)[cardType - 1]);
+    return _.capitalize(_.keys(CC_GLOBAL.CARD_TYPE)[cardType]);
 };
 
 CryptoCardsHelpers.findCombinableCards = ({ownerCards, sourceCard, includePacked = false}) => {

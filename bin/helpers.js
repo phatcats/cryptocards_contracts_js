@@ -120,7 +120,7 @@ CryptoCardsHelpers.getCardTypeMax = function (cardType) {
 };
 
 CryptoCardsHelpers.getCardTypeLabel = function (cardType) {
-  return _lodash._.capitalize(_lodash._.keys(_globals.CC_GLOBAL.CARD_TYPE)[cardType - 1]);
+  return _lodash._.capitalize(_lodash._.keys(_globals.CC_GLOBAL.CARD_TYPE)[cardType]);
 };
 
 CryptoCardsHelpers.findCombinableCards = function (_ref2) {
