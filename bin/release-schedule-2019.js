@@ -24,12 +24,12 @@ var CryptoCardsReleaseSchedule = {
   // TODO: For Testing
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   //
-  cardsPerGeneration: [0, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+  // cardsPerGeneration: [0, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // TODO: For Production
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  // cardsPerGeneration: [0, 25, 40, 65, 100, 150, 200, 300, 400, 600, 800, 1001],
+  cardsPerGeneration: [0, 25, 40, 65, 100, 150, 200, 300, 400, 600, 800, 1001],
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // Card-Type Weight is based on the % of Total Available Cards per Type (1 - 5)
   //   1.2%  ==  12  ==    0 +  12  =  12
@@ -178,35 +178,15 @@ var CryptoCardsReleaseSchedule = {
 
 exports.CryptoCardsReleaseSchedule = CryptoCardsReleaseSchedule;
 CryptoCardsReleaseSchedule.availableCardRanks.push({
-  releaseDate: new Date('Sep 01 2019 00:00:00 GMT').getTime(),
-  // Bitcoin, Monero, IOTA, DASH, ZCash, Waves, Verge, Komodo, SiaCoin, Ark, Status, Golem, Syscoin,
+  releaseDate: new Date('Sep 15 2019 00:00:00 GMT').getTime(),
+  // Litecoin, Monero, IOTA, DASH, ZCash, Waves, Verge, Komodo, SiaCoin, Ark, Status, Golem, Syscoin,
   // TenX, Kyber Network, Enigma, Obyte, NXT, FunFair, Dragonchain, Namecoin, Ripio, Dropil, Melon,
   // Steem, Pillar, District0x, IoT Chain, WePower, FLO, DATA, Lunyr
-  cardsReleased: [[0], [12, 13, 14, 21, 22], [48, 49, 51, 54, 56, 58], [99, 100, 101, 102, 103, 104, 105, 111], [165, 166, 167, 171, 172, 176, 191, 193, 199, 200, 210, 211]]
+  cardsReleased: [[4], [12, 13, 14, 21, 22], [48, 49, 51, 54, 56, 58], [99, 100, 101, 102, 103, 104, 105, 111], [165, 166, 167, 171, 172, 176, 191, 193, 199, 200, 210, 211]]
 });
 CryptoCardsReleaseSchedule.availableCardRanks.push({
-  releaseDate: new Date('Sep 2 2019 00:00:00 GMT').getTime(),
-  cardsReleased: [225] // Bitcore (Common)
-
-});
-CryptoCardsReleaseSchedule.availableCardRanks.push({
-  releaseDate: new Date('Sep 4 2019 00:00:00 GMT').getTime(),
-  cardsReleased: [26] // Basic Attention Token (Epic)
-
-});
-CryptoCardsReleaseSchedule.availableCardRanks.push({
-  releaseDate: new Date('Sep 7 2019 00:00:00 GMT').getTime(),
-  cardsReleased: [227, 82] // Etherparty (Common), Veritaseum (Rare)
-
-});
-CryptoCardsReleaseSchedule.availableCardRanks.push({
-  releaseDate: new Date('Sep 12 2019 00:00:00 GMT').getTime(),
-  cardsReleased: [131] // Gemini (Scarce)
-
-});
-CryptoCardsReleaseSchedule.availableCardRanks.push({
-  releaseDate: new Date('Sep 17 2019 00:00:00 GMT').getTime(),
-  cardsReleased: [1] // Ethereum (Legendary)
+  releaseDate: new Date('Sep 18 2019 00:00:00 GMT').getTime(),
+  cardsReleased: [1, 225] // Ethereum (Legendary), Bitcore (Common)
 
 });
 CryptoCardsReleaseSchedule.availableCardRanks.push({
@@ -216,7 +196,7 @@ CryptoCardsReleaseSchedule.availableCardRanks.push({
 });
 CryptoCardsReleaseSchedule.availableCardRanks.push({
   releaseDate: new Date('Sep 27 2019 00:00:00 GMT').getTime(),
-  cardsReleased: [214] // Monetha (Common)
+  cardsReleased: [26, 214] // Basic Attention Token (Epic), Monetha (Common)
 
 });
 CryptoCardsReleaseSchedule.availableCardRanks.push({
@@ -246,22 +226,22 @@ CryptoCardsReleaseSchedule.availableCardRanks.push({
 });
 CryptoCardsReleaseSchedule.availableCardRanks.push({
   releaseDate: new Date('Oct 25 2019 00:00:00 GMT').getTime(),
-  cardsReleased: [235] // Potcoin (Common)
+  cardsReleased: [82, 235] // Veritaseum (Rare), Potcoin (Common)
 
 });
 CryptoCardsReleaseSchedule.availableCardRanks.push({
   releaseDate: new Date('Oct 30 2019 00:00:00 GMT').getTime(),
-  cardsReleased: [67, 112] // Decentraland (Rare), Civic (Scarce)
+  cardsReleased: [0, 112] // Bitcoin (Legendary), Civic (Scarce)
 
 });
 CryptoCardsReleaseSchedule.availableCardRanks.push({
   releaseDate: new Date('Nov 4 2019 00:00:00 GMT').getTime(),
-  cardsReleased: [86] // Bancor (Rare)
+  cardsReleased: [86, 227] // Bancor (Rare), Etherparty (Common)
 
 });
 CryptoCardsReleaseSchedule.availableCardRanks.push({
   releaseDate: new Date('Nov 9 2019 00:00:00 GMT').getTime(),
-  cardsReleased: [219, 240] // Substratum (Common), Primecoin (Common)
+  cardsReleased: [67, 240] // Decentraland (Rare), Primecoin (Common)
 
 });
 CryptoCardsReleaseSchedule.availableCardRanks.push({
@@ -276,7 +256,7 @@ CryptoCardsReleaseSchedule.availableCardRanks.push({
 });
 CryptoCardsReleaseSchedule.availableCardRanks.push({
   releaseDate: new Date('Nov 24 2019 00:00:00 GMT').getTime(),
-  cardsReleased: [89] // DigixDao (Rare)
+  cardsReleased: [89, 131] // DigixDao (Rare),  Gemini (Scarce)
 
 });
 CryptoCardsReleaseSchedule.availableCardRanks.push({
@@ -306,6 +286,6 @@ CryptoCardsReleaseSchedule.availableCardRanks.push({
 });
 CryptoCardsReleaseSchedule.availableCardRanks.push({
   releaseDate: new Date('Dec 24 2019 00:00:00 GMT').getTime(),
-  cardsReleased: [4] // Litecoin (Legendary)
+  cardsReleased: [219] // Substratum (Common)
 
 });
