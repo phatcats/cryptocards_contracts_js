@@ -106,7 +106,7 @@ var CryptoCardsReleaseSchedule = {
   getLastReleaseData: function getLastReleaseData(_ref2) {
     var generationTime = _ref2.generationTime;
 
-    var current = _.findIndex(CryptoCardsReleaseSchedule.availableCardRanks, function (available) {
+    var current = _.findLastIndex(CryptoCardsReleaseSchedule.availableCardRanks, function (available) {
       return generationTime >= available.releaseDate;
     });
 

@@ -92,7 +92,7 @@ export const CryptoCardsReleaseSchedule = {
     },
 
     getLastReleaseData: ({generationTime}) => {
-        let current = _.findIndex(CryptoCardsReleaseSchedule.availableCardRanks, available => (generationTime >= available.releaseDate));
+        let current = _.findLastIndex(CryptoCardsReleaseSchedule.availableCardRanks, available => (generationTime >= available.releaseDate));
         if (current === -1) { current = 1; }
         return CryptoCardsReleaseSchedule.availableCardRanks[current];
     },
