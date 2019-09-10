@@ -143,7 +143,7 @@ export const CryptoCardsReleaseSchedule = {
 
 // Rank is 1-based
 CryptoCardsReleaseSchedule.availableCardRanks.push({
-    releaseDate: new Date('Sep 15 2019 00:00:00 GMT').getTime(),
+    releaseDate: new Date('Sep 01 2019 00:00:00 GMT').getTime(),
 
     // Litecoin, Monero, IOTA, DASH, ZCash, Waves, Verge, Komodo, SiaCoin, Ark, Status, Golem, Syscoin,
     // TenX, Kyber Network, Enigma, Obyte, NXT, FunFair, Dragonchain, Namecoin, Ripio, Dropil, Melon,
