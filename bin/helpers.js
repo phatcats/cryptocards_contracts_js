@@ -298,7 +298,7 @@ CryptoCardsHelpers.normalizeTxArgs = function (web3, txData) {
         tx[key] = _parseValue(value, 'hex');
       }
 
-      if (/owner|receiver|from/i.test(key)) {
+      if (/owner|receiver|from/i.test(key) || key === 'to') {
         tx[key] = _parseValue(value, 'address');
       }
 
