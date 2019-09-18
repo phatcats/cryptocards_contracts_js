@@ -93,7 +93,7 @@ export const CryptoCardsReleaseSchedule = {
 
     getLastReleaseData: ({generationTime}) => {
         let current = _.findLastIndex(CryptoCardsReleaseSchedule.availableCardRanks, available => (generationTime >= available.releaseDate));
-        if (current === -1) { current = 1; }
+        if (current === -1) { current = 0; }
         return CryptoCardsReleaseSchedule.availableCardRanks[current];
     },
 
@@ -158,12 +158,12 @@ CryptoCardsReleaseSchedule.availableCardRanks.push({
 });
 
 CryptoCardsReleaseSchedule.availableCardRanks.push({
-    releaseDate: new Date('Sep 18 2019 00:00:00 GMT').getTime(),
+    releaseDate: new Date('Sep 20 2019 00:00:00 GMT').getTime(),
     cardsReleased: [ 1, 225 ] // Ethereum (Legendary), Bitcore (Common)
 });
 
 CryptoCardsReleaseSchedule.availableCardRanks.push({
-    releaseDate: new Date('Sep 22 2019 00:00:00 GMT').getTime(),
+    releaseDate: new Date('Sep 23 2019 00:00:00 GMT').getTime(),
     cardsReleased: [ 229, 62 ] // Counterparty (Common), Maidsafe (Rare)
 });
 
