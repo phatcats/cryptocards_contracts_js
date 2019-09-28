@@ -1,6 +1,6 @@
 {
   "name": "cryptocards_contracts_js",
-  "version": "0.3.33",
+  "version": "0.3.34",
   "author": "Rob Secord",
   "license": "UNLICENSED",
   "private": true,
@@ -17,7 +17,7 @@
     "coverageDirectory": "./.coverage"
   },
   "dependencies": {
-    "big-integer": "^1.6.40",
+    "big-integer": "^1.6.45",
     "lodash": "^4.17.11",
     "mathjs": "^6.2.1",
     "promise": "^8.0.2"
