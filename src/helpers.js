@@ -48,6 +48,9 @@ CryptoCardsHelpers.getCardDataByRank = ({year = 0, gen = 1, rank, combined = 0, 
 
 CryptoCardsHelpers.getCardTypeByRank = (rank) => {
     let type = 0;
+    if (rank === CC_GLOBAL.SPECIAL_CARD_RANK) {
+        return CC_GLOBAL.SPECIAL_CARD_TYPE; 
+    }
     for (; type < CC_GLOBAL.CARD_TYPE_RANGE.length; type++) {
         if (rank < CC_GLOBAL.CARD_TYPE_RANGE[type]) {
             break;
@@ -66,12 +69,14 @@ CryptoCardsHelpers.isCardSpecialIssue = (issue) => {
 };
 
 CryptoCardsHelpers.getCardTypeMax = (cardType) => {
+    if (cardType === CC_GLOBAL.SPECIAL_CARD_TYPE) { return [CC_GLOBAL.SPECIAL_CARD_RANK]; }
     const typeIdx = _.parseInt(cardType, CC_GLOBAL.NUM_BASE) - 1;
     if (typeIdx === 0) { return CC_GLOBAL.CARD_TYPE_RANGE[typeIdx]; }
     return CC_GLOBAL.CARD_TYPE_RANGE[typeIdx] - CC_GLOBAL.CARD_TYPE_RANGE[typeIdx - 1];
 };
 
 CryptoCardsHelpers.getCardTypeLabel = (cardType) => {
+    if (cardType === CC_GLOBAL.SPECIAL_CARD_TYPE) { return 'Special'; }
     return _.capitalize(_.keys(CC_GLOBAL.CARD_TYPE)[cardType]);
 };
 

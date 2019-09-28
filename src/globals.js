@@ -19,6 +19,7 @@ CC_GLOBAL.NUM_BASE          = 10;
 CC_GLOBAL.HEX_BASE          = 16;
 CC_GLOBAL.SPECIAL_CARD_MOD  = 100; // every 100th card of that issue  (issue % 100 === 0)
 CC_GLOBAL.SPECIAL_CARD_RANK = (1 << 16) - 1;
+CC_GLOBAL.SPECIAL_CARD_TYPE = 9;
 
 CC_GLOBAL.CARD_TYPE = {
     LEGENDARY : 1,
