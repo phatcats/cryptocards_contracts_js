@@ -49,7 +49,7 @@ CryptoCardsHelpers.getCardDataByRank = ({year = 0, gen = 1, rank, combined = 0, 
 CryptoCardsHelpers.getCardTypeByRank = (rank) => {
     let type = 0;
     if (rank === CC_GLOBAL.SPECIAL_CARD_RANK) {
-        return CC_GLOBAL.SPECIAL_CARD_TYPE; 
+        return CC_GLOBAL.SPECIAL_CARD_TYPE;
     }
     for (; type < CC_GLOBAL.CARD_TYPE_RANGE.length; type++) {
         if (rank < CC_GLOBAL.CARD_TYPE_RANGE[type]) {
