@@ -132,7 +132,7 @@ CryptoCardsHelpers.getCardTypeLabel = function (cardType) {
     return 'Special';
   }
 
-  return _lodash._.capitalize(_lodash._.keys(_globals.CC_GLOBAL.CARD_TYPE)[cardType]);
+  return _lodash._.capitalize(_lodash._.keys(_globals.CC_GLOBAL.CARD_TYPE)[cardType - 1]);
 };
 
 CryptoCardsHelpers.findCombinableCards = function (_ref2) {
