@@ -55,11 +55,11 @@ export const CryptoCardsReleaseSchedule = {
         {
             rewardEra: 0,
             rewardAmounts: [ // Total: 1.465 ETH
-                { eth: 0.100, max:  3, weight: 850 }, // 15.0%
-                { eth: 0.050, max: 10, weight: 875 }, // 12.5%
-                { eth: 0.025, max: 14, weight: 900 }, // 10.0%
-                { eth: 0.010, max: 18, weight: 925 }, //  7.5%
-                { eth: 0.005, max: 27, weight: 950 }  //  5.0%
+                { eth: 0.100, max:  3, weight: 875 }, // 12.5%
+                { eth: 0.050, max: 10, weight: 900 }, // 10.0%
+                { eth: 0.025, max: 14, weight: 925 }, //  7.5%
+                { eth: 0.010, max: 18, weight: 950 }, //  5.0%
+                { eth: 0.005, max: 27, weight: 975 }  //  2.5%
             ]
         }
     ],
