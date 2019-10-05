@@ -118,12 +118,13 @@ export const CryptoCardsReleaseSchedule = {
     },
 
     getCardGeneration: ({issued}) => {
+        if (issued === 0) { return 1; }
         for (let i = 0; i < CryptoCardsReleaseSchedule.cardsPerGeneration.length; i++) {
             if (issued <= CryptoCardsReleaseSchedule.cardsPerGeneration[i]) {
                 return i;
             }
         }
-        return 0;
+        return 1;
     },
 
     getGumRangeForGeneration: (generation) => {

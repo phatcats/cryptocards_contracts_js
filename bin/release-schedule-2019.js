@@ -146,13 +146,17 @@ var CryptoCardsReleaseSchedule = {
   getCardGeneration: function getCardGeneration(_ref5) {
     var issued = _ref5.issued;
 
+    if (issued === 0) {
+      return 1;
+    }
+
     for (var i = 0; i < CryptoCardsReleaseSchedule.cardsPerGeneration.length; i++) {
       if (issued <= CryptoCardsReleaseSchedule.cardsPerGeneration[i]) {
         return i;
       }
     }
 
-    return 0;
+    return 1;
   },
   getGumRangeForGeneration: function getGumRangeForGeneration(generation) {
     return CryptoCardsReleaseSchedule.gumPerGeneration[generation];
