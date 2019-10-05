@@ -17,13 +17,13 @@ export const CryptoCardsReleaseSchedule = {
     // TODO: For Testing
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     //
-    cardsPerGeneration: [0, 3, 7, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+    // cardsPerGeneration: [0, 3, 7, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // TODO: For Production
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // cardsPerGeneration: [0, 25, 40, 65, 100, 150, 200, 300, 400, 600, 800, 1001],
+    cardsPerGeneration: [0, 25, 40, 65, 100, 150, 200, 300, 400, 600, 800, 1001],
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     // Card-Type Weight is based on the % of Total Available Cards per Type (1 - 5)
@@ -190,7 +190,7 @@ CryptoCardsReleaseSchedule.availableCardRanks.push({
 
 CryptoCardsReleaseSchedule.availableCardRanks.push({
     releaseDate: new Date('Oct 15 2019 00:00:00 GMT').getTime(),
-    cardsReleased: [ 234 ] // Wings (Common)
+    cardsReleased: [ 2, 234 ] // Ripple (Legendary), Wings (Common)
 });
 
 CryptoCardsReleaseSchedule.availableCardRanks.push({
@@ -260,5 +260,5 @@ CryptoCardsReleaseSchedule.availableCardRanks.push({
 
 CryptoCardsReleaseSchedule.availableCardRanks.push({
     releaseDate: new Date('Dec 24 2019 00:00:00 GMT').getTime(),
-    cardsReleased: [ 219 ] // Substratum (Common)
+    cardsReleased: [ 7, 219 ] // Cardano (Legendary), Substratum (Common)
 });
