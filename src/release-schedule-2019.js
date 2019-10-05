@@ -17,13 +17,13 @@ export const CryptoCardsReleaseSchedule = {
     // TODO: For Testing
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     //
-    // cardsPerGeneration: [0, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+    cardsPerGeneration: [0, 3, 7, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // TODO: For Production
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    cardsPerGeneration: [0, 25, 40, 65, 100, 150, 200, 300, 400, 600, 800, 1001],
+    // cardsPerGeneration: [0, 25, 40, 65, 100, 150, 200, 300, 400, 600, 800, 1001],
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     // Card-Type Weight is based on the % of Total Available Cards per Type (1 - 5)
@@ -127,13 +127,13 @@ export const CryptoCardsReleaseSchedule = {
         return 1;
     },
 
-    getGumRangeForGeneration: (generation) => {
-        return CryptoCardsReleaseSchedule.gumPerGeneration[generation];
-    },
-
     cardIssueByGeneration: ({issued, gen = 0}) => {
         if (gen === 0) { gen = CryptoCardsReleaseSchedule.getCardGeneration({issued}); }
         return issued - CryptoCardsReleaseSchedule.cardsPerGeneration[gen-1];
+    },
+
+    getGumRangeForGeneration: (generation) => {
+        return CryptoCardsReleaseSchedule.gumPerGeneration[generation];
     },
 
     getFoundersTokenOdds: ({cardType}) => {
