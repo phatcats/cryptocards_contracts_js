@@ -34,6 +34,8 @@ class CryptoCardsTraits {
 CryptoCardsTraits.OG_TOKEN             = bigint(1).shiftLeft(0);
 CryptoCardsTraits.FOUNDERS_TOKEN       = bigint(1).shiftLeft(1);
 CryptoCardsTraits.GLITCH_CARD          = bigint(1).shiftLeft(2);
+CryptoCardsTraits.ETH_WATERLOO         = bigint(1).shiftLeft(3);
+CryptoCardsTraits.ETH_GLOBAL           = bigint(1).shiftLeft(4);
 CryptoCardsTraits.REVERSED_THEME       = bigint(1).shiftLeft(14);
 CryptoCardsTraits.FOR_TESTING          = bigint(1).shiftLeft(75);
 

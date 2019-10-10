@@ -68,5 +68,7 @@ exports.CryptoCardsTraits = CryptoCardsTraits;
 CryptoCardsTraits.OG_TOKEN = (0, _bigInteger["default"])(1).shiftLeft(0);
 CryptoCardsTraits.FOUNDERS_TOKEN = (0, _bigInteger["default"])(1).shiftLeft(1);
 CryptoCardsTraits.GLITCH_CARD = (0, _bigInteger["default"])(1).shiftLeft(2);
+CryptoCardsTraits.ETH_WATERLOO = (0, _bigInteger["default"])(1).shiftLeft(3);
+CryptoCardsTraits.ETH_GLOBAL = (0, _bigInteger["default"])(1).shiftLeft(4);
 CryptoCardsTraits.REVERSED_THEME = (0, _bigInteger["default"])(1).shiftLeft(14);
 CryptoCardsTraits.FOR_TESTING = (0, _bigInteger["default"])(1).shiftLeft(75);
