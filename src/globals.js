@@ -99,18 +99,19 @@ CC_GLOBAL.CONTRACT_ADDRESS = {
 
 CC_GLOBAL.TX = {
     TYPE: {
-        BUY_NEW_PACK      :  1,
-        RECEIVED_NEW_PACK :  2,
-        BUY_OLD_PACK      :  3,
-        RECEIVED_OLD_PACK :  4,
-        OPENED_PACK       :  5,
-        CARD_PRICE_SET    :  6,
-        CARD_SOLD         :  7,
-        CARD_TRADE_SET    :  8,
-        CARD_TRADED       :  9,
-        CARD_COMBINED     : 10,
-        CARD_MELTED       : 11,
-        CARD_PRINTED      : 12,
+        BUY_NEW_PACK        :  1,
+        RECEIVED_NEW_PACK   :  2,
+        BUY_OLD_PACK        :  3,
+        RECEIVED_OLD_PACK   :  4,
+        OPENED_PACK         :  5,
+        CARD_PRICE_SET      :  6,
+        CARD_SOLD           :  7,
+        CARD_TRADE_SET      :  8,
+        CARD_TRADED         :  9,
+        CARD_COMBINED       : 10,
+        CARD_MELTED         : 11,
+        CARD_PRINTED        : 12,
+        RECEIVED_PROMO_PACK : 13,
     },
     STATUS: {
         PENDING   : 1,
@@ -135,6 +136,8 @@ CC_GLOBAL.TX = {
         CARD_COMBINED     : 'CardsCombined',
         CARD_MELTED       : 'CardMelted',
         CARD_PRINTED      : 'CardPrinted',
+
+        RECEIVED_PROMO_PACK: 'ReceivedPromoPack',
     },
     ERROR_CODES: {
         UNKNOWN         : {CODE: 1, MSG: 'Unhandled Error Occurred'},
@@ -159,4 +162,5 @@ CC_GLOBAL.TX_TYPE_LABELS = [
     'Combined Cards',
     'Melted Card',
     'Printed Card',
+    'Received Promo Pack',
 ];
