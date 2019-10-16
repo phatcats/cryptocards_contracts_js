@@ -141,6 +141,33 @@ export const CryptoCardsPacksABI = [
         'inputs': [
             {
                 'indexed': true,
+                'name': 'receiver',
+                'type': 'address'
+            },
+            {
+                'indexed': false,
+                'name': 'uuid',
+                'type': 'bytes16'
+            },
+            {
+                'indexed': false,
+                'name': 'packId',
+                'type': 'uint256'
+            },
+            {
+                'indexed': false,
+                'name': 'packData',
+                'type': 'string'
+            }
+        ],
+        'name': 'ReceivedPromoPack',
+        'type': 'event'
+    },
+    {
+        'anonymous': false,
+        'inputs': [
+            {
+                'indexed': true,
                 'name': 'previousOwner',
                 'type': 'address'
             },
@@ -410,6 +437,33 @@ export const CryptoCardsPacksABI = [
             }
         ],
         'name': 'mintPack',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'uint256'
+            }
+        ],
+        'payable': false,
+        'stateMutability': 'nonpayable',
+        'type': 'function'
+    },
+    {
+        'constant': false,
+        'inputs': [
+            {
+                'name': 'to',
+                'type': 'address'
+            },
+            {
+                'name': 'uuid',
+                'type': 'bytes16'
+            },
+            {
+                'name': 'packData',
+                'type': 'string'
+            }
+        ],
+        'name': 'mintPromoPack',
         'outputs': [
             {
                 'name': '',
