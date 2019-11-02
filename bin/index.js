@@ -33,7 +33,7 @@ Object.defineProperty(exports, "CryptoCardsReleaseSchedule", {
     return _releaseSchedule.CryptoCardsReleaseSchedule;
   }
 });
-exports.CryptoCardsLib = exports.CryptoCardsGumToken = exports.CryptoCardsGum = exports.CryptoCardsCardsToken = exports.CryptoCardsCards = exports.CryptoCardsPacksToken = exports.CryptoCardsPacks = exports.CryptoCardsOracle = exports.CryptoCardsTreasury = exports.CryptoCardsController = void 0;
+exports.CryptoCardsPromoMgr = exports.CryptoCardsLib = exports.CryptoCardsGumToken = exports.CryptoCardsGum = exports.CryptoCardsCardsToken = exports.CryptoCardsCards = exports.CryptoCardsPacksToken = exports.CryptoCardsPacks = exports.CryptoCardsOracle = exports.CryptoCardsTreasury = exports.CryptoCardsController = void 0;
 
 var _globals = require("./globals");
 
@@ -66,6 +66,8 @@ var _cryptoCardsGum = require("./abi/crypto-cards-gum.abi");
 var _cryptoCardsGumToken = require("./abi/crypto-cards-gum-token.abi");
 
 var _cryptoCardsLib = require("./abi/crypto-cards-lib.abi");
+
+var _cryptoCardsPromoMgr = require("./abi/crypto-cards-promo-mgr.abi");
 
 var CryptoCardsController = _cryptoCardsContractFactory.CryptoCardsContractFactory.create({
   addressName: 'CONTROLLER',
@@ -136,3 +138,10 @@ var CryptoCardsLib = _cryptoCardsContractFactory.CryptoCardsContractFactory.crea
 });
 
 exports.CryptoCardsLib = CryptoCardsLib;
+
+var CryptoCardsPromoMgr = _cryptoCardsContractFactory.CryptoCardsContractFactory.create({
+  addressName: 'PROMO_MGR',
+  abi: _cryptoCardsPromoMgr.CryptoCardsPromoMgrABI
+});
+
+exports.CryptoCardsPromoMgr = CryptoCardsPromoMgr;
