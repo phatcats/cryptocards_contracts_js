@@ -16,6 +16,7 @@ import { CryptoCardsCardsTokenABI } from './abi/crypto-cards-cards-token.abi';
 import { CryptoCardsGumABI }        from './abi/crypto-cards-gum.abi';
 import { CryptoCardsGumTokenABI }   from './abi/crypto-cards-gum-token.abi';
 import { CryptoCardsLibABI }        from './abi/crypto-cards-lib.abi';
+import { CryptoCardsPromoMgrABI }   from './abi/crypto-cards-promo-mgr.abi';
 
 const CryptoCardsController = CryptoCardsContractFactory.create({addressName: 'CONTROLLER',  abi: CryptoCardsControllerABI});
 const CryptoCardsTreasury   = CryptoCardsContractFactory.create({addressName: 'TREASURY',    abi: CryptoCardsTreasuryABI});
@@ -27,6 +28,7 @@ const CryptoCardsCardsToken = CryptoCardsContractFactory.create({addressName: 'C
 const CryptoCardsGum        = CryptoCardsContractFactory.create({addressName: 'GUM',         abi: CryptoCardsGumABI});
 const CryptoCardsGumToken   = CryptoCardsContractFactory.create({addressName: 'GUM_TOKEN',   abi: CryptoCardsGumTokenABI});
 const CryptoCardsLib        = CryptoCardsContractFactory.create({addressName: 'LIB',         abi: CryptoCardsLibABI});
+const CryptoCardsPromoMgr   = CryptoCardsContractFactory.create({addressName: 'PROMO_MGR',   abi: CryptoCardsPromoMgrABI});
 
 export {
     CryptoCardsController,
@@ -39,6 +41,7 @@ export {
     CryptoCardsGum,
     CryptoCardsGumToken,
     CryptoCardsLib,
+    CryptoCardsPromoMgr,
     CryptoCardsHelpers,
     CryptoCardsTraits,
     CryptoCardsParser,
