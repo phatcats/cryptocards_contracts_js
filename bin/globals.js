@@ -50,6 +50,7 @@ CC_GLOBAL.WATCH_INTERVAL = {
   RECEIPT: 3000,
   PENDING: 30000
 };
+CC_GLOBAL.PROMO_PACK_HOLDER = '0x8F9C2a251831cbf07134b0430bcfea708E8a4feF';
 CC_GLOBAL.ETHWATERLOO_PROMO_CODES = ['frda9t6pb', 'p2gs75kq9', 'ke4wfxb57', 'pcg58dse6', '98dawsrkz', 'rc8236xyq', '698wxtqks', 'fdaewxsc9', '8y4dbgr7k', '2pewgxh5z', 'q4ehgfc8z', 'w96aftrqz', 'rqktpbg9z', 'ha2gsx64e', 'kpeg9s35f', '7w8b49pc6', '6hrq5f2zw', '4kds2chfw', 'txcw3fs9r', 's6r7h9pyg', 'ftrwdayz5', 'br3qa9hpy', 'ckzq23r87', 'db28rwx4p', 'k8qa43hw7', '9ktxc53zw', 'rfsxkgp9b', '67scwp2fd', 'zq8pgdk3c', 'ry8f4kc6e', '8zfqr2yt7', 'kh5f3adc8', 'cgxr68b7y', 'sfdkah2w3', 'gdh58y73b', '9zxb8fq7y', 'bkgwzy53x', 'z9e5g2ax4', 's3htg6a78', 'r7adtxq4h', '7ed6gp4rh', '7srt4cpa9', 'adezgyx5f', '79dycp2bt', 'p6e7txfkz', '7sczwrphg', 'p6eq49ryf', 'xs3phykr8', 'eah6p4bq3', 'ch7qgz5tp'];
 CC_GLOBAL.CONTRACT_ADDRESS = {
   // Main Network
@@ -134,7 +135,7 @@ CC_GLOBAL.TX = {
     CARD_MELTED: 'CardMelted',
     CARD_PRINTED: 'CardPrinted',
     RECEIVED_PROMO_PACK: 'ReceivedPromoPack',
-    CLAIMED_PROMO_PACK: 'Transfer'
+    CLAIMED_PROMO_PACK: 'PromoPackTransferred'
   },
   ERROR_CODES: {
     UNKNOWN: {
