@@ -117,6 +117,7 @@ CC_GLOBAL.TX = {
         CARD_MELTED         : 11,
         CARD_PRINTED        : 12,
         RECEIVED_PROMO_PACK : 13,
+        CLAIMED_PROMO_PACK  : 14,
     },
     STATUS: {
         PENDING   : 1,
@@ -142,7 +143,8 @@ CC_GLOBAL.TX = {
         CARD_MELTED       : 'CardMelted',
         CARD_PRINTED      : 'CardPrinted',
 
-        RECEIVED_PROMO_PACK: 'ReceivedPromoPack',
+        RECEIVED_PROMO_PACK : 'ReceivedPromoPack',
+        CLAIMED_PROMO_PACK  : 'Transfer',
     },
     ERROR_CODES: {
         UNKNOWN         : {CODE: 1, MSG: 'Unhandled Error Occurred'},
@@ -168,4 +170,5 @@ CC_GLOBAL.TX_TYPE_LABELS = [
     'Melted Card',
     'Printed Card',
     'Received Promo Pack',
+    'Claimed Promo Pack',
 ];

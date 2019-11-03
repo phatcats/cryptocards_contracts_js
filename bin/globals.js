@@ -109,7 +109,8 @@ CC_GLOBAL.TX = {
     CARD_COMBINED: 10,
     CARD_MELTED: 11,
     CARD_PRINTED: 12,
-    RECEIVED_PROMO_PACK: 13
+    RECEIVED_PROMO_PACK: 13,
+    CLAIMED_PROMO_PACK: 14
   },
   STATUS: {
     PENDING: 1,
@@ -132,7 +133,8 @@ CC_GLOBAL.TX = {
     CARD_COMBINED: 'CardsCombined',
     CARD_MELTED: 'CardMelted',
     CARD_PRINTED: 'CardPrinted',
-    RECEIVED_PROMO_PACK: 'ReceivedPromoPack'
+    RECEIVED_PROMO_PACK: 'ReceivedPromoPack',
+    CLAIMED_PROMO_PACK: 'Transfer'
   },
   ERROR_CODES: {
     UNKNOWN: {
@@ -154,4 +156,4 @@ CC_GLOBAL.TX = {
     }
   }
 };
-CC_GLOBAL.TX_TYPE_LABELS = ['', 'Buy New Pack', 'Received New Pack', 'Buy Existing Pack', 'Received Existing Pack', 'Opened Pack', 'Set Card Price', 'Bought Card', 'Set Card Trade Value', 'Traded Card', 'Combined Cards', 'Melted Card', 'Printed Card', 'Received Promo Pack'];
+CC_GLOBAL.TX_TYPE_LABELS = ['', 'Buy New Pack', 'Received New Pack', 'Buy Existing Pack', 'Received Existing Pack', 'Opened Pack', 'Set Card Price', 'Bought Card', 'Set Card Trade Value', 'Traded Card', 'Combined Cards', 'Melted Card', 'Printed Card', 'Received Promo Pack', 'Claimed Promo Pack'];
