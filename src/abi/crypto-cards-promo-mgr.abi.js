@@ -119,6 +119,25 @@ export const CryptoCardsPromoMgrABI = [
     },
     {
         'constant': true,
+        'inputs': [
+            {
+                'name': 'promoCode',
+                'type': 'bytes32'
+            }
+        ],
+        'name': 'isValidPromoCode',
+        'outputs': [
+            {
+                'name': '',
+                'type': 'bool'
+            }
+        ],
+        'payable': false,
+        'stateMutability': 'view',
+        'type': 'function'
+    },
+    {
+        'constant': true,
         'inputs': [],
         'name': 'getPromoPackHolder',
         'outputs': [
