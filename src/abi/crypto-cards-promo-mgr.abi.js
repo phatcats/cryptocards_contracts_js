@@ -61,7 +61,7 @@ export const CryptoCardsPromoMgrABI = [
             {
                 'indexed': false,
                 'name': 'promoCode',
-                'type': 'bytes32'
+                'type': 'string'
             },
             {
                 'indexed': false,
@@ -122,7 +122,7 @@ export const CryptoCardsPromoMgrABI = [
         'inputs': [
             {
                 'name': 'promoCode',
-                'type': 'bytes32'
+                'type': 'string'
             }
         ],
         'name': 'isValidPromoCode',
@@ -224,11 +224,11 @@ export const CryptoCardsPromoMgrABI = [
         'constant': false,
         'inputs': [
             {
-                'name': 'codes',
-                'type': 'bytes32[]'
+                'name': 'promoCode',
+                'type': 'string'
             }
         ],
-        'name': 'setValidPromoCodes',
+        'name': 'setValidPromoCode',
         'outputs': [],
         'payable': false,
         'stateMutability': 'nonpayable',
@@ -239,7 +239,7 @@ export const CryptoCardsPromoMgrABI = [
         'inputs': [
             {
                 'name': 'promoCode',
-                'type': 'bytes32'
+                'type': 'string'
             }
         ],
         'name': 'claimPromoPack',

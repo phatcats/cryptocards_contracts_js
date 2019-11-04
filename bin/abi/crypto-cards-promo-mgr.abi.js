@@ -54,7 +54,7 @@ var CryptoCardsPromoMgrABI = [{
   }, {
     'indexed': false,
     'name': 'promoCode',
-    'type': 'bytes32'
+    'type': 'string'
   }, {
     'indexed': false,
     'name': 'packId',
@@ -101,7 +101,7 @@ var CryptoCardsPromoMgrABI = [{
   'constant': true,
   'inputs': [{
     'name': 'promoCode',
-    'type': 'bytes32'
+    'type': 'string'
   }],
   'name': 'isValidPromoCode',
   'outputs': [{
@@ -180,10 +180,10 @@ var CryptoCardsPromoMgrABI = [{
 }, {
   'constant': false,
   'inputs': [{
-    'name': 'codes',
-    'type': 'bytes32[]'
+    'name': 'promoCode',
+    'type': 'string'
   }],
-  'name': 'setValidPromoCodes',
+  'name': 'setValidPromoCode',
   'outputs': [],
   'payable': false,
   'stateMutability': 'nonpayable',
@@ -192,7 +192,7 @@ var CryptoCardsPromoMgrABI = [{
   'constant': false,
   'inputs': [{
     'name': 'promoCode',
-    'type': 'bytes32'
+    'type': 'string'
   }],
   'name': 'claimPromoPack',
   'outputs': [{
